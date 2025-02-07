@@ -438,7 +438,7 @@ div.main .carousel-content {
 }
 
 div.main .carousel-trims  {
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 div.main .carousel-trims ul  {
@@ -458,6 +458,10 @@ div.main .carousel-header-desktop {
   padding: 24px 24px 0px 24px;
   justify-content: space-between;
 }
+
+
+
+
 
 div.main .carousel-header-tablet {
   display: flex;
@@ -533,9 +537,12 @@ div.main .filters-mobile {
   width: calc( 100% - 48px);
   padding: 12px 24px;
   margin-bottom: 16px;
-  border: 1px solid #E6E6E6;
+  /*border: 1px solid #E6E6E6;*/
   background: #fff;
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.10);
+ /* box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.10);*/
+
+  border-radius: 40px;
+  border: 1px solid var(--neutral-gray-200, #E6E6E6);
 }
 
 div.main .results-mobile {
@@ -549,10 +556,34 @@ div.main .results-mobile {
 div.main .subhead-desktop {
 
   width: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+div.main .subhead-desktop h4{
+
+ pointer-events: none;
+ user-select: none;
+ color: #333; 
+ font-family: "Hyundai Sans Text";
+ font-size: 14px;
+ font-style: normal;
+ font-weight: 400;
+
+ padding-top: 2px;
+
+}
+
+
+div.main .subhead-sortandinventory {
+
+  width: 100%;
   height: 44px;
   display: flex;
   justify-content: space-between;
-
+  margin: 6px 0;
 }
 
 
@@ -644,16 +675,6 @@ div.main .subhead-desktop {
   }
 
 
-}
-
-
-
-
-
-@media screen and (min-width: 1024px) {
-  
-
-
   div.main  {
     overflow: hidden;
 
@@ -693,6 +714,9 @@ div.main .subhead-desktop {
   }
 
 
+
+
+
 }
 
 @media screen and (min-width: 1280px) {
@@ -707,6 +731,7 @@ div.main .subhead-desktop {
   }
 
 }
+
 
 
 @media screen and (max-width: 1280px) {
@@ -743,6 +768,21 @@ div.main .subhead-desktop {
 
 
 
+  /*  div.main .carousel-header-desktop {
+
+    }*/
+
+    div.main .carousel-header-desktop picture:nth-child(1) img  {
+      width: 113px;
+      height: 70px;
+    }
+
+    div.main .carousel-header-desktop picture:nth-child(2) img {
+      width: 200px;
+      height: 32px;
+    }
+
+
 
 }
  
@@ -759,6 +799,7 @@ div.main .subhead-desktop {
     padding-left: 72px;
   }
 
+
   div.main .filters{
       width: 309px;
       padding-right: 40px;
@@ -770,9 +811,20 @@ div.main .subhead-desktop {
   }
 
   
+  div.main .carousel-header-desktop picture:nth-child(1) img {
+    width: 185px;
+    height: 88px;
+  }
+
+  div.main .carousel-header-desktop picture:nth-child(2) img{
+    width: 228px;
+    height: 49px;
+  }
+
+
 
   div.main .carousel-trims {
-    width : calc(100vw - 473px);
+    width : calc(100vw - 513px);
   }
 
 
@@ -828,7 +880,6 @@ div.main .subhead-desktop {
 
 
 }
-
 
 
 
