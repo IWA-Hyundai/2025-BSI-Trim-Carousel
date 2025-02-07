@@ -357,37 +357,61 @@ header.mobile .mainnav {
 /* Container / Content   */
 
 div.main {
-
   display: flex;
   /*align-items: center;
   justify-content: center;*/
   overflow: hidden;
   background-color: #fff; /* #eee*/
   width: 100%;
-
 }
+
+
 
 div.main .container {
   width: 100%;
   max-width: 1920px;
   margin-top: 48px ;
   display: flex;
-  align-items: center;
+  
   justify-content: left;
   background-color: #fff; /* #ddd*/
+}
+
+
+div.main .filters {
+  display: flex;
+  flex-direction: column;
+  width: 374px; /* 1920 */
+  padding-right: 40px; /* 1920 */
 }
 
 
 div.main .filters-desktop {
 
   background-color: #fff; /* #ccc*/
-  width: 414px;
+/*  width: 414px;*/
   margin-right: 24px;
+  padding-left: 40px;
+
+}
+
+
+
+div.main .filters-title {
+  display: flex;
+  align-self: left;
+  margin-bottom: 16px;
+}
+
+
+
+div.main  .filters-list {
+  display: flex;
+  justify-content: space-between;
 }
 
 
 div.main .content {
-
 
   background-color: #fff; /* #bbb*/
   display: flex;
@@ -397,13 +421,14 @@ div.main .content {
 
 div.main .carousel-container {
 
-  height: 753px;
+
   width: 100%;  /* 1290 */
   background-image: url("../img/bsi-desktop-carousel-background-v2-1920.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-
+  margin-bottom: 120px;
 }
+
 
 div.main .carousel-content {
   display: flex;
@@ -447,15 +472,19 @@ div.main .carousel-footer-desktop {
   padding: 0px 24px 24px 24px;
 }
 
+div.main .carousel-footer-desktop .secondary-button {
+  width: 192px;
+}
+
 div.main .carousel-footer-tablet {
 
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 0px 24px 24px 24px;
 }
 
 div.main .carousel-navigation-tablet {
-  margin-top: 16px;
+  margin: 16px 0px;
   height: 32px;
   display: flex;
   justify-content: space-between;
@@ -527,15 +556,26 @@ div.main .subhead-desktop {
 }
 
 
-@media screen and (max-width: 640px) {  
 
-
+ 
+@media screen and (max-width:640px) {
+  
   div.main .content {
     margin: 0 16px;
     width: calc(100vw - 32px);
   }
 
+ div.main .carousel-header-desktop, div.main .carousel-footer-desktop {
+    display: none;
+  }
+
+  div.main .carousel-header-tablet, div.main .carousel-footer-tablet {
+    display: flex;
+  }
+
+
 }
+
 
 
 
@@ -546,6 +586,13 @@ div.main .subhead-desktop {
     margin: 0 32px;
     width: calc(100vw - 64px);
   }
+
+ 
+  div.main .carousel-header-tablet, div.main .carousel-footer-tablet {
+    display: none;
+  }
+
+
 
 
 }
@@ -596,27 +643,17 @@ div.main .subhead-desktop {
     width: 100%;
   }
 
-  
-}
-
-
-@media screen and (max-width: 1280px) {
-   
-  header.desktop .mainnav img:nth-child(1) {
-    margin-left: 1.25rem;
-
-  }
-
-  header.desktop .mainnav img:nth-child(3) {
-    margin-right: 1.25rem;
-
-  }
 
 }
+
+
+
 
 
 @media screen and (min-width: 1024px) {
   
+
+
   div.main  {
     overflow: hidden;
 
@@ -625,14 +662,24 @@ div.main .subhead-desktop {
   div.main .container {
     margin-top: 36px;
   }
- 
-  div.main .filters-desktop img {
-    width:  300px;
-    height: 804px;
+
+
+  div.main .carousel-header-desktop, div.main .carousel-footer-desktop {
+    display: flex;
   }
 
+  div.main .carousel-header-tablet, div.main .carousel-footer-tablet {
+    display: none;
+  }
+
+  div.main .filters{
+      width: 300px;
+      padding-right: 20px;
+  }
+
+
   div.main .filters-desktop {
-    width: 300px;
+    /*width: 300px;*/
     margin-right: 20px;
     padding-left: 42px;
   }
@@ -648,14 +695,38 @@ div.main .subhead-desktop {
 
 }
 
+@media screen and (min-width: 1280px) {
+   
+
+  div.main .filters {
+    width: 383px;
+  }
+
+  div.main .carousel-trims {
+    width: calc(100vw - 500px);
+  }
+
+}
+
+
+@media screen and (max-width: 1280px) {
+   
+  header.desktop .mainnav img:nth-child(1) {
+    margin-left: 1.25rem;
+
+  }
+
+  header.desktop .mainnav img:nth-child(3) {
+    margin-right: 1.25rem;
+
+  }
+
+
+}
 
 
 
 @media screen and (max-width: 1440px) {
-
-  div.main .carousel-container {
-    height: 711px;
-  }
 
 
   div.main .carousel-trims ul li img {
@@ -663,18 +734,14 @@ div.main .subhead-desktop {
     height: 429px;
   }
 
-  div.main .carousel-header-desktop, div.main .carousel-footer-desktop {
-    display: none;
-  }
-
-  div.main .carousel-header    -tablet, div.main .carousel-footer-tablet {
-    display: flex;
-  }
 
 
   div.main .carousel-trims ul li {
     margin-left: 16px;
   }
+
+
+
 
 
 }
@@ -686,40 +753,27 @@ div.main .subhead-desktop {
     margin-top: 48px;
   }
 
-  div.main .filters-desktop img {
-    width:  309px;
-    height: 804px;
-  }
-
 
   div.main .filters-desktop {
-    width: 309px;
     margin-right: 20px;
     padding-left: 72px;
   }
+
+  div.main .filters{
+      width: 309px;
+      padding-right: 40px;
+  }
+
 
   div.main .content {
     padding-right: 72px;
   }
 
-  div.main .carousel-container {
-    height: 753px;
-  }
-
-
-
-  div.main .carousel-header-desktop, div.main .carousel-footer-desktop {
-    display: flex;
-  }
-
-  div.main .carousel-header-tablet, div.main .carousel-footer-tablet {
-    display: none;
-  }
+  
 
   div.main .carousel-trims {
     width : calc(100vw - 473px);
   }
-
 
 
   div.main .carousel-trims ul li {
@@ -731,6 +785,9 @@ div.main .subhead-desktop {
     height: 543px;
   }
 
+  div.main .carousel-footer-desktop .secondary-button {
+    width: 216px;
+  }
 
 
  }
@@ -742,9 +799,9 @@ div.main .subhead-desktop {
     margin-top: 48px;
   }
  
-  div.main .filters-desktop img {
-    width:  414px;
-    height: 804px;
+  div.main .filters{
+      width:  374px;
+      padding-right: 40px;
   }
 
   div.main  {
@@ -754,7 +811,7 @@ div.main .subhead-desktop {
   }
 
   div.main .filters-desktop {
-    width: 414px;
+    /*width: 414px;*/
     margin-right: 24px;
     padding-left: 96px; 
 

@@ -40,12 +40,15 @@
   <div class="main"> 
     <div class="container"> 
       <div class="filters-desktop">
-        <picture >
-            <source srcset="img/bsi-desktop-filter-1920.png" media="(min-width: 1920px)"/>
-            <source srcset="img/bsi-desktop-filter-1440.png" media="(min-width: 1440px)"/>
-            <source srcset="img/bsi-desktop-filter-1024.png" media="(min-width: 1024px)"/>
-            <img src="img/bsi-desktop-filter-1920.png" width=414 height=804 >
-        </picture>  
+        <div class="filters">
+         <img class="filters-title" src="img/bsi-desktop-filter-logo-1920.png" width=245  height=74 >
+         <div class="filters-list" >
+
+            <img class="filters-name" src="img/bsi-desktop-filter-names-1920.png" width=180  height=716 >
+            <img class="filters-chevron" src="img/bsi-desktop-filter-chevrons-1920.png" width=76  height=716 >
+
+         </div>
+        </div>
       </div>
 
       <div class="content">
@@ -127,9 +130,18 @@
                 </ul>
               </div> 
       
-      
               <div class="carousel-footer-desktop"> 
-                <img src="img/bsi-desktop-carousel-hidetrims.png" width=216 height=44 >
+                <!-- <img src="img/bsi-desktop-carousel-hidetrims.png" width=216 height=44 > -->
+
+                <button class="secondary-button">
+                  <a style="width:100%;">
+                    <div class="container-button">Hide 7 Trims</div>
+                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path class="stroke" d="M1 13L7 7L0.999999 1" stroke="#001A38"/>
+                    </svg>
+                  </a>
+                </button>
+
               </div>             
               <div class="carousel-footer-tablet"> 
                 <div class="carousel-navigation-tablet">
@@ -137,7 +149,7 @@
                      <img src="img/bsi-desktop-carousel-footer-nav-1024-image2.png" width=87 height=32 >
                      <img src="img/bsi-desktop-carousel-footer-nav-1024-image3.png" width=32 height=32 >
                 </div>
-                <img class="legal" src="img/bsi-desktop-carousel-footer-legal-1024-image1.png" width=343 height=32 >
+               <!--  <img class="legal" src="img/bsi-desktop-carousel-footer-legal-1024-image1.png" width=343 height=32 > -->
                <button class="secondary-button">
                  <a style="width:100%;">
                    <div class="container-button">Hide 7 Trims</div>
@@ -155,7 +167,7 @@
     </div>  
   </div>
   <!-- <script src="js/vendor/flickity.pkgd.min.js"></script> -->
-  <!-- <script src="js/app.js"></script> -->
+  <script src="js/app.js"></script>
 
 </body>
 
