@@ -361,6 +361,7 @@ div.main {
   display: flex;
   /*align-items: center;
   justify-content: center;*/
+  overflow: hidden;
   background-color: #fff; /* #eee*/
   width: 100%;
 
