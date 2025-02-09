@@ -7,27 +7,40 @@ button {
   background-color: transparent;
 }
 
-.secondary-button  {
+.primary-button, .secondary-button  {
   justify-content: flex-start; 
   align-items: center; 
   display: flex;
   cursor: pointer;
 }
 
-.secondary-button a {
+.primary-button {  
+  align-self: flex-end;
+}
+
+
+.primary-button a, .secondary-button a {
   align-self: stretch; 
   padding: 12px 24px; 
-  background: #fff;
+
   position: relative;
   transition: 0.2s transform cubic-bezier(.1,.5,.15,1);
   outline: 1px solid #002C5E; 
   outline-offset : -1px;
 }
 
-.secondary-button a .container-button{
+.primary-button a {
+  background: #002C5E;
+}
+
+ .secondary-button a { 
+  background: #fff;
+ }
+
+
+.primary-button a .container-button, .secondary-button a .container-button{
  pointer-events: none;
  user-select: none;
- color: #002C5E; 
  font-size: 16px; 
  font-family: Hyundai Sans Head; 
  font-weight: 500; 
@@ -36,6 +49,16 @@ button {
  display: inline-block;
 
 }
+
+.primary-button a .container-button {
+  color: #fff;
+}
+
+.secondary-button a .container-button{ 
+  color: #002C5E;
+ }
+
+
 
 svg {
  pointer-events: none; 
@@ -48,31 +71,14 @@ svg {
 }
 
 
-.secondary-button a:hover {
+.primary-button a:hover, .secondary-button a:hover {
   outline: 1px solid #002C5E; 
   outline-offset : -1px;
 }
 
-.secondary-button a:active {
+.primary-button a:active , .secondary-button a:active {
    transform: scale(0.95);
 }
 
-.secondary-button-hover {
-  transform: translate(-11px, 0);
-  color: #002C5E !important;
-}
 
 
-
-.secondary-button-chevron-hover {
-  opacity: 1.0;
-  transform: translate(0, 0);
-}
-
-.opacity-0 {
-   opacity: 0.0;
-}
-
-.color-002C5E {
-  color: #002C5E !important; 
-}
