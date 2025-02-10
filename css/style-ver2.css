@@ -40,9 +40,10 @@
   }
 
   div.main .filters {
-    padding-right: 20px;
+    padding-right: 0px;
     margin-right: 0px;
   }
+
 
   div.main .carousel-trims {
     width: calc(100vw - 460px);
@@ -122,6 +123,16 @@ div.main .carousel-header-tablet {
 }
 
 
+@media screen and (min-width: 1024px)  { 
+
+  div.main .content {
+
+    width: 100%;
+  }
+
+
+}
+
 @media screen and (min-width: 1024px) and  (max-width: 1280px){ 
 
   div.main .carousel-header-tablet {
@@ -149,3 +160,4 @@ div.main .carousel-header-tablet {
   }
 
 }
+

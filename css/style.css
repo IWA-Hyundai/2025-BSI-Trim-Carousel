@@ -1074,8 +1074,8 @@ div.main .subhead-sortandinventory {
 */
 
   div.main .filters{
-      width: 280px;
-      padding-right: 20px;
+      width: 300px;
+      padding-right: 0px;
   }
 
 
