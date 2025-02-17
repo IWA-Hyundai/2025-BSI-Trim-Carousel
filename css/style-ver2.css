@@ -161,3 +161,13 @@ div.main .carousel-header-tablet {
 
 }
 
+@media screen and (min-width: 1920px) {
+    div.main .filters {
+        width: 374px;
+        padding-right: 40px;
+    }
+
+    div.main .filters-desktop {
+        width: 414px;
+    }
+}
