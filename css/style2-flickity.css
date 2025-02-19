@@ -1,0 +1,55 @@
+.carousel-cell {
+	margin-left: 20px;
+}
+
+.main-carousel {
+	/*padding-left: 20px;*/
+}
+
+.carousel-cell:first-child {
+   padding-left: 20px;
+}
+.carousel-cell:last-child {
+  padding-right: 20px;
+}
+
+/*mobile */
+.carousel-cell img {
+  width:  295px;
+  height: 477px;
+}
+
+
+
+@media screen and (min-width: 640px) {
+
+  .carousel-cell {
+    margin-left: 24px;
+  }
+
+  /*tablet */
+  .carousel-cell img {
+    width:  323px;
+    height: 477px;
+  }
+
+
+
+}
+
+
+@media screen and (min-width: 1440px) {
+
+  .carousel-cell {
+    margin-left: 24px;
+  }
+
+  /*desktop */
+  .carousel-cell img {
+    width:  366px;
+    height: 491px;
+  }
+
+
+
+}

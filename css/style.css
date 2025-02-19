@@ -419,42 +419,47 @@ div.main .content {
   flex-direction: column;
 }
 
-div.main .carousel-container {
+div.main .trimcard {
+    margin-bottom: 40px;
+}
+
+div.main .trimcard-container {
 
 
   width: 100%;  /* 1290 */
-  /*background-image: url("../img/bsi-desktop-carousel-background-v2-1920.jpg");*/
+  /*background-image: url("../img/bsi-desktop-trimcard-background-v2-1920.jpg");*/
   background-color: #eee;
   background-size: cover;
   background-repeat: no-repeat;
-  margin-bottom: 120px;
+
 }
 
 
-div.main .carousel-content {
+div.main .trimcard-content {
   display: flex;
   width: 100%;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
 }
 
-div.main .carousel-trims  {
+div.main .trimcard-trims  {
   margin-top: 16px;
 }
 
-div.main .carousel-trims ul  {
+div.main .trimcard-trims ul  {
   display: inline-block;
   width: calc( 7 * (368px + 24px));
 }
 
-div.main .carousel-trims ul li {
+div.main .trimcard-trims ul li {
   float: left;
   /*box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.10);*/
   margin-left: 24px;
 }
 
 
-div.main .carousel-header-desktop {
+div.main .trimcard-header-desktop {
   display: none;
   padding: 24px 24px 0px 24px;
   justify-content: space-between;
@@ -470,7 +475,7 @@ div.main .carousel-header-desktop {
 
 
 
-div.main .carousel-header-desktop .col1{
+div.main .trimcard-header-desktop .col1{
 
    display: flex;
    flex-direction: column;
@@ -481,7 +486,7 @@ div.main .carousel-header-desktop .col1{
 }
 
 
-div.main .carousel-header-desktop .col2{
+div.main .trimcard-header-desktop .col2{
 
    display: flex;
    flex-direction: column;
@@ -490,14 +495,28 @@ div.main .carousel-header-desktop .col2{
 }
 
 
-div.main .carousel-header-desktop .col3{
+div.main .trimcard-header-desktop .col3{
 
    display: flex;
    flex-direction: column;
    margin-left: 24px;
    margin-bottom: 24px;
-   justify-content: flex-end;
+  /* justify-content: flex-end;*/
    height: inherit;
+}
+
+
+div.main .trimcard-header-desktop .col3 .carousel-navigation {
+  display: flex;
+  opacity: 0;
+  padding-top: 40px;
+  pointer-events: none;
+  justify-content: flex-end;
+}
+
+
+div.main .trimcard-header-desktop .col3 .carousel-navigation button:nth-child(1) {
+  margin-right: 16px;
 }
 
 
@@ -513,7 +532,7 @@ div.main .col1 .copy{
 }
 
 
-div.main .carousel-header-desktop .disclaimer, div.main .carousel-header-tablet .disclaimer, div.main .carousel-header-mobile .disclaimer{
+div.main .trimcard-header-desktop .disclaimer, div.main .trimcard-header-tablet .disclaimer, div.main .trimcard-header-mobile .disclaimer{
 
 
   color: var(--neutral-gray-400, #888);
@@ -528,12 +547,12 @@ div.main .carousel-header-desktop .disclaimer, div.main .carousel-header-tablet 
 }
 
 
-div.main .carousel-header-tablet .disclaimer{
+div.main .trimcard-header-tablet .disclaimer{
   margin-top: 8px;
   text-align: left;
 }
 
-div.main .carousel-header-tablet {
+div.main .trimcard-header-tablet {
   display: none;
   height: 304px;
   /* padding: 24px 24px 0px 24px; */
@@ -550,7 +569,7 @@ div.main .carousel-header-tablet {
 
 
 
-div.main .carousel-header-tablet .col1{
+div.main .trimcard-header-tablet .col1{
 
    display: flex;
    flex-direction: column;
@@ -562,7 +581,7 @@ div.main .carousel-header-tablet .col1{
 }
 
 
-div.main .carousel-header-desktop .col2{
+div.main .trimcard-header-desktop .col2{
 
    display: flex;
    flex-direction: column;
@@ -570,7 +589,7 @@ div.main .carousel-header-desktop .col2{
    flex-grow: 1;
 }
 
-div.main .carousel-header-tablet .col2{
+div.main .trimcard-header-tablet .col2{
 
    display: flex;
    flex-direction: column;
@@ -587,7 +606,7 @@ div.main .col1 .copy p{
 }
 
 
-div.main  .carousel-header-desktop .col1 .copy .disclaimer{
+div.main  .trimcard-header-desktop .col1 .copy .disclaimer{
 
    display: none;
 }
@@ -627,7 +646,7 @@ div.main .col2 {
   align-items: center;
 }
 
-div.main .carousel-header-tablet .col2 .photo {
+div.main .trimcard-header-tablet .col2 .photo {
 
 align-self: center;
 }
@@ -693,26 +712,26 @@ div.main .ctas h4 {
   margin-bottom: 8px;
 }
 
-div.main .carousel-header-tablet .ctas  .primary-button {
+div.main .trimcard-header-tablet .ctas  .primary-button {
 
   width: 200px;
 }
 
 
 
-div.main .carousel-header-mobile {
+div.main .trimcard-header-mobile {
   display: none;
   padding: 16px 16px 0px 16px;
   justify-content: space-between;
 }
 
 
-div.main .carousel-header-mobile .years {
+div.main .trimcard-header-mobile .years {
   height: 24px;
 }
 
 
-div.main .carousel-header-mobile .years label{
+div.main .trimcard-header-mobile .years label{
   color: var(--neutral-gray-400, #888);
   font-feature-settings: 'liga' off, 'clig' off;
   font-family: "Hyundai Sans Head";
@@ -725,27 +744,27 @@ div.main .carousel-header-mobile .years label{
 }
 
 
-div.main .carousel-header-mobile .years .active{
+div.main .trimcard-header-mobile .years .active{
   color: var(--neutral-gray-600, #333);
   border-bottom: 2px solid var(--Secondary-Active-Blue, #00AAD2);
 }
 
-div.main .carousel-header-mobile .photo {
+div.main .trimcard-header-mobile .photo {
   margin-top: 16px;
 }
 
 
-div.main .carousel-header-mobile .photo img{
+div.main .trimcard-header-mobile .photo img{
   height: 100%;
 }
 
 
-div.main .carousel-header-mobile .disclaimer{
+div.main .trimcard-header-mobile .disclaimer{
   margin-top: 16px;
 
 }
 
-div.main .carousel-header-mobile .copy{
+div.main .trimcard-header-mobile .copy{
   margin-top: 16px;
   color: var(--neutral-gray-600, #333);
   font-feature-settings: 'liga' off, 'clig' off;
@@ -759,18 +778,18 @@ div.main .carousel-header-mobile .copy{
 }
 
 
-div.main .carousel-header-mobile .title{
+div.main .trimcard-header-mobile .title{
   margin-top: 16px;
   display: flex;
   justify-content: space-between;
 }
 
-div.main .carousel-header-mobile .col1 .pricing p{
+div.main .trimcard-header-mobile .col1 .pricing p{
   text-align: right;
 }
 
 
-div.main .carousel-header-mobile .title h2{
+div.main .trimcard-header-mobile .title h2{
   color: var(--Neutral-Black, #000);
   font-feature-settings: 'liga' off, 'clig' off;
   /* Heading/Compact/03 */
@@ -782,73 +801,73 @@ div.main .carousel-header-mobile .title h2{
   align-self: flex-end;
 }
 
-div.main .carousel-header-mobile .ctas {
+div.main .trimcard-header-mobile .ctas {
   margin-top: 16px;
 }
 
-div.main .carousel-header-mobile .ctas .primary-button {
+div.main .trimcard-header-mobile .ctas .primary-button {
   width: 100%;
   margin: 16px 0;
 }
 
 
-div.main .carousel-header-mobile .ctas .build-inventory-links {
+div.main .trimcard-header-mobile .ctas .build-inventory-links {
   display: flex;
   justify-content: space-between;
 }
 
 
 
-div.main .carousel-header-tablet {
+div.main .trimcard-header-tablet {
   display: none;
   padding: 16px 16px 0px 16px;
   justify-content: space-between;
 }
 
 
-div.main .carousel-footer-desktop {
+div.main .trimcard-footer-desktop {
   margin-top: 16px;
   display: flex;
   flex-direction: row-reverse;
   padding: 0px 24px 24px 24px;
 }
 
-div.main .carousel-header-desktop .primary-button, div.main .carousel-footer-desktop .secondary-button {
+div.main .trimcard-header-desktop .primary-button, div.main .trimcard-footer-desktop .secondary-button {
 
   width: 192px;
 
 }
 
 
-div.main .carousel-footer-tablet {
+div.main .trimcard-footer-tablet {
 
   display: none;
   flex-direction: column;
   padding: 0px 24px 24px 24px;
 }
 
-div.main .carousel-navigation-tablet {
+div.main .trimcard-navigation-tablet {
   margin: 16px 0px;
   height: 32px;
   display: flex;
   justify-content: space-between;
 }
 
-div.main .carousel-navigation-tablet img:nth-child(1) {
+div.main .trimcard-navigation-tablet img:nth-child(1) {
   margin-left: 64px;
 }
 
-div.main .carousel-navigation-tablet img:nth-child(3) {
+div.main .trimcard-navigation-tablet img:nth-child(3) {
   margin-right: 64px;
 }
 
-div.main .carousel-footer-tablet .legal {
+div.main .trimcard-footer-tablet .legal {
   margin: 16px 0;
   align-self: center;
 }
 
 
-div.main .carousel-footer-tablet .hideButton-mobile {
+div.main .trimcard-footer-tablet .hideButton-mobile {
   width: 100px;
   margin: 16px 0;
   align-self: center;
@@ -929,6 +948,18 @@ div.main .subhead-sortandinventory {
 
 
 
+div.main .trim-carousel-flickity {
+  position: absolute;
+  top: 128px;
+  opacity: 0;
+  width: 100%;
+  display: none; 
+}
+
+
+div.main .trim-carousel-flickity  ul li{
+  display: inline;
+}
  
 @media screen and (max-width:640px) {
   
@@ -937,15 +968,15 @@ div.main .subhead-sortandinventory {
     width: calc(100vw - 32px);
   }
 
- div.main .carousel-header-desktop {
+ div.main .trimcard-header-desktop {
     display: none;
   }
 
-  div.main .carousel-header-tablet {
+  div.main .trimcard-header-tablet {
     display: none;
   }
 
-  div.main .carousel-header-mobile, div.main .carousel-footer-tablet {
+  div.main .trimcard-header-mobile, div.main .trimcard-footer-tablet {
     display: flex;
   }
 
@@ -956,20 +987,15 @@ div.main .subhead-sortandinventory {
 @media screen and (min-width:720px) {
   
 
-  div.main .carousel-header-tablet .col1{
+  div.main .trimcard-header-tablet .col1{
     width: 302px;
   }
 
-  div.main .carousel-header-tablet .col2{
+  div.main .trimcard-header-tablet .col2{
     width: calc(100% - (302px + 16px)) ;
   }
 
-
-
-
-
 }
-
 
 
 
@@ -982,7 +1008,7 @@ div.main .subhead-sortandinventory {
   }
 
  
-  div.main .carousel-header-mobile, div.main .carousel-footer-tablet {
+  div.main .trimcard-header-mobile, div.main .trimcard-footer-tablet {
     display: none;
   }
 
@@ -996,16 +1022,12 @@ div.main .subhead-sortandinventory {
 
 
  
-  div.main .carousel-header-tablet {
+  div.main .trimcard-header-tablet {
     display: flex;
   }
 
 
 }
-
-
-
-
 
 
 
@@ -1029,6 +1051,7 @@ div.main .subhead-sortandinventory {
 
 
 }
+
 
 
 @media screen and (min-width: 1024px) {
@@ -1064,14 +1087,6 @@ div.main .subhead-sortandinventory {
   }
 
 
- /* div.main .carousel-header-desktop, div.main .carousel-footer-desktop {
-    display: flex;
-  }
-
-  div.main .carousel-header-mobile, div.main .carousel-footer-tablet {
-    display: none;
-  }
-*/
 
   div.main .filters{
       width: 300px;
@@ -1089,22 +1104,22 @@ div.main .subhead-sortandinventory {
     padding-right: 42px;
   }
 
-  div.main .carousel-trims {
+  div.main .trimcard-trims {
     width : calc(100vw - 415px);
   }
 
-  div.main .carousel-header-desktop {
+  div.main .trimcard-header-desktop {
     width:  calc(100vw - 456px);
     padding: 16px 16px 0px 16px;
   }
 
 
-  div.main .carousel-header-tablet .col1 {
+  div.main .trimcard-header-tablet .col1 {
     width: 286px;
   }
 
 
-   div.main .carousel-header-tablet .col2 {
+   div.main .trimcard-header-tablet .col2 {
     width: calc(100% - (286px + 16px));
   }
 
@@ -1117,44 +1132,44 @@ div.main .subhead-sortandinventory {
     width: 383px;
   }
 
-  div.main .carousel-trims {
+  div.main .trimcard-trims {
     width: calc(100vw - 500px);
   }
 
-  div.main .carousel-header-desktop {
+  div.main .trimcard-header-desktop {
     width:  calc(100vw - 555px);
     padding: 24px 24px 0px 24px;
   }
 
-  div.main .carousel-header-desktop .col1 {
+  div.main .trimcard-header-desktop .col1 {
       width: 160px;
       margin-right: 16px;
   }
 
-  div.main .carousel-header-desktop .col3 {
+  div.main .trimcard-header-desktop .col3 {
       width: 160px;
       margin-left: 16px;
   }
 
-  div.main .carousel-header-desktop .primary-button, div.main .carousel-footer-desktop .secondary-button {
+  div.main .trimcard-header-desktop .primary-button, div.main .trimcard-footer-desktop .secondary-button {
     width: 160px;
   }
 
-   div.main .carousel-header-desktop, div.main .carousel-footer-desktop {
+   div.main .trimcard-header-desktop, div.main .trimcard-footer-desktop {
     display: flex;
   }  
 
-   div.main .carousel-header-tablet {
+   div.main .trimcard-header-tablet {
     display: none;
    }
 
-   div.main .carousel-header-desktop .build-inventory-links  {
+   div.main .trimcard-header-desktop .build-inventory-links  {
     display: flex;
     flex-direction: column;
    }
 
 
-    div.main .carousel-header-desktop .build-inventory-links span:nth-child(1) {
+    div.main .trimcard-header-desktop .build-inventory-links span:nth-child(1) {
       padding-bottom: 8px;
    }
 }
@@ -1183,38 +1198,35 @@ div.main .subhead-sortandinventory {
 @media screen and (max-width: 1440px) {
 
 
-  div.main .carousel-trims ul li img {
+  div.main .trimcard-trims ul li img {
     width:  295px;
     height: 429px;
   }
 
 
 
-  div.main .carousel-trims ul li {
+  div.main .trimcard-trims ul li {
     margin-left: 16px;
   }
 
 
 
+  div.main .trimcard-header-desktop .col1 picture:nth-child(1) img  {
+    width: 113px;
+    height: 70px;
+  }
 
-  /*  div.main .carousel-header-desktop {
 
-    }*/
-
-    div.main .carousel-header-desktop picture:nth-child(1) img  {
-      width: 113px;
-      height: 70px;
-    }
-
-    div.main .carousel-header-desktop picture:nth-child(2) img {
-      width: 200px;
-      height: 32px;
-    }
+  div.main .trimcard-header-desktop .col3 picture:nth-child(1) img {
+    width: 200px;
+    height: 32px;
+  }
 
 
 
 }
  
+
 
 @media screen and (min-width: 1440px) {
   
@@ -1240,52 +1252,59 @@ div.main .subhead-sortandinventory {
   }
 
   
-  div.main .carousel-header-desktop picture:nth-child(1) img {
+  div.main .trimcard-header-desktop .col1 picture:nth-child(1) img {
     width: 185px;
     height: 88px;
   }
 
-  div.main .carousel-header-desktop picture:nth-child(2) img{
+  div.main .trimcard-header-desktop .col3 picture:nth-child(1) img{
     width: 228px;
     height: 49px;
   }
 
-  div.main .carousel-header-desktop {
+  div.main .trimcard-header-desktop {
     width:  calc(100vw - 561px);
   }
 
-  div.main .carousel-trims {
+  div.main .trimcard-trims {
     width : calc(100vw - 513px);
   }
 
+  div.main .trimcard .col3 {
+    height: 314px;
+  }
 
-  div.main .carousel-trims ul li {
+
+  /*trim cards*/
+  div.main .trimcard-trims ul li {
     margin-left: 24px;
   }
 
-  div.main .carousel-trims ul li img {
+  div.main .trimcard-trims ul li img {
     width:  368px;
     height: 543px;
   }
 
-  div.main .carousel-header-desktop .primary-button,  div.main .carousel-footer-desktop .secondary-button  {
+
+  div.main .trimcard-header-desktop .primary-button,  div.main .trimcard-footer-desktop .secondary-button  {
     width: 216px;
   }
 
-    div.main .carousel-header-desktop .col1 {
-      width: 302px;
-      margin-right: 24px;
+  div.main .trimcard-header-desktop .col1 {
+    width: 302px;
+    margin-right: 24px;
   }
 
-  div.main .carousel-header-desktop .col3 {
-      width: 302px;
-      margin-left: 24px;
+  div.main .trimcard-header-desktop .col3 {
+    width: 302px;
+    margin-left: 24px;
   }
 
-  div.main .carousel-header-desktop .build-inventory-links  {
+
+  div.main .trimcard-header-desktop .build-inventory-links  {
     display: inline-block;
     flex-direction: column;
-   }
+  }
 
 
  }
@@ -1319,13 +1338,14 @@ div.main .subhead-sortandinventory {
     padding-right: 96px;
   }
 
-  div.main .carousel-trims {
+  div.main .trimcard-trims {
     width : calc(1920px - 630px);
   }
 
-  div.main .carousel-header-desktop {
+  div.main .trimcard-header-desktop {
     width:  calc(1920px - 630px);
   }
+
 
 
 }

@@ -60,7 +60,7 @@ button {
 
 
 
-svg {
+/*svg {
  pointer-events: none; 
  position: absolute;
  padding-top: 3px;
@@ -68,7 +68,7 @@ svg {
  transform: translate(-8px, 0);
  right: 15px;
  transition: 0.2s all cubic-bezier(.1,.5,.15,1);
-}
+}*/
 
 
 .primary-button a:hover, .secondary-button a:hover {
@@ -81,4 +81,55 @@ svg {
 }
 
 
+/* directional-selector-xlarge-arrow */
 
+
+.directional-selector-xlarge-arrow {
+  justify-content: flex-start; 
+  align-items: center; 
+  cursor: pointer;
+}
+
+.directional-selector-xlarge-arrow a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch; 
+  background-color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  transition: 0.2s  all linear;
+  outline: 1px solid #e6e6e6; 
+  outline-offset : -1px;
+  position: relative;
+}
+
+.directional-selector-xlarge-arrow svg {
+   pointer-events: none; 
+   transition: 0.2s all cubic-bezier(.1,.5,.15,1);
+   opacity: 1;
+}
+
+.directional-selector-xlarge-arrow a:hover {
+  outline: 1px solid #002C5E; 
+  outline-offset : -1px;
+}
+
+.directional-selector-xlarge-arrow a:hover {
+  background-color: #002C5E; 
+}
+
+body:has(.directional-selector-xlarge-arrow a[data-value="next"]:hover) svg[data-value="next"] .path-stroke-next {
+  stroke: #fff;
+}
+
+body:has(.directional-selector-xlarge-arrow a[data-value="previous"]:hover) svg[data-value="previous"] .path-stroke-previous {
+  stroke: #fff;
+}
+
+
+.directional-selector-xlarge-arrow a:active {
+  transform: scale(0.95); 
+  background-color: #001A38 ; 
+}
