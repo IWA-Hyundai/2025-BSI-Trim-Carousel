@@ -105,6 +105,19 @@ button {
   position: relative;
 }
 
+.directional-selector-xlarge-arrow a .fff-solid {
+  background: #fff;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: inherit;;
+  opacity: 0;
+  outline: inherit;
+  outline-offset: inherit;
+}
+
+
 .directional-selector-xlarge-arrow svg {
    pointer-events: none; 
    transition: 0.2s all cubic-bezier(.1,.5,.15,1);
@@ -120,11 +133,11 @@ button {
   background-color: #002C5E; 
 }
 
-body:has(.directional-selector-xlarge-arrow a[data-value="next"]:hover) svg[data-value="next"] .path-stroke-next {
+body:has(.directional-selector-xlarge-arrow a[data-value="next"]:hover)  svg[data-value="next"] > .path-stroke {
   stroke: #fff;
 }
 
-body:has(.directional-selector-xlarge-arrow a[data-value="previous"]:hover) svg[data-value="previous"] .path-stroke-previous {
+body:has(.directional-selector-xlarge-arrow a[data-value="previous"]:hover)  svg[data-value="previous"] > .path-stroke {
   stroke: #fff;
 }
 
@@ -133,3 +146,21 @@ body:has(.directional-selector-xlarge-arrow a[data-value="previous"]:hover) svg[
   transform: scale(0.95); 
   background-color: #001A38 ; 
 }
+
+
+
+
+/* disabled states */
+
+.disable-button {
+  pointer-events: none !important;
+}
+
+.disable-a {
+  background-color: #e6e6e6 !important;
+}
+
+.disable-path {
+  stroke: #888 !important;
+}
+

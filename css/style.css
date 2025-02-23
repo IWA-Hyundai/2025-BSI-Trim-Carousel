@@ -506,18 +506,32 @@ div.main .trimcard-header-desktop .col3{
 }
 
 
+.width-300 {
+  width: 300px !important;
+  transition: width 0.05s;
+}
+
 div.main .trimcard-header-desktop .col3 .carousel-navigation {
   display: flex;
   opacity: 0;
   padding-top: 40px;
   pointer-events: none;
   justify-content: flex-end;
+
 }
 
 
-div.main .trimcard-header-desktop .col3 .carousel-navigation button:nth-child(1) {
-  margin-right: 16px;
+div.main .trimcard-header-desktop .col3 .textdisplay {
+  display: flex;
+    align-items: center;
+    margin-right: 16px;
+    opacity: 1;
+    width: 100%;
+    text-align: right;
+    justify-content: flex-end;
+
 }
+
 
 
 
@@ -567,7 +581,17 @@ div.main .trimcard-header-tablet {
 }
 
 
+div.main .trimcard-header-tablet .col2 .carousel-navigation {
+  display: none;
+  opacity: 0;
+  padding-top: 40px;
+  pointer-events: none;
+  justify-content: flex-end;
+  position: absolute;
+  top: -15px;
+  z-index: 1;
 
+}
 
 div.main .trimcard-header-tablet .col1{
 
@@ -596,6 +620,7 @@ div.main .trimcard-header-tablet .col2{
    margin-bottom: 16px;
    justify-content: flex-end;
    align-items: flex-end;
+   position: relative;
 }
 
 
@@ -1030,6 +1055,17 @@ div.main .trim-carousel-flickity  ul li{
 }
 
 
+@media screen and (min-width: 640px)   {  
+
+
+  
+  div.main .trim-carousel-flickity {
+    top: 100px;
+  }
+
+
+}
+
 
 
 @media screen and (max-width: 1024px) {  
@@ -1066,6 +1102,11 @@ div.main .trim-carousel-flickity  ul li{
 
     display: flex;
   }
+
+  div.main .trimcard-header-tablet {
+    display: flex;
+   }
+   
 
   div.main .container {
     margin-top: 48px ;
@@ -1104,6 +1145,9 @@ div.main .trim-carousel-flickity  ul li{
     padding-right: 42px;
   }
 
+
+
+
   div.main .trimcard-trims {
     width : calc(100vw - 415px);
   }
@@ -1123,6 +1167,13 @@ div.main .trim-carousel-flickity  ul li{
     width: calc(100% - (286px + 16px));
   }
 
+  div.main .trimcard-header-desktop {
+    display: none;
+   }
+   
+
+
+
 }
 
 @media screen and (min-width: 1280px) {
@@ -1137,7 +1188,7 @@ div.main .trim-carousel-flickity  ul li{
   }
 
   div.main .trimcard-header-desktop {
-    width:  calc(100vw - 555px);
+    width:  calc(100vw - 536px);   /*width:  calc(100vw - 555px);*/
     padding: 24px 24px 0px 24px;
   }
 
@@ -1156,12 +1207,15 @@ div.main .trim-carousel-flickity  ul li{
   }
 
    div.main .trimcard-header-desktop, div.main .trimcard-footer-desktop {
-    display: flex;
+    /*display: flex;*/
   }  
 
-   div.main .trimcard-header-tablet {
+/*   div.main .trimcard-header-tablet {
     display: none;
    }
+   */
+
+
 
    div.main .trimcard-header-desktop .build-inventory-links  {
     display: flex;
@@ -1263,8 +1317,18 @@ div.main .trim-carousel-flickity  ul li{
   }
 
   div.main .trimcard-header-desktop {
+    display: flex;
+   }
+   
+
+  div.main .trimcard-header-desktop {
     width:  calc(100vw - 561px);
   }
+
+  div.main .trimcard-header-tablet {
+    display: none;
+   }
+   
 
   div.main .trimcard-trims {
     width : calc(100vw - 513px);
@@ -1272,6 +1336,11 @@ div.main .trim-carousel-flickity  ul li{
 
   div.main .trimcard .col3 {
     height: 314px;
+  }
+
+
+  div.main .trim-carousel-flickity {
+    top: 128px;
   }
 
 
