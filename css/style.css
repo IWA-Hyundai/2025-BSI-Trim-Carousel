@@ -545,6 +545,16 @@ div.main .col1 .copy{
 
 }
 
+div.main .trimcard-header-mobile .col1{
+
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+
+
+}
+
+
 
 div.main .trimcard-header-desktop .disclaimer, div.main .trimcard-header-tablet .disclaimer, div.main .trimcard-header-mobile .disclaimer{
 
@@ -592,6 +602,18 @@ div.main .trimcard-header-tablet .col2 .carousel-navigation {
   z-index: 1;
 
 }
+
+div.main .trimcard-header-mobile .col1 .carousel-navigation  .textdisplay {
+
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: "Hyundai Sans Text";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; 
+
+} 
 
 div.main .trimcard-header-tablet .col1{
 
@@ -780,7 +802,7 @@ div.main .trimcard-header-mobile .photo {
 
 
 div.main .trimcard-header-mobile .photo img{
-  height: 100%;
+   height: 155px; /*height: 100%;*/
 }
 
 
@@ -808,6 +830,16 @@ div.main .trimcard-header-mobile .title{
   display: flex;
   justify-content: space-between;
 }
+
+
+div.main .trimcard-header-mobile  .mobile-expanded-title {
+  margin-top: 8px;
+  opacity : 0;
+  height: 0;
+  display: block;
+}
+
+
 
 div.main .trimcard-header-mobile .col1 .pricing p{
   text-align: right;
@@ -839,6 +871,19 @@ div.main .trimcard-header-mobile .ctas .primary-button {
 div.main .trimcard-header-mobile .ctas .build-inventory-links {
   display: flex;
   justify-content: space-between;
+}
+
+div.main .trimcard-header-mobile .col1 .carousel-navigation {
+  display: none;
+  opacity: 0;
+  padding-top: 40px;
+  pointer-events: none;
+  justify-content: center;
+  display: flex;
+  z-index: 1;
+  position: absolute;
+  bottom: 74px;
+  width: calc(100vw - 64px);
 }
 
 
@@ -975,17 +1020,16 @@ div.main .subhead-sortandinventory {
 
 div.main .trim-carousel-flickity {
   position: absolute;
-  top: 128px;
+  top: 100px;
   opacity: 0;
   width: 100%;
   display: none; 
 }
 
 
-div.main .trim-carousel-flickity  ul li{
-  display: inline;
-}
- 
+
+
+
 @media screen and (max-width:640px) {
   
   div.main .content {
@@ -1027,7 +1071,7 @@ div.main .trim-carousel-flickity  ul li{
 @media screen and (min-width: 640px)  and (max-width: 1024px) {  
 
 
-    div.main .content {
+  div.main .content {
     margin: 0 32px;
     width: calc(100vw - 64px);
   }
@@ -1045,8 +1089,6 @@ div.main .trim-carousel-flickity  ul li{
 @media screen and (min-width: 640px)  and (max-width: 1279.99999px) {  
 
 
-
- 
   div.main .trimcard-header-tablet {
     display: flex;
   }
@@ -1056,13 +1098,10 @@ div.main .trim-carousel-flickity  ul li{
 
 
 @media screen and (min-width: 640px)   {  
-
-
   
   div.main .trim-carousel-flickity {
     top: 100px;
   }
-
 
 }
 

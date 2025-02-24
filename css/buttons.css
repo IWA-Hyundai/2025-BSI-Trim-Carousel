@@ -148,6 +148,12 @@ body:has(.directional-selector-xlarge-arrow a[data-value="previous"]:hover)  svg
 }
 
 
+/*large directional button*/
+
+.arrow-large-18x12 {
+  height: 32px !important;
+  width: 32px !important;
+}
 
 
 /* disabled states */
