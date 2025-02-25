@@ -425,13 +425,10 @@ div.main .trimcard {
 
 div.main .trimcard-container {
 
-
   width: 100%;  /* 1290 */
-  /*background-image: url("../img/bsi-desktop-trimcard-background-v2-1920.jpg");*/
-  background-color: #eee;
+  background: linear-gradient(#f3f3f3, #eaeaea); /*#dfdfdf;*/
   background-size: cover;
   background-repeat: no-repeat;
-
 }
 
 
@@ -1001,7 +998,6 @@ div.main .subhead-desktop h4{
  font-size: 14px;
  font-style: normal;
  font-weight: 400;
-
  padding-top: 2px;
 
 }

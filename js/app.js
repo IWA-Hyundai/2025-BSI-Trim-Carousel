@@ -20,6 +20,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
   var carouselNext = document.querySelectorAll(`button a[data-value="next"]`);
   var carouselPrevious = document.querySelectorAll(`button a[data-value="previous"]`);
 
+  const carouselNavigationText  = document.querySelectorAll('.carousel-navigation .textdisplay');
+
+  
+
+
   //card specific
   const trimContent = document.querySelector('.trimcard-content');
 
@@ -91,6 +96,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
       containerButton.closest('.primary-button').classList.remove('secondary-button');
       containerButton.closest('.primary-button').removeAttribute('style');
+
+      const svg = containerButton.parentElement.querySelector('.chevron-medium-14x8');
+      svg.style.transform = 'rotate(180deg)';
+      const path = svg.querySelector('.path-stroke');
+      path.style.stroke = '#fff';
           
       let colLast; //default to desktop
       let colSupport;
@@ -136,6 +146,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const buildLinks = colLast.querySelector('.build-inventory-links');
       const carouselNavigation = colLast.querySelector('.carousel-navigation'); 
 
+
       photo.removeAttribute('style');
       disclaimer.removeAttribute('style');
       copy.removeAttribute('style');
@@ -145,6 +156,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
       carouselNavigation.style.opacity =  0.0;
       carouselNavigation.style.display =  'display';
       carouselNavigation.style.pointerEvents =  'none';
+
+
 
     });
 
@@ -171,6 +184,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       //update trims buttons to expanded state
       let containerButton = trimCard["breakpoints"][currentBreakpoint]['containerButton'] ;
       containerButton.innerText  = trimCard['cta']['expanded'];
+      const svg = containerButton.parentElement.querySelector('.chevron-medium-14x8');
+      svg.style.transform = 'rotate(180deg)';
+      const path = svg.querySelector('.path-stroke');
+      path.style.stroke = '#002C5E';
 
       containerButton.closest('.primary-button').classList.add('secondary-button');
       containerButton.closest('.primary-button').style.transform  = 'translate(0px, ' +  trimCard["breakpoints"][currentBreakpoint]['showbutton-y']   + 'px )';
@@ -280,8 +297,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   function updateDisplayText(indexStart, indexEnd, total, displayText) {
 
+    console.log("indexStart: " +  indexStart + ' | indexEnd: '  + indexEnd  )
+
     const slideNumbers = (indexStart != indexEnd ) ? indexStart + "-" + indexEnd : indexStart;
-    displayText.innerText = slideNumbers + " of " + total + " matches";
+
+    //displayText.innerText = slideNumbers + " of " + total + " matches";
+
+    
+    carouselNavigationText.forEach(text =>  {
+
+      text.innerText = slideNumbers + " of " + total + " matches";
+
+    });
+
 
   }
 
@@ -415,7 +443,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           
            resize: function(slide) {
 
-            console.log( 'resize called: ' );
+            // console.log( 'resize called: ' );
             flkty.select(0);
             visibleCellsChange = [];
 
@@ -423,7 +451,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 visibleCellsStart.push(this.selectedElements[i].getAttribute('dataslide'));
             } 
 
-            //console.log( 'visibleCellsResize: ' + visibleCellsStart );
+            console.log( 'visibleCellsStart[0]: ' + visibleCellsStart[0] + ' | visibleCellsStart[visibleCellsStart.length - 1]: ' + visibleCellsStart[visibleCellsStart.length - 1]  );
             updateDisplayText(visibleCellsStart[0], visibleCellsStart[visibleCellsStart.length - 1], this.getCellElements().length , displaytext);
       
           },
@@ -466,11 +494,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // expand / contract carousel 
   showTrimsButtons.forEach(showTrimsButton => {
 
-    showTrimsButton.addEventListener("click", function (e) {
+    showTrimsButton.addEventListener("pointerdown", function (e) {
 
       //are we open or closed?
       const trimType = e.target.parentElement.getAttribute('data-type');  // desktop = tablet - mobile
-   
+      const svg = e.target.querySelector('.chevron-medium-14x8');
+      svg.style.transform = 'rotate(180deg)';
+      const path = svg.querySelector('.path-stroke');
+      path.style.stroke = '#002C5E';
+
       const containerButton = e.target.querySelector('.container-button');
       const showTrimsBase = e.target.closest('.primary-button');
       
@@ -624,6 +656,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         //update CTA button 
         containerButton.innerText  = trimCard['cta']['collapse'];
+        const svg = e.target.querySelector('.chevron-medium-14x8');
+        svg.style.transform = 'rotate(0deg)';
+        const path = svg.querySelector('.path-stroke');
+        path.style.stroke = '#fff';
+
         e.target.closest('.primary-button').classList.remove('secondary-button');
 
         carouselNavigation.style.pointerEvents =  'none';

@@ -12,9 +12,6 @@ button {
   align-items: center; 
   display: flex;
   cursor: pointer;
-}
-
-.primary-button {  
   align-self: flex-end;
 }
 
@@ -22,19 +19,24 @@ button {
 .primary-button a, .secondary-button a {
   align-self: stretch; 
   padding: 12px 24px; 
-
   position: relative;
+  background-color: #002C5E;
   transition: 0.2s transform cubic-bezier(.1,.5,.15,1);
-  outline: 1px solid #002C5E; 
-  outline-offset : -1px;
 }
+
 
 .primary-button a {
   background: #002C5E;
+  background: linear-gradient(to right, #001A38 50%, #002C5E 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all .2s cubic-bezier(.1,.5,.15,1);
 }
 
  .secondary-button a { 
-  background: #fff;
+  background: linear-gradient(to right, #f3f3f3 50%,  #fff 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
  }
 
 
@@ -51,33 +53,40 @@ button {
 }
 
 .primary-button a .container-button {
+ /* background-position: left bottom;*/
   color: #fff;
 }
 
 .secondary-button a .container-button{ 
+ /* background-position: left bottom;*/
   color: #002C5E;
  }
 
 
-
-/*svg {
- pointer-events: none; 
- position: absolute;
- padding-top: 3px;
- opacity: 0;
- transform: translate(-8px, 0);
- right: 15px;
- transition: 0.2s all cubic-bezier(.1,.5,.15,1);
-}*/
-
-
 .primary-button a:hover, .secondary-button a:hover {
-  outline: 1px solid #002C5E; 
-  outline-offset : -1px;
+  background-position: left bottom;
 }
 
-.primary-button a:active , .secondary-button a:active {
+/* 
+.primary-button :active   {
    transform: scale(0.95);
+}
+
+.secondary-button :active   {
+   transform: scale(0.95);
+}
+*/
+
+.primary-button a:active   {
+   transform: scale(0.95);
+}
+
+.secondary-button a:active   {
+   transform: scale(0.95);
+}
+
+ body:has(.primary-button :active) .primary-button {
+  background: : none;
 }
 
 
@@ -96,15 +105,15 @@ button {
   justify-content: center;
   align-self: stretch; 
   background-color: #fff;
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   border-radius: 24px;
   transition: 0.2s  all linear;
   outline: 1px solid #e6e6e6; 
   outline-offset : -1px;
   position: relative;
 }
-
+''
 .directional-selector-xlarge-arrow a .fff-solid {
   background: #fff;
   z-index: 10;
@@ -148,12 +157,6 @@ body:has(.directional-selector-xlarge-arrow a[data-value="previous"]:hover)  svg
 }
 
 
-/*large directional button*/
-
-.arrow-large-18x12 {
-  height: 32px !important;
-  width: 32px !important;
-}
 
 
 /* disabled states */
