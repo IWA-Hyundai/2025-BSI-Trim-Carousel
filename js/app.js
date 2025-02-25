@@ -255,15 +255,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
      if ( trimCard['status'] == 'expanded' && currentBreakpoint == "mobile" ) {
 
         if ( window.innerWidth  <= 640) {
-            showTrimsBaseMobile.style.transform  = 'translate(0px, 248px)';
+            showTrimsBaseMobile.style.transform  = 'translate(0px, 224px)';
         }
 
         if ( window.innerWidth < 600) {
-            showTrimsBaseMobile.style.transform  = 'translate(0px, 228px)';
+            showTrimsBaseMobile.style.transform  = 'translate(0px, 204px)';
         }
 
         if ( window.innerWidth < 434) {
-            showTrimsBaseMobile.style.transform  = 'translate(0px, 210px)';
+            showTrimsBaseMobile.style.transform  = 'translate(0px, 186px)';
         } 
 
      }
@@ -303,7 +303,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     //displayText.innerText = slideNumbers + " of " + total + " matches";
 
-    
+
     carouselNavigationText.forEach(text =>  {
 
       text.innerText = slideNumbers + " of " + total + " matches";
@@ -474,14 +474,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
     'breakpoints' : {
       'desktop' :  { 'expanded' : 712 , 'showbutton-y' : 348, 'containerButton' : document.querySelector('.trimcard-header-desktop .container-button')  },
       'tablet'  :  { 'expanded' : 651 , 'showbutton-y' : 332, 'containerButton' : document.querySelector('.trimcard-header-tablet .container-button') },
-      'mobile'  :  { 'expanded' : 720 , 'showbutton-y' : 720, 'containerButton' : document.querySelector('.trimcard-header-mobile .container-button') },
+      //'mobile'  :  { 'expanded' : 720 , 'showbutton-y' : 720, 'containerButton' : document.querySelector('.trimcard-header-mobile .container-button') },
+      'mobile'  :  { 'expanded' : 696 , 'showbutton-y' : 720, 'containerButton' : document.querySelector('.trimcard-header-mobile .container-button') },
     },
     'active-breakpoints' : []
   };
 
   trimCard['height1440'] =  { 'expanded' : 712 , 'showbutton-y' : 348 };   // 1440 height is 702 with the example cards
   trimCard['height1024'] =  { 'expanded' : 651 , 'showbutton-y' : 332 };   // 1024 height is 651 with the example cards
-  trimCard['height640'] =   { 'expanded' : 720 , 'showbutton-y' : 720 };   //  640 height is 651 with the example cards
+  trimCard['height640'] =   { 'expanded' : 696 , 'showbutton-y' : 720 };   //  640 height is 651 with the example cards
 
    const showTrimsBaseMobile = document.querySelector('.trimcard-header-mobile .primary-button');
 
@@ -493,6 +494,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   // expand / contract carousel 
   showTrimsButtons.forEach(showTrimsButton => {
+
 
     showTrimsButton.addEventListener("pointerdown", function (e) {
 
@@ -595,13 +597,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
           switch (trimContent.offsetHeight) {
             case 472:
-              showButtonY = 248; 
+              showButtonY = 224; //248; 
               break;
             case 492:
-              showButtonY = 228; 
+              showButtonY = 204; //228; 
               break;
             case 508:
-              showButtonY = 210; 
+              showButtonY = 186; //210; 
               break;
             default:
               // statements_def
