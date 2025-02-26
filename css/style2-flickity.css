@@ -1,9 +1,11 @@
 .carousel-cell {
-	margin-left: 20px;
+	/*margin-left: 20px;*/
+	padding-left: 16px;
 }
 
 .main-carousel {
 	/*padding-left: 20px;*/
+
 }
 
 .carousel-cell:first-child {
@@ -24,7 +26,8 @@
 @media screen and (min-width: 640px) {
 
   .carousel-cell {
-    margin-left: 24px;
+    /*margin-left: 24px;*/
+    padding-left: 20px;
   }
 
   /*tablet */
@@ -41,7 +44,8 @@
 @media screen and (min-width: 1440px) {
 
   .carousel-cell {
-    margin-left: 24px;
+    /*margin-left: 24px;*/
+    padding-left: 20px;
   }
 
   /*desktop */

@@ -63,31 +63,29 @@ button {
  }
 
 
-.primary-button a:hover, .secondary-button a:hover {
-  background-position: left bottom;
+@media (hover: hover) {
+
+  .primary-button a:hover, .secondary-button a:hover {
+    background-position: left bottom;
+  }
+
+
 }
 
-/* 
-.primary-button :active   {
-   transform: scale(0.95);
-}
 
-.secondary-button :active   {
-   transform: scale(0.95);
-}
-*/
 
-.primary-button a:active   {
-   transform: scale(0.95);
-}
+ .primary-button a:active   {
+     transform: scale(0.97);
+  }
 
-.secondary-button a:active   {
-   transform: scale(0.95);
-}
+  .secondary-button a:active   {
+     transform: scale(0.97);
+  }
 
- body:has(.primary-button :active) .primary-button {
-  background: : none;
-}
+  body:has(.primary-button :active) .primary-button {
+    background: : none;
+  }
+
 
 
 /* directional-selector-xlarge-arrow */
@@ -113,7 +111,7 @@ button {
   outline-offset : -1px;
   position: relative;
 }
-''
+
 .directional-selector-xlarge-arrow a .fff-solid {
   background: #fff;
   z-index: 10;
@@ -133,21 +131,25 @@ button {
    opacity: 1;
 }
 
-.directional-selector-xlarge-arrow a:hover {
-  outline: 1px solid #002C5E; 
-  outline-offset : -1px;
-}
 
-.directional-selector-xlarge-arrow a:hover {
-  background-color: #002C5E; 
-}
+@media (hover: hover) {
+  .directional-selector-xlarge-arrow a:hover {
+    outline: 1px solid #002C5E; 
+    outline-offset : -1px;
+  }
 
-body:has(.directional-selector-xlarge-arrow a[data-value="next"]:hover)  svg[data-value="next"] > .path-stroke {
-  stroke: #fff;
-}
+  .directional-selector-xlarge-arrow a:hover {
+    background-color: #002C5E; 
+  }
 
-body:has(.directional-selector-xlarge-arrow a[data-value="previous"]:hover)  svg[data-value="previous"] > .path-stroke {
-  stroke: #fff;
+  body:has(.directional-selector-xlarge-arrow a[data-value="next"]:hover)  svg[data-value="next"] > .path-stroke {
+    stroke: #fff;
+  }
+
+  body:has(.directional-selector-xlarge-arrow a[data-value="previous"]:hover)  svg[data-value="previous"] > .path-stroke {
+    stroke: #fff;
+  }
+ 
 }
 
 

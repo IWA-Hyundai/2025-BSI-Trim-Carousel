@@ -165,108 +165,119 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   }
 
+  var prevWidth = window.innerWidth;
+
+
+
   window.onresize = function(event) { 
 
-    console.log("trimcard status: " + trimCard['status'] );
+    var width = window.innerWidth;
 
-    let currentBreakpoint;
+    console.log( width  + " : " + prevWidth)
 
-    if (window.innerWidth >= 1440) {  currentBreakpoint = "desktop" };
-    if (window.innerWidth >= 640 && window.innerWidth < 1440 ) { currentBreakpoint = "tablet" };  
-    if (window.innerWidth < 640 ) {  currentBreakpoint= "mobile" }; 
+    if (width != prevWidth) {
 
-    //if we are no longer in the breakpoint and we are expanded, need to updated the cars
-    if ( trimCard['breakpoint']  !=  currentBreakpoint && trimCard['status'] == "expanded" ) {
+      prevWidth = window.innerWidth;
+      console.log("RESIZE : trimcard status: " + trimCard['status'] );
 
-      //adjust the main card container
-      trimContent.style.height = trimCard["breakpoints"][currentBreakpoint]["expanded"] + "px";
+      let currentBreakpoint;
 
-      //update trims buttons to expanded state
-      let containerButton = trimCard["breakpoints"][currentBreakpoint]['containerButton'] ;
-      containerButton.innerText  = trimCard['cta']['expanded'];
-      const svg = containerButton.parentElement.querySelector('.chevron-medium-14x8');
-      svg.style.transform = 'rotate(180deg)';
-      const path = svg.querySelector('.path-stroke');
-      path.style.stroke = '#002C5E';
+      if (window.innerWidth >= 1440) {  currentBreakpoint = "desktop" };
+      if (window.innerWidth >= 640 && window.innerWidth < 1440 ) { currentBreakpoint = "tablet" };  
+      if (window.innerWidth < 640 ) {  currentBreakpoint= "mobile" }; 
 
-      containerButton.closest('.primary-button').classList.add('secondary-button');
-      containerButton.closest('.primary-button').style.transform  = 'translate(0px, ' +  trimCard["breakpoints"][currentBreakpoint]['showbutton-y']   + 'px )';
+      //if we are no longer in the breakpoint and we are expanded, need to updated the cars
+      if ( trimCard['breakpoint']  !=  currentBreakpoint && trimCard['status'] == "expanded" ) {
+
+        //adjust the main card container
+        trimContent.style.height = trimCard["breakpoints"][currentBreakpoint]["expanded"] + "px";
+
+        //update trims buttons to expanded state
+        let containerButton = trimCard["breakpoints"][currentBreakpoint]['containerButton'] ;
+        containerButton.innerText  = trimCard['cta']['expanded'];
+        const svg = containerButton.parentElement.querySelector('.chevron-medium-14x8');
+        svg.style.transform = 'rotate(180deg)';
+        const path = svg.querySelector('.path-stroke');
+        path.style.stroke = '#002C5E';
+
+        containerButton.closest('.primary-button').classList.add('secondary-button');
+        containerButton.closest('.primary-button').style.transform  = 'translate(0px, ' +  trimCard["breakpoints"][currentBreakpoint]['showbutton-y']   + 'px )';
+          
+        let colLast; //default to desktop
+        let colSupport;
+        let col1;
+        let disclaimer;
+
+       console.log("currentBreakpoint: " + currentBreakpoint);
+
+        switch (currentBreakpoint) {
+          case "desktop":
+
+            colLast =  containerButton.closest('.col3'); 
+            colSupport = colLast.previousElementSibling;
+            col1 = colSupport.previousElementSibling;
+            disclaimer = colSupport.querySelector('.disclaimer'); 
+            break;
+
+          case "tablet":
+
+            colLast =  containerButton.closest('.col2');
+            colSupport = containerButton.closest('.col2');
+            col1 = colSupport.previousElementSibling;
+            disclaimer = col1.querySelector('.disclaimer'); 
+            break;
+
+          case "mobile":
+
+            colLast = containerButton.closest('.col1');
+            colSupport = containerButton.closest('.col1');
+            col1 = colSupport;
+            disclaimer = col1.querySelector('.disclaimer'); 
+            col1.querySelector('.mobile-collapse-title').style.opacity = 0.0;
+            col1.querySelector('.mobile-expanded-title').style.opacity = 1.0;
+            break;
+
+          default:
+            break;
+
+        }
+
         
-      let colLast; //default to desktop
-      let colSupport;
-      let col1;
-      let disclaimer;
+        const photo = colSupport.querySelector('.photo'); 
+        const pricing = col1.querySelector('.pricing'); 
+        const copy = col1.querySelector('.copy');   
+        const buildLinks = colLast.querySelector('.build-inventory-links');
+        const carouselNavigation = colLast.querySelector('.carousel-navigation'); 
 
-     console.log("currentBreakpoint: " + currentBreakpoint);
 
-      switch (currentBreakpoint) {
-        case "desktop":
+        photo.style.opacity =  0.0;
+        disclaimer.style.opacity = 0.0;
+        copy.style.opacity = 0.0;
+        buildLinks.style.opacity =  0.0;
+        carouselNavigation.style.opacity =  1.0;
 
-          colLast =  containerButton.closest('.col3'); 
-          colSupport = colLast.previousElementSibling;
-          col1 = colSupport.previousElementSibling;
-          disclaimer = colSupport.querySelector('.disclaimer'); 
-          break;
+        carouselNavigation.style.display =  'flex';
+        carouselNavigation.style.pointerEvents =  'auto';
 
-        case "tablet":
-
-          colLast =  containerButton.closest('.col2');
-          colSupport = containerButton.closest('.col2');
-          col1 = colSupport.previousElementSibling;
-          disclaimer = col1.querySelector('.disclaimer'); 
-          break;
-
-        case "mobile":
-
-          colLast = containerButton.closest('.col1');
-          colSupport = containerButton.closest('.col1');
-          col1 = colSupport;
-          disclaimer = col1.querySelector('.disclaimer'); 
-          col1.querySelector('.mobile-collapse-title').style.opacity = 0.0;
-          col1.querySelector('.mobile-expanded-title').style.opacity = 1.0;
-          break;
-
-        default:
-          break;
 
       }
 
-      
-      const photo = colSupport.querySelector('.photo'); 
-      const pricing = col1.querySelector('.pricing'); 
-      const copy = col1.querySelector('.copy');   
-      const buildLinks = colLast.querySelector('.build-inventory-links');
-      const carouselNavigation = colLast.querySelector('.carousel-navigation'); 
 
+       if ( trimCard['status'] == 'expanded' && currentBreakpoint == "mobile" ) {
 
-      photo.style.opacity =  0.0;
-      disclaimer.style.opacity = 0.0;
-      copy.style.opacity = 0.0;
-      buildLinks.style.opacity =  0.0;
-      carouselNavigation.style.opacity =  1.0;
+          if ( window.innerWidth  <= 640) {
+              showTrimsBaseMobile.style.transform  = 'translate(0px, 224px)';
+          }
 
-      carouselNavigation.style.display =  'flex';
-      carouselNavigation.style.pointerEvents =  'auto';
+          if ( window.innerWidth < 600) {
+              showTrimsBaseMobile.style.transform  = 'translate(0px, 204px)';
+          }
 
+          if ( window.innerWidth < 434) {
+              showTrimsBaseMobile.style.transform  = 'translate(0px, 186px)';
+          } 
 
-    }
-
-
-     if ( trimCard['status'] == 'expanded' && currentBreakpoint == "mobile" ) {
-
-        if ( window.innerWidth  <= 640) {
-            showTrimsBaseMobile.style.transform  = 'translate(0px, 224px)';
-        }
-
-        if ( window.innerWidth < 600) {
-            showTrimsBaseMobile.style.transform  = 'translate(0px, 204px)';
-        }
-
-        if ( window.innerWidth < 434) {
-            showTrimsBaseMobile.style.transform  = 'translate(0px, 186px)';
-        } 
-
-     }
+       }
 
 
       //update 'breakpoint' classification
@@ -280,7 +291,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
       }
 
-       
+         
 
       try {
         // Code that might throw an error
@@ -291,7 +302,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         // Code that always executes, regardless of errors
       }
 
-
+     }
    };
 
 
@@ -317,9 +328,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
   function flickityInit(elem, displaytext) {
 
     //default 
-    const flickitySelectedAttraction = matchMedia('screen and (max-width: 768px)').matches ? 0.025 : 0.1;
+    const flickitySelectedAttraction = matchMedia('screen and (max-width: 768px)').matches ? 0.04 : 0.1;
     const flickityFriction  = matchMedia('screen and (max-width: 768px)').matches ? 0.28 : 0.6;
-
+ 
     let visibleCellsStart = [];
     let visibleCellsChange = [];
 
@@ -443,16 +454,98 @@ document.addEventListener("DOMContentLoaded", (event) => {
           
            resize: function(slide) {
 
-            // console.log( 'resize called: ' );
-            flkty.select(0);
-            visibleCellsChange = [];
 
+              if(  (this.selectedIndex + 1) == this.slides.length) {
+
+              let visibleCellsEnd = [];
+
+              for(let i = 0; i < this.selectedElements.length; i++) {
+
+                visibleCellsEnd.push(this.selectedElements[i].getAttribute('dataslide'));
+
+              } 
+
+
+              //if we are on mobile and only have 1 slide in view 
+              if (visibleCellsChange.length == 1) {     
+                updateDisplayText( (this.selectedIndex + 1), this.slides.length, this.getCellElements().length , displaytext);
+                return;
+              } 
+
+              let visibleCellsPrevious = visibleCellsChange.length > 0 ? visibleCellsChange : visibleCellsStart;  //get the most recent set to compare against
+
+              
+
+              //are the sizes different? We could only have 1 activeCell in the visibleCellsEnd
+              if (visibleCellsEnd.length < visibleCellsPrevious.length) {
+
+                console.log("visibleCellsEnd.length: " + visibleCellsEnd.length + " | visibleCellsPrevious.length: " + visibleCellsPrevious.length ); 
+
+                for( let i = visibleCellsPrevious.length-1; i >= 1; i--) {
+
+                  console.log("i: " +  visibleCellsPrevious[i]);
+                  visibleCellsEnd.unshift(visibleCellsPrevious[i]);
+
+                }
+
+                console.log("visibleCellsEnd: " + visibleCellsEnd);
+                updateDisplayText(visibleCellsEnd[0], visibleCellsEnd[visibleCellsChange.length - 1], this.getCellElements().length , displaytext);
+
+              } else {
+
+                // there is actually the same at the end active cells
+                for(let i = 0; i < this.selectedElements.length; i++) {
+
+                  visibleCellsChange.push(this.selectedElements[i].getAttribute('dataslide'));
+
+                } 
+
+                console.log( 'visibleCellsChange: ' + visibleCellsChange );
+                updateDisplayText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], this.getCellElements().length , displaytext);
+
+              }
+
+           } else {
+
+            // we are not at the end
+
+            visibleCellsChange = [];
             for(let i = 0; i < this.selectedElements.length; i++) {
-                visibleCellsStart.push(this.selectedElements[i].getAttribute('dataslide'));
+
+                visibleCellsChange.push(this.selectedElements[i].getAttribute('dataslide'));
             } 
 
-            console.log( 'visibleCellsStart[0]: ' + visibleCellsStart[0] + ' | visibleCellsStart[visibleCellsStart.length - 1]: ' + visibleCellsStart[visibleCellsStart.length - 1]  );
-            updateDisplayText(visibleCellsStart[0], visibleCellsStart[visibleCellsStart.length - 1], this.getCellElements().length , displaytext);
+              console.log( 'visibleCellsChange: ' + visibleCellsChange );
+              updateDisplayText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], this.getCellElements().length , displaytext);
+            }
+
+            //remove disable the first
+            if ( this.selectedIndex === 0 ) { 
+              addCarouselDisable(carouselPrevious); 
+            } else {
+              removeCarouselDisable(carouselPrevious);
+
+            }
+
+
+            if ( this.selectedIndex === (this.slides.length - 1) ) { 
+              addCarouselDisable(carouselNext); 
+            } else {
+              removeCarouselDisable(carouselNext);
+              
+            }
+
+            // console.log( 'resize called: ' );
+
+            // flkty.select(0);
+            // visibleCellsChange = [];
+
+            // for(let i = 0; i < this.selectedElements.length; i++) {
+            //     visibleCellsStart.push(this.selectedElements[i].getAttribute('dataslide'));
+            // } 
+
+            // console.log( 'visibleCellsStart[0]: ' + visibleCellsStart[0] + ' | visibleCellsStart[visibleCellsStart.length - 1]: ' + visibleCellsStart[visibleCellsStart.length - 1]  );
+            // updateDisplayText(visibleCellsStart[0], visibleCellsStart[visibleCellsStart.length - 1], this.getCellElements().length , displaytext);
       
           },
         },
@@ -695,8 +788,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
         tl.to(carousel, { opacity: 0, duration: 0.35 }, 'start');
         tl.to(carouselNavigation, {  opacity: 0, duration: 0.35 }, 0.1);
 
-        tl.to(trimContent, { height: 'auto', duration: 0.3, ease: CustomEase.create("custom", "M0,0 C0.217,0.796 0.47,1.02 1,1 ") }, 0.15 );
-        tl.to(showTrimsBase, { y: 0, duration: 0.3, ease: CustomEase.create("custom", "M0,0 C0.217,0.796 0.47,1.02 1,1 ") }, 0.15 );
+        const trimCloseDelay =  trimCard['active-breakpoints'] == "mobile" ? 0.333 : 0.1;  //delay a little longer for mobile when closing for the 
+
+        tl.to(trimContent, { height: 'auto', duration: 0.3, ease: CustomEase.create("custom", "M0,0 C0.217,0.796 0.47,1.02 1,1 ") }, trimCloseDelay );
+        tl.to(showTrimsBase, { y: 0, duration: 0.3, ease: CustomEase.create("custom", "M0,0 C0.217,0.796 0.47,1.02 1,1 ") }, trimCloseDelay );
         tl.to(photo, {  opacity: 1, duration: 0.25, ease: CustomEase.create("custom", "M0,0 C-0.014,0.711 0.306,1 1,1 "), }, 0.45);
         tl.fromTo(photo,  {scale: 0.8}, {  scale: 1, duration: 0.25 }, 0.45);
         tl.to(copy, {  opacity: 1, duration: 0.33 }, 0.55);
