@@ -242,13 +242,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         }
 
-        
         const photo = colSupport.querySelector('.photo'); 
         const pricing = col1.querySelector('.pricing'); 
         const copy = col1.querySelector('.copy');   
         const buildLinks = colLast.querySelector('.build-inventory-links');
         const carouselNavigation = colLast.querySelector('.carousel-navigation'); 
-
 
         photo.style.opacity =  0.0;
         disclaimer.style.opacity = 0.0;
@@ -258,7 +256,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         carouselNavigation.style.display =  'flex';
         carouselNavigation.style.pointerEvents =  'auto';
-
 
       }
 
@@ -306,7 +303,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
    };
 
 
-  function updateDisplayText(indexStart, indexEnd, total, displayText) {
+
+   //update each navigation text breakpoint 
+
+
+  function updateDisplayText(indexStart, indexEnd, total) {
 
     console.log("indexStart: " +  indexStart + ' | indexEnd: '  + indexEnd  )
 
@@ -323,6 +324,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
   }
+
+
+
+
 
 
   function flickityInit(elem, displaytext) {
@@ -359,7 +364,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             addCarouselDisable(carouselPrevious);
 
             if (this.slides.length === 1) { addCarouselDisable(carouselNext);   }  // if we are only at 1 slide
-            updateDisplayText(visibleCellsStart[0], visibleCellsStart[visibleCellsStart.length - 1], this.getCellElements().length , displaytext);
+            updateDisplayText(visibleCellsStart[0], visibleCellsStart[visibleCellsStart.length - 1], this.getCellElements().length);
 
           },
           change: function(slide) {
@@ -383,7 +388,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
               //if we are on mobile and only have 1 slide in view 
               if (visibleCellsChange.length == 1) {     
-                updateDisplayText( (this.selectedIndex + 1), this.slides.length, this.getCellElements().length , displaytext);
+                updateDisplayText( (this.selectedIndex + 1), this.slides.length, this.getCellElements().length);
                 return;
               } 
 
@@ -404,7 +409,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 }
 
                 console.log("visibleCellsEnd: " + visibleCellsEnd);
-                updateDisplayText(visibleCellsEnd[0], visibleCellsEnd[visibleCellsChange.length - 1], this.getCellElements().length , displaytext);
+                updateDisplayText(visibleCellsEnd[0], visibleCellsEnd[visibleCellsChange.length - 1], this.getCellElements().length);
 
               } else {
 
@@ -416,13 +421,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 } 
 
                 console.log( 'visibleCellsChange: ' + visibleCellsChange );
-                updateDisplayText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], this.getCellElements().length , displaytext);
+                updateDisplayText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], this.getCellElements().length);
 
               }
 
            } else {
 
             // we are not at the end
+
 
             visibleCellsChange = [];
             for(let i = 0; i < this.selectedElements.length; i++) {
@@ -431,7 +437,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             } 
 
               console.log( 'visibleCellsChange: ' + visibleCellsChange );
-              updateDisplayText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], this.getCellElements().length , displaytext);
+              updateDisplayText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], this.getCellElements().length );
             }
 
             //remove disable the first
@@ -468,7 +474,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
               //if we are on mobile and only have 1 slide in view 
               if (visibleCellsChange.length == 1) {     
-                updateDisplayText( (this.selectedIndex + 1), this.slides.length, this.getCellElements().length , displaytext);
+                updateDisplayText( (this.selectedIndex + 1), this.slides.length, this.getCellElements().length );
                 return;
               } 
 
@@ -489,7 +495,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 }
 
                 console.log("visibleCellsEnd: " + visibleCellsEnd);
-                updateDisplayText(visibleCellsEnd[0], visibleCellsEnd[visibleCellsChange.length - 1], this.getCellElements().length , displaytext);
+                updateDisplayText(visibleCellsEnd[0], visibleCellsEnd[visibleCellsChange.length - 1], this.getCellElements().length);
 
               } else {
 
@@ -501,7 +507,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 } 
 
                 console.log( 'visibleCellsChange: ' + visibleCellsChange );
-                updateDisplayText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], this.getCellElements().length , displaytext);
+                updateDisplayText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], this.getCellElements().length);
 
               }
 
@@ -516,7 +522,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             } 
 
               console.log( 'visibleCellsChange: ' + visibleCellsChange );
-              updateDisplayText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], this.getCellElements().length , displaytext);
+              updateDisplayText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], this.getCellElements().length);
             }
 
             //remove disable the first
