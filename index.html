@@ -12,21 +12,21 @@
   <link rel="stylesheet" href="css/style2-flickity.css">
 
   <meta name="description" content="">
-
   <link rel="apple-touch-icon" href="icon.png">
 
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#fafafa">
 </head>
 
-<body>
+
+<body style="opacity: 0;">
+  <h1 class="FPOdisclaimer" > The intent of the prototype is 1) flickity integration, and 2) model/trim card motion. <Br> See FRs for expected behavior for filter rail and header.</h1>
   <header class="mobile">
     <div class="mainnav">
        <img src="img/global-navigation-mobile-image1.png" width=55 height=66 >
        <img src="img/global-navigation-mobile-image2.png" width=179 height=66 >
     </div>
   </header>
-
   <header class="desktop">
     <div class="mainnav">
         <img src="img/global-navigation-desktop-image1-v2.png" width=127 height=80 >
@@ -34,17 +34,14 @@
        <img src="img/global-navigation-desktop-image3-v2.png" width=217 height=80 >
     </div>
   </header>
-
   <div class="main"> 
     <div class="container"> 
       <div class="filters-desktop">
         <div class="filters">
          <img class="filters-title" src="img/bsi-desktop-filter-logo-1920.png" width=245  height=74 >
          <div class="filters-list" >
-
             <img class="filters-name" src="img/bsi-desktop-filter-names-1920.png" width=180  height=716 >
             <img class="filters-chevron" src="img/bsi-desktop-filter-chevrons-1920.png" width=76  height=716 >
-
          </div>
         </div>
       </div>
@@ -67,19 +64,17 @@
             </div>  
          </div>
 
-         <div class="trimcard">
+         <div class="trimcard" data-id="palisade">
          <div class="trimcard-container"> 
             <div class="trimcard-content">
-              <div class="trimcard-header-desktop"> 
-                
+              <!-- DESKTOP CARD CONTENT --> 
+              <div class="trimcard-header-desktop" data-type="desktop">            
                 <div class="col1"> 
-                  <!-- Desktop Trim Title  -->
                   <picture>
                     <source srcset="img/bsi-desktop-carousel-header-1024-image1.png" media="(max-width: 1439px)"/>
                     <source srcset="img/bsi-desktop-carousel-header-1920-image1.png" media="(min-width: 1440px)"/>
                       <img  src="img/bsi-desktop-carousel-header-1024-image1.png" width=113 height=70 >
                   </picture>
-
                   <div class="copy">
                     <p>Model description sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                     <p class="disclaimer" style="display: hidden;">Lorem ipsum dolor sit amet, consectetur adipiscing elit adipiscing elit.</p>
@@ -89,7 +84,6 @@
                     </div>
                   </div> 
                 </div> 
-
                 <div class="col2"> 
                   <div class="photo">
                     <img src="img/bsi-desktop-trimcard-vehicle-source-1920.png" width=100% height=270 >
@@ -98,90 +92,69 @@
                 </div>
 
                 <div class="col3">
-
-                  <div class="carousel-navigation"> 
+                  <!-- DESKTOP CAROUSEL NAVIGATION -->
+                  <div class="carousel-navigation" data-type="desktop"> 
                     <h4  class="textdisplay" style="display: flex; align-items: center; margin-right: 16px;"> 1-3 of 7 matches </h4>
-                    <button class="directional-selector-xlarge-arrow" style="margin-right: 16px;" data-value="previous">
+                    <button class="directional-selector-large-arrow" style="margin-right: 16px;" data-value="previous">
                      <a data-value="previous" data-type="desktop" class="arrow-large-18x12">
                       <div class="fff-solid"> </div>
-
-                      <!-- <svg data-value="previous" class="arrow-x-large-26x18" style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 18" width="26" height="18" aria-label="hidden" data-studio="01302025">
-                       <style>
-                        .path-stroke {
-                          fill: none;
-                          stroke: #002C5E;
-                          stroke-width: 1.5px;
-                        }
-                      </style>
-                      <path class="path-stroke" d="M25,9H1M16.43,1l8.57,8-8.57,8"/>
-                    </svg> -->
-
                       <svg  data-value="previous" style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label="hidden" data-studio="01302025">
-
                         <style>
-                          .path-stroke {
-                            fill: none;
-                            stroke: #000;
-                            stroke-width: 1.5px;
-                          }
+                          .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; }
                         </style>
                           <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
                       </svg>
-
                     </a>
-                  </button>
-                  
-                  <button class="directional-selector-xlarge-arrow" data-value="next">
+                  </button>                 
+                  <button class="directional-selector-large-arrow" data-value="next">
                      <a data-value="next" data-type="desktop" class="arrow-large-18x12" >
                       <div class="fff-solid"> </div>
-
-                        <!-- <svg data-value="next" class="arrow-x-large-26x18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 18" width="26" height="18" aria-label="hidden" data-studio="01302025">
-                         <style>
-                          .path-stroke {
-                            fill: none;
-                            stroke: #002C5E;
-                            stroke-width: 1.5px;
-                          }
-                        </style>
-                        <path class="path-stroke" d="M25,9H1M16.43,1l8.57,8-8.57,8"/>
-                      </svg> -->
-
                       <svg  data-value="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label="hidden" data-studio="01302025">
-
-                            <style>
-                              .path-stroke {
-                                fill: none;
-                                stroke: #000;
-                                stroke-width: 1.5px;
-                              }
-                            </style>
-                            <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
-                        </svg>
-
+                        <style >
+                          .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; }
+                        </style>
+                        <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
+                      </svg>
                     </a>
                   </button>
                   </div>
-
                   <div class="disclaimer">
                       <p>Model description sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                   </div> 
-
-                  <div class="ctas">
-                    <h4 class="build-inventory-links"> <span> Build > </span><span>1,524 in Inventory > </span></h4>
-
+                  <!-- DESKTOP CTAS -->
+                  <div class="ctas" data-type="dekstop">
+                    <div class="build-inventory-links"> 
+                      <h4 class="textlink-medium"> 
+                        <a href=""  > 
+                          <span class="text-container"> Build </span> 
+                          <svg class="chevron-medium-14x8"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="14" height="8" aria-label="hidden" data-studio="01302025">
+                            <style>
+                             .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
+                            </style>
+                            <path class="path-stroke" d="M1,1l6,6L13,1"/>
+                          </svg> 
+                        </a> 
+                      </h4>
+                      <h4 class="textlink-medium"> 
+                        <a href="" style="width: 152px;"> 
+                          <span class="text-container"> 1,524 in Inventory </span> 
+                          <svg class="chevron-medium-14x8"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="14" height="8" aria-label="hidden" data-studio="01302025">
+                            <style>
+                             .path-stroke {fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
+                            </style>
+                            <path class="path-stroke" d="M1,1l6,6L13,1"/>
+                          </svg> 
+                        </a> 
+                      </h4>
+                    </div> 
+                    <!-- DESKTOP SHOW TRIMS  -->
                     <button class="primary-button" data-id="show-trims" data-type="desktop">
                       <a style="width:100%;">
                         <div style="background-color: #222"> </div>
                         <div class="container-button">Show 7 Trims</div>
-
                         <svg class="chevron-medium-14x8" style="margin-left: 3px; pointer-events: none; margin-bottom: 4px;}"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="14" height="8" aria-label="hidden" data-studio="01302025">
                             <style>
-                              .path-stroke {
-                                fill: none;
-                                stroke: #000;
-                                stroke-width: 1.5px;
-                                stroke-miterlimit: 10;
-                              }
+                              .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; stroke-miterlimit: 10; }
                             </style>
                           <path style="stroke: #fff" class="path-stroke" d="M1,1l6,6L13,1"/>
                         </svg>
@@ -190,145 +163,109 @@
                   </div>  
                 </div>
               </div>
-
-              <div class="trimcard-header-tablet"> 
+              <!-- TABLET CARD CONTENT --> 
+              <div class="trimcard-header-tablet" data-type="tablet">
                 <div class="col1"> 
-                  <!-- Tablet Trim Title  -->
                   <picture>
                     <source srcset="img/bsi-desktop-carousel-header-1024-image1.png" media="(max-width: 1439px)"/>
                     <source srcset="img/bsi-desktop-carousel-header-1920-image1.png" media="(min-width: 1440px)"/>
                       <img  src="img/bsi-desktop-carousel-header-1024-image1.png" width=113 height=70 >
                   </picture>
-
                   <div class="copy">
                     <div>
                       <p>Model description sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                       <p class="disclaimer" >Lorem ipsum dolor sit amet, consectetur adipiscing elit adipiscing elit.</p>
                     </div>
-
                     <div class="pricing">
                       <p>Starting MSRP</p>
                       <h2>$39,630</h2>
                     </div>
                   </div> 
                 </div> 
-
                 <div class="col2"> 
-                  <div class="carousel-navigation" > 
-                    <h4  class="textdisplay" style="display: flex; align-items: center; margin-right: 16px;"> 1-3 of 7 matches </h4>
-                    <button class="directional-selector-xlarge-arrow" style="margin-right: 16px;" data-value="previous" >
+                  <!-- TABLET CAROUSEL NAVIGATION -->
+                  <div class="carousel-navigation" data-type="tablet">
+                    <h4  class="textdisplay" > 1-3 of 7 matches </h4>
+                    <button class="directional-selector-large-arrow" style="margin-right: 16px;" data-value="previous" >
                        <a data-value="previous"  data-type="tablet" class="arrow-large-18x12">
                         <div class="fff-solid"> </div>
-
-                        <!-- <svg data-value="previous" class="arrow-x-large-26x18" style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 18" width="26" height="18" aria-label="hidden" data-studio="01302025">
-                         <style>
-                          .path-stroke {
-                            fill: none;
-                            stroke: #002C5E;
-                            stroke-width: 1.5px;
-                          }
-                        </style>
-                        <path class="path-stroke" d="M25,9H1M16.43,1l8.57,8-8.57,8"/>
-                       </svg> -->
-
                         <svg  data-value="previous" style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label="hidden" data-studio="01302025">
-
-                            <style>
-                              .path-stroke {
-                                fill: none;
-                                stroke: #000;
-                                stroke-width: 1.5px;
-                              }
-                            </style>
-                            <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
+                          <style>
+                            .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; }
+                          </style>
+                          <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
                         </svg>
-
                       </a>
-                    </button>
-                  
-                    <button class="directional-selector-xlarge-arrow" data-value="next" >
+                    </button>                  
+                    <button class="directional-selector-large-arrow" data-value="next" >
                        <a data-value="next" data-type="tablet" class="arrow-large-18x12">
                         <div class="fff-solid"> </div>
-
-
-                        <!-- <svg data-value="next" class="arrow-x-large-26x18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 18" width="26" height="18" aria-label="hidden" data-studio="01302025">
-                         <style>
-                          .path-stroke {
-                            fill: none;
-                            stroke: #002C5E;
-                            stroke-width: 1.5px;
-                          }
-                        </style>
-                        <path class="path-stroke" d="M25,9H1M16.43,1l8.57,8-8.57,8"/>
-                      </svg> -->
-
-                      
                         <svg  data-value="next"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label=" hidden" data-studio="01302025">
-
                             <style>
-                              .path-stroke {
-                                fill: none;
-                                stroke: #000;
-                                stroke-width: 1.5px;
-                              }
+                              .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; }
                             </style>
                             <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
                         </svg>
-
                       </a>
                     </button>
                   </div>
-
-
                   <div class="photo">
                     <img src="img/bsi-desktop-trimcard-vehicle-source-1920.png" width=100% height=188 >
                   </div> 
-
-                  
-                  <div class="ctas">
-                    <h4 class="build-inventory-links" >Build > 1,524 in Inventory > </h4>
-
+                  <!-- TABLET CTAS -->
+                   <div class="ctas">
+                    <div class="build-inventory-links"> 
+                      <h4 class="textlink-small">
+                        <a href="" >  
+                          <span class="text-container"> Build </span> 
+                          <svg class="chevron-small-10x6"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="10" height="6" aria-label="hidden" data-studio="01302025">
+                            <style>
+                             .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
+                            </style>
+                            <path class="path-stroke" d="M1,1l4,4L9,1"/>
+                          </svg> 
+                        </a> 
+                      </h4>
+                      <h4 class="textlink-small">
+                        <a href="" style="width: 131px;">  
+                          <span class="text-container"> 1,524 in Inventory </span> 
+                          <svg class="chevron-small-10x6"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="10" height="6" aria-label="hidden" data-studio="01302025">
+                            <style>
+                             .path-stroke {fill: none; stroke: #002C5E;  stroke-width: 1.5px; stroke-miterlimit: 10;}
+                            </style>
+                            <path class="path-stroke" d="M1,1l4,4L9,1"/>
+                          </svg> 
+                        </a> 
+                      </h4>
+                    </div> 
+                    <!-- TABLET SHOW TRIMS  -->
                     <button class="primary-button" data-id="show-trims" data-type="tablet">
                       <a style="width:100%;">
                         <div class="container-button">Show 7 Trims</div>
-
                           <svg class="chevron-medium-14x8" style="margin-left: 3px; pointer-events: none; margin-bottom: 4px;}"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="14" height="8" aria-label="hidden" data-studio="01302025">
                             <style>
-                              .path-stroke {
-                                fill: none;
-                                stroke: #000;
-                                stroke-width: 1.5px;
-                                stroke-miterlimit: 10;
-                              }
+                              .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; stroke-miterlimit: 10;}
                             </style>
                           <path style="stroke: #fff" class="path-stroke" d="M1,1l6,6L13,1"/>
                         </svg>
-
                       </a>
                     </button>
                   </div> 
-
-
                 </div>
-
                 </div>
-                <div class="trimcard-header-mobile"> 
-
+                <!-- MOBILE CARD CONTENT --> 
+                <div class="trimcard-header-mobile" data-type="mobile"> 
                   <div class="col1"> 
                     <div class="years">
                        <label class="active">2025</label> <label> 2024</label>
                     </div>
-
                     <div class="title mobile-expanded-title" >
                       <h2>Palisade</h2>
                     </div>
-
                      <div class="photo">
                       <img src="img/bsi-desktop-trimcard-vehicle-1920.png" width=100% height=270 >
                     </div> 
-
                     <p class="disclaimer" >Lorem ipsum dolor sit amet, consectetur adipiscing elit adipiscing elit.</p>
-
                     <div class="title mobile-collapse-title" >
                       <h2>Palisade</h2>
                       <div class="pricing">
@@ -336,81 +273,80 @@
                         <h2>$39,630</h2>
                       </div>
                     </div>
-
                     <div class="copy">
                       <p>Model description sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                     </div> 
-
+                    <!-- MOBILE CAROUSEL NAVIGATION -->
                     <div class="carousel-navigation" > 
-
-
-
-                      <button class="directional-selector-xlarge-arrow" style="margin-right: 16px;" data-value="previous" >
+                      <button class="directional-selector-large-arrow" style="margin-right: 16px;" data-value="previous" >
                          <a data-value="previous"  data-type="mobile" class="arrow-large-18x12">
                           <div class="fff-solid"> </div>
-                          
                           <svg  data-value="previous" style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label="hidden" data-studio="01302025">
-
                             <style>
-                              .path-stroke {
-                                fill: none;
-                                stroke: #000;
-                                stroke-width: 1.5px;
-                              }
+                              .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px;}
                             </style>
                             <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
                           </svg>
-
                         </a>
                       </button>
-
-
-                      <h4  class="textdisplay" style="display: flex; align-items: center; margin-right: 16px;"> 1-3 of 7 matches </h4>
-                      <button class="directional-selector-xlarge-arrow" data-value="next" >
+                      <h4  class="textdisplay" > 1-3 of 7 matches </h4>
+                      <button class="directional-selector-large-arrow" data-value="next" >
                          <a data-value="next" data-type="mobile" class="arrow-large-18x12">
                           <div class="fff-solid"> </div>
-
                           <svg  data-value="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label="hidden" data-studio="01302025">
-
                             <style>
-                              .path-stroke {
-                                fill: none;
-                                stroke: #000;
-                                stroke-width: 1.5px;
-                              }
+                              .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; }
                             </style>
                             <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
                           </svg>
-
                         </a>
                       </button>
                   </div>
-
-                    <div class="ctas">
-                      <h4 class="build-inventory-links"> <span> Build > </span>  <span>1,524 in Inventory ></span> </h4>
+                  <!-- MOBILE CTAS -->
+                  <div class="ctas">
+                    <div class="build-inventory-links"> 
+                      <h4 class="textlink-small">
+                        <a href=""> 
+                          <span class="text-container"> Build </span> 
+                          <svg class="chevron-small-10x6"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="10" height="6" aria-label="hidden" data-studio="01302025">
+                            <style>
+                             .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
+                            </style>
+                            <path class="path-stroke" d="M1,1l4,4L9,1"/>
+                          </svg> 
+                        </a> 
+                      </h4>
+                      <h4 class="textlink-small">
+                        <a href="" style="width: 131px;">   
+                          <span class="text-container"> 1,524 in Inventory </span> 
+                          <svg class="chevron-small-10x6"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="10" height="6" aria-label="hidden" data-studio="01302025">
+                            <style>
+                             .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10;}
+                            </style>
+                            <path class="path-stroke" d="M1,1l4,4L9,1"/>
+                          </svg> 
+                        </a> 
+                      </h4>
+                    </div> 
+                    <!-- MOBILE SHOW TRIMS  -->
                       <button class="primary-button" data-id="show-trims" data-type="mobile">
                         <a style="width:100%;">
                           <div class="container-button">Show 7 Trims</div>      
                           <svg class="chevron-medium-14x8" style="margin-left: 3px; pointer-events: none; margin-bottom: 4px;}"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="14" height="8" aria-label="hidden" data-studio="01302025">
                             <style>
-                              .path-stroke {
-                                fill: none;
-                                stroke: #000;
-                                stroke-width: 1.5px;
-                                stroke-miterlimit: 10;
-                              }
+                              .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; stroke-miterlimit: 10; }
                             </style>
                           <path style="stroke: #fff" class="path-stroke" d="M1,1l6,6L13,1"/>
                         </svg> 
                         </a>
                       </button>
                     </div>  
-                  </div>  
+                  </div> 
                 </div>
-
+                <!-- FLICKITY CAROUSEL  -->
                 <div class="trim-carousel-flickity carousel-trims" data-id="palisade" >
                   <div class="main-carousel ">
-                
+              
                     <div class="carousel-cell" dataslide="1">
                       <picture >
                         <source srcset="img/trim-cards-statics/bsi-trim-carousel-card-295x477-mobile-1.png" media="(max-width: 675px)"/>
@@ -468,8 +404,10 @@
                       </picture>
                     </div>  
                  </div> 
-              </div>  
+              </div> 
+
             </div> 
+            <div style="background-color: cornflowerblue; padding: 10px;"> Not avialable in your area.</div> 
           </div>
         </div>
       </div>
@@ -479,9 +417,7 @@
   <script src="js/vendor/flickity.pkgd.min.js"></script> 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/CustomEase.min.js"></script>
-
   <script src="js/app.js"></script>
-
 
 </body>
 

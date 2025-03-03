@@ -296,9 +296,25 @@ table {
 }
 
 
-/* IUS Styles */
+
+:root {
+  --Primary-Navy: #002C5E;
+  --neutral-gray-600: #333;
+  --neutral-gray-400: #888;
+
+}
+
+
 
 /*main nav */
+h1.FPOdisclaimer {
+    display: none;
+    position: absolute;
+    font-size: 18px;
+    padding: 5px;
+    background-color: #00ff00;
+}
+
 
 
 header.desktop  {
@@ -331,7 +347,6 @@ header.desktop .mainnav img:nth-child(3) {
 
 }
 
-
 header.mobile  {
 
   display: none;
@@ -341,7 +356,6 @@ header.mobile  {
   height: 66px;
   width: 100%;
 }
-
 
 header.mobile .mainnav {
   width: 100%;
@@ -467,8 +481,16 @@ div.main .trimcard-header-desktop {
   font-style: normal;
   font-weight: 400;
   line-height: 20px; 
+
 }
 
+
+div.main .build-inventory-links  {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 
 
@@ -477,9 +499,7 @@ div.main .trimcard-header-desktop .col1{
    display: flex;
    flex-direction: column;
    margin-right: 24px;
-   margin-bottom: 24px;
    width: 302px;
-
 }
 
 
@@ -487,7 +507,6 @@ div.main .trimcard-header-desktop .col2{
 
    display: flex;
    flex-direction: column;
-   margin-bottom: 24px;
    flex-grow: 1;
 }
 
@@ -497,16 +516,12 @@ div.main .trimcard-header-desktop .col3{
    display: flex;
    flex-direction: column;
    margin-left: 24px;
-   margin-bottom: 24px;
-  /* justify-content: flex-end;*/
+   /*margin-bottom: 24px;*/
    height: inherit;
 }
 
 
-.width-300 {
-  width: 300px !important;
-  transition: width 0.05s;
-}
+
 
 div.main .trimcard-header-desktop .col3 .carousel-navigation {
   display: flex;
@@ -520,15 +535,14 @@ div.main .trimcard-header-desktop .col3 .carousel-navigation {
 
 div.main .trimcard-header-desktop .col3 .textdisplay {
   display: flex;
-    align-items: center;
-    margin-right: 16px;
-    opacity: 1;
-    width: 100%;
-    text-align: right;
-    justify-content: flex-end;
+  align-items: center;
+  margin-right: 16px;
+  opacity: 1;
+  width: 100%;
+  text-align: right;
+  justify-content: flex-end;
 
 }
-
 
 
 
@@ -538,23 +552,30 @@ div.main .col1 .copy{
    flex-direction: column;
    justify-content: space-between;
    height: 100%;
-  
-
 }
+
+
+div.main .ctas {  
+  width: 100%;
+}
+
+
+div.main .ctas .primary-button {
+  width: 100%;
+}
+
+
 
 div.main .trimcard-header-mobile .col1{
 
    display: flex;
    flex-direction: column;
    width: 100%;
-
-
 }
 
 
 
-div.main .trimcard-header-desktop .disclaimer, div.main .trimcard-header-tablet .disclaimer, div.main .trimcard-header-mobile .disclaimer{
-
+div.main  .disclaimer {
 
   color: var(--neutral-gray-400, #888);
   text-align: center;
@@ -564,7 +585,6 @@ div.main .trimcard-header-desktop .disclaimer, div.main .trimcard-header-tablet 
   font-style: normal;
   font-weight: 400;
   line-height: 16px;  
-
 }
 
 
@@ -597,11 +617,23 @@ div.main .trimcard-header-tablet .col2 .carousel-navigation {
   position: absolute;
   top: -15px;
   z-index: 1;
+}
 
+div.main .trimcard-header-tablet .carousel-navigation .textdisplay{
+  display: flex; 
+  align-items: center; 
+  margin-right: 16px;
+}
+
+div.main .trimcard-header-desktop .carousel-navigation .textdisplay{
+  display: flex; 
+  align-items: center; 
+  margin-right: 16px;
 }
 
 div.main .trimcard-header-mobile .col1 .carousel-navigation  .textdisplay {
-
+  display: flex;
+  align-items: center;
   text-align: center;
   font-feature-settings: 'liga' off, 'clig' off;
   font-family: "Hyundai Sans Text";
@@ -609,6 +641,8 @@ div.main .trimcard-header-mobile .col1 .carousel-navigation  .textdisplay {
   font-style: normal;
   font-weight: 400;
   line-height: 16px; 
+  margin-right: 16px;
+  opacity: 0;
 
 } 
 
@@ -617,7 +651,7 @@ div.main .trimcard-header-tablet .col1{
    display: flex;
    flex-direction: column;
    margin-right: 16px;
-   margin-bottom: 16px;
+/*   margin-bottom: 16px;*/
    width: 264px;
 
 
@@ -628,7 +662,6 @@ div.main .trimcard-header-desktop .col2{
 
    display: flex;
    flex-direction: column;
-   margin-bottom: 24px;
    flex-grow: 1;
 }
 
@@ -636,7 +669,6 @@ div.main .trimcard-header-tablet .col2{
 
    display: flex;
    flex-direction: column;
-   margin-bottom: 16px;
    justify-content: flex-end;
    align-items: flex-end;
    position: relative;
@@ -651,13 +683,14 @@ div.main .col1 .copy p{
 
 
 div.main  .trimcard-header-desktop .col1 .copy .disclaimer{
-
    display: none;
 }
 
+div.main .pricing {
+    margin-top: 8px;
+}
 
-div.main .col1 .pricing p{
-
+div.main .pricing p{
   color: var(--neutral-gray-600, #333);
   font-feature-settings: 'liga' off, 'clig' off;
   /* Caption/Regular */
@@ -670,8 +703,7 @@ div.main .col1 .pricing p{
 
 
 
-div.main .col1 .pricing h2{
-
+div.main .pricing h2{
   color: var(--Neutral-Black, #000);
   font-feature-settings: 'liga' off, 'clig' off;
   /* Heading/Compact/03 */
@@ -680,7 +712,6 @@ div.main .col1 .pricing h2{
   font-style: normal;
   font-weight: 500;
   line-height: 26px; 
-
 }
 
 
@@ -692,7 +723,7 @@ div.main .col2 {
 
 div.main .trimcard-header-tablet .col2 .photo {
 
-align-self: center;
+  align-self: center;
 }
 
 
@@ -722,17 +753,16 @@ div.main .col3 .ctas {
 
   display: flex;
   flex-direction: column;
-
-}
+  align-self: end;
+} 
 
 div.main .ctas h4 {
 
-  text-align: right;
   color: var(--Primary-Navy, #002C5E);
   font-feature-settings: 'liga' off, 'clig' off;
   /* Label/Head/Large */
   font-family: "Hyundai Sans Head";
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
@@ -741,31 +771,12 @@ div.main .ctas h4 {
 }
 
 
-div.main .ctas h4 {
-
-  text-align: right;
-  color: var(--Primary-Navy, #002C5E);
-  font-feature-settings: 'liga' off, 'clig' off;
-  /* Label/Head/Large */
-  font-family: "Hyundai Sans Head";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 16px;
-  padding: 8px 0;
-  margin-bottom: 8px;
-}
-
-div.main .trimcard-header-tablet .ctas  .primary-button {
-
-  width: 200px;
-}
 
 
 
 div.main .trimcard-header-mobile {
   display: none;
-  padding: 16px 16px 0px 16px;
+  padding: 16px 16px 16px 16px;
   justify-content: space-between;
 }
 
@@ -799,7 +810,8 @@ div.main .trimcard-header-mobile .photo {
 
 
 div.main .trimcard-header-mobile .photo img{
-   height: 155px; /*height: 100%;*/
+  /* height: 155px; */
+   height: 100%;
 }
 
 
@@ -859,11 +871,6 @@ div.main .trimcard-header-mobile .ctas {
   margin-top: 16px;
 }
 
-div.main .trimcard-header-mobile .ctas .primary-button {
-  width: 100%;
-  margin: 16px 0;
-}
-
 
 div.main .trimcard-header-mobile .ctas .build-inventory-links {
   display: flex;
@@ -872,13 +879,13 @@ div.main .trimcard-header-mobile .ctas .build-inventory-links {
 
 div.main .trimcard-header-mobile .col1 .carousel-navigation {
   display: none;
+  position: absolute;
   opacity: 0;
   padding-top: 40px;
   pointer-events: none;
   justify-content: center;
   display: flex;
   z-index: 1;
-  position: absolute;
   bottom: 74px;
   width: calc(100vw - 64px);
 }
@@ -887,7 +894,7 @@ div.main .trimcard-header-mobile .col1 .carousel-navigation {
 
 div.main .trimcard-header-tablet {
   display: none;
-  padding: 16px 16px 0px 16px;
+  padding: 16px 16px 16px 16px;
   justify-content: space-between;
 }
 
@@ -1099,6 +1106,11 @@ div.main .trim-carousel-flickity {
     top: 100px;
   }
 
+  div.main .ctas {
+
+    width: 200px;
+  }
+
 }
 
 
@@ -1124,7 +1136,6 @@ div.main .trim-carousel-flickity {
 }
 
 
-
 @media screen and (min-width: 1024px) {
   
 
@@ -1142,7 +1153,6 @@ div.main .trim-carousel-flickity {
     display: flex;
    }
    
-
   div.main .container {
     margin-top: 48px ;
   }
@@ -1152,23 +1162,18 @@ div.main .trim-carousel-flickity {
     width: 100%;
   }
 
-
   div.main  {
     overflow: hidden;
-
   }
 
   div.main .container {
     margin-top: 36px;
   }
 
-
-
   div.main .filters{
       width: 300px;
       padding-right: 0px;
   }
-
 
   div.main .filters-desktop {
     /*width: 300px;*/
@@ -1180,9 +1185,6 @@ div.main .trim-carousel-flickity {
     padding-right: 42px;
   }
 
-
-
-
   div.main .trimcard-trims {
     width : calc(100vw - 415px);
   }
@@ -1192,11 +1194,9 @@ div.main .trim-carousel-flickity {
     padding: 16px 16px 0px 16px;
   }
 
-
   div.main .trimcard-header-tablet .col1 {
     width: 286px;
   }
-
 
    div.main .trimcard-header-tablet .col2 {
     width: calc(100% - (286px + 16px));
@@ -1206,11 +1206,11 @@ div.main .trim-carousel-flickity {
     display: none;
    }
    
-
-
-
 }
 
+
+
+/*
 @media screen and (min-width: 1280px) {
    
 
@@ -1223,7 +1223,7 @@ div.main .trim-carousel-flickity {
   }
 
   div.main .trimcard-header-desktop {
-    width:  calc(100vw - 536px);   /*width:  calc(100vw - 555px);*/
+    width:  calc(100vw - 536px); 
     padding: 24px 24px 0px 24px;
   }
 
@@ -1241,17 +1241,7 @@ div.main .trim-carousel-flickity {
     width: 160px;
   }
 
-   div.main .trimcard-header-desktop, div.main .trimcard-footer-desktop {
-    /*display: flex;*/
-  }  
-
-/*   div.main .trimcard-header-tablet {
-    display: none;
-   }
-   */
-
-
-
+ 
    div.main .trimcard-header-desktop .build-inventory-links  {
     display: flex;
     flex-direction: column;
@@ -1262,6 +1252,8 @@ div.main .trim-carousel-flickity {
       padding-bottom: 8px;
    }
 }
+
+*/
 
 
 
@@ -1330,6 +1322,7 @@ div.main .trim-carousel-flickity {
   }
 
 
+
   div.main .filters{
       width: 309px;
       padding-right: 40px;
@@ -1339,6 +1332,7 @@ div.main .trim-carousel-flickity {
   div.main .content {
     padding-right: 72px;
   }
+
 
   
   div.main .trimcard-header-desktop .col1 picture:nth-child(1) img {
@@ -1358,6 +1352,7 @@ div.main .trim-carousel-flickity {
 
   div.main .trimcard-header-desktop {
     width:  calc(100vw - 561px);
+    padding: 24px;
   }
 
   div.main .trimcard-header-tablet {
@@ -1370,7 +1365,7 @@ div.main .trim-carousel-flickity {
   }
 
   div.main .trimcard .col3 {
-    height: 314px;
+    min-height: 314px;
   }
 
 
@@ -1391,7 +1386,7 @@ div.main .trim-carousel-flickity {
 
 
   div.main .trimcard-header-desktop .primary-button,  div.main .trimcard-footer-desktop .secondary-button  {
-    width: 216px;
+    width: 100%;
   }
 
   div.main .trimcard-header-desktop .col1 {
@@ -1404,11 +1399,15 @@ div.main .trim-carousel-flickity {
     margin-left: 24px;
   }
 
+  div.main .ctas {
 
-  div.main .trimcard-header-desktop .build-inventory-links  {
-    display: inline-block;
-    flex-direction: column;
+    width: 216px;
   }
+
+  div.main .ctas h4 {
+    font-size: 16px;
+  }
+
 
 
  }

@@ -88,77 +88,162 @@ button {
 
 
 
-/* directional-selector-xlarge-arrow */
+/* directional-selector-large-arrow */
 
 
-.directional-selector-xlarge-arrow {
+.directional-selector-large-arrow {
   justify-content: flex-start; 
   align-items: center; 
   cursor: pointer;
 }
 
-.directional-selector-xlarge-arrow a {
+.directional-selector-large-arrow a {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch; 
-  background-color: #fff;
+  position: relative;
   width: 32px;
   height: 32px;
   border-radius: 24px;
-  transition: 0.2s  all linear;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch; 
   outline: 1px solid #e6e6e6; 
   outline-offset : -1px;
-  position: relative;
+  background-color: #fff;
+  stroke: #002C5E; 
+  transition: 0.2s  all linear;
 }
 
-.directional-selector-xlarge-arrow a .fff-solid {
-  background: #fff;
-  z-index: 10;
+.directional-selector-large-arrow a .fff-solid {
+  position: absolute;
   width: 100%;
   height: 100%;
-  position: absolute;
-  border-radius: inherit;;
-  opacity: 0;
+  border-radius: inherit;
   outline: inherit;
   outline-offset: inherit;
+  background: #fff;
+  z-index: 10;
+  opacity: 0;
 }
 
 
-.directional-selector-xlarge-arrow svg {
+.directional-selector-large-arrow svg {
    pointer-events: none; 
    transition: 0.2s all cubic-bezier(.1,.5,.15,1);
    opacity: 1;
 }
 
-
-@media (hover: hover) {
-  .directional-selector-xlarge-arrow a:hover {
-    outline: 1px solid #002C5E; 
-    outline-offset : -1px;
-  }
-
-  .directional-selector-xlarge-arrow a:hover {
-    background-color: #002C5E; 
-  }
-
-  body:has(.directional-selector-xlarge-arrow a[data-value="next"]:hover)  svg[data-value="next"] > .path-stroke {
-    stroke: #fff;
-  }
-
-  body:has(.directional-selector-xlarge-arrow a[data-value="previous"]:hover)  svg[data-value="previous"] > .path-stroke {
-    stroke: #fff;
-  }
- 
+.directional-selector-large-arrow svg .path-stroke {
+   stroke: inherit;
 }
 
 
-.directional-selector-xlarge-arrow a:active {
+@media (hover: hover) {
+
+  .directional-selector-large-arrow a:hover {
+    outline: 1px solid #002C5E; 
+    outline-offset : -1px;
+    background-color: #002C5E; 
+    stroke: #fff;
+  }
+
+}
+
+
+.directional-selector-large-arrow a:active {
   transform: scale(0.95); 
   background-color: #001A38 ; 
 }
 
 
+/* textlink states */
+
+.textlink-medium, .textlink-small  {
+ justify-content: flex-start; 
+ align-items: center; 
+ display: flex;
+ cursor: pointer;
+
+}
+
+.textlink-medium a, .textlink-small a {
+  align-self: stretch; 
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  margin: 0px;
+  color: #002C5E; 
+  stroke: #002C5E;
+  transition: 0.2s  all cubic-bezier(.1,.5,.15,1);
+}
+
+
+.textlink-medium a {
+  gap: 8px;
+}
+
+.textlink-small a {
+  gap: 4px;
+}
+
+
+.textlink-medium a .text-container, .textlink-small a .text-container{
+  display: flex;
+  user-select: none;
+  color: inherit;
+  /*font-size: 16px; */  /* defined in style.css based on breakpoint 14px or 16px*/
+  font-family: Hyundai Sans Head; 
+  margin-right: 8px;
+  font-weight: 500; 
+  line-height: 20px;
+  transition: 0.2s  all cubic-bezier(.1,.5,.15,1);
+  display: inline-block;
+  margin: 0;
+}
+
+
+.textlink-medium a > svg, .textlink-small a > svg{
+  display: flex;
+  transform: rotate(-90deg);
+}
+
+
+.textlink-medium a > svg.chevron-medium-14x8 {
+  margin-top: 5px;
+  margin-left: -4px;
+}
+
+
+.textlink-small  a > svg.chevron-small-10x6 {
+  margin-top: 5px;
+  margin-left: -1px;
+}
+
+
+.textlink-medium  a > svg .path-stroke, .textlink-small  a > svg .path-stroke   {
+   stroke: inherit;
+}
+
+
+@media (hover: hover) {
+
+  .textlink-medium a:hover, .textlink-small a:hover{
+    color: #001A38;  
+    stroke: #001A38;  
+  }
+
+  .textlink-medium a:hover {
+    gap: 12px;  
+  }
+
+  .textlink-small a:hover {
+    gap: 8px;  
+  }
+
+}
+
+
+
+  
 
 
 /* disabled states */
