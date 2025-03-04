@@ -37,6 +37,8 @@ button {
   background: linear-gradient(to right, #f3f3f3 50%,  #fff 50%);
   background-size: 200% 100%;
   background-position: right bottom;
+  border: 1px solid var(--Primary-Navy, #002C5E);
+
  }
 
 

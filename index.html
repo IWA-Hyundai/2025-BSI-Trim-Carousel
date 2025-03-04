@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/flickity.css"> 
   <link rel="stylesheet" href="css/buttons.css"> 
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/style2-flickity.css">
+  <!-- <link rel="stylesheet" href="css/style2-flickity.css"> -->
 
   <meta name="description" content="">
   <link rel="apple-touch-icon" href="icon.png">
@@ -66,9 +66,9 @@
 
          <div class="trimcard" data-id="palisade">
          <div class="trimcard-container"> 
-            <div class="trimcard-content">
+            <div class="trimcard-content" data-id="palisade">
               <!-- DESKTOP CARD CONTENT --> 
-              <div class="trimcard-header-desktop" data-type="desktop">            
+              <div class="trimcard-collapse-desktop" data-type="desktop">            
                 <div class="col1"> 
                   <picture>
                     <source srcset="img/bsi-desktop-carousel-header-1024-image1.png" media="(max-width: 1439px)"/>
@@ -77,7 +77,6 @@
                   </picture>
                   <div class="copy">
                     <p>Model description sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                    <p class="disclaimer" style="display: hidden;">Lorem ipsum dolor sit amet, consectetur adipiscing elit adipiscing elit.</p>
                     <div class="pricing">
                       <p>Starting MSRP</p>
                       <h2>$39,630</h2>
@@ -90,7 +89,6 @@
                   </div> 
                   <p class="disclaimer">Lorem ipsum dolor sit amet, consectetur adipiscing elit adipiscing elit. </p>
                 </div>
-
                 <div class="col3">
                   <!-- DESKTOP CAROUSEL NAVIGATION -->
                   <div class="carousel-navigation" data-type="desktop"> 
@@ -100,7 +98,7 @@
                       <div class="fff-solid"> </div>
                       <svg  data-value="previous" style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label="hidden" data-studio="01302025">
                         <style>
-                          .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; }
+                          .arrow-large-18x12 .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; }
                         </style>
                           <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
                       </svg>
@@ -111,7 +109,7 @@
                       <div class="fff-solid"> </div>
                       <svg  data-value="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label="hidden" data-studio="01302025">
                         <style >
-                          .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; }
+                          .arrow-large-18x12 .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; }
                         </style>
                         <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
                       </svg>
@@ -122,14 +120,14 @@
                       <p>Model description sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                   </div> 
                   <!-- DESKTOP CTAS -->
-                  <div class="ctas" data-type="dekstop">
+                  <div class="ctas" data-type="desktop">
                     <div class="build-inventory-links"> 
                       <h4 class="textlink-medium"> 
                         <a href=""  > 
                           <span class="text-container"> Build </span> 
                           <svg class="chevron-medium-14x8"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="14" height="8" aria-label="hidden" data-studio="01302025">
                             <style>
-                             .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
+                             .chevron-medium-14x8 .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
                             </style>
                             <path class="path-stroke" d="M1,1l6,6L13,1"/>
                           </svg> 
@@ -140,7 +138,7 @@
                           <span class="text-container"> 1,524 in Inventory </span> 
                           <svg class="chevron-medium-14x8"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="14" height="8" aria-label="hidden" data-studio="01302025">
                             <style>
-                             .path-stroke {fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
+                             .chevron-medium-14x8 .path-stroke {fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
                             </style>
                             <path class="path-stroke" d="M1,1l6,6L13,1"/>
                           </svg> 
@@ -148,13 +146,13 @@
                       </h4>
                     </div> 
                     <!-- DESKTOP SHOW TRIMS  -->
-                    <button class="primary-button" data-id="show-trims" data-type="desktop">
+                    <button class="primary-button" data-id="show-hide-trims" data-type="desktop">
                       <a style="width:100%;">
                         <div style="background-color: #222"> </div>
                         <div class="container-button">Show 7 Trims</div>
                         <svg class="chevron-medium-14x8" style="margin-left: 3px; pointer-events: none; margin-bottom: 4px;}"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="14" height="8" aria-label="hidden" data-studio="01302025">
                             <style>
-                              .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; stroke-miterlimit: 10; }
+                              .chevron-medium-14x8 .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; stroke-miterlimit: 10; }
                             </style>
                           <path style="stroke: #fff" class="path-stroke" d="M1,1l6,6L13,1"/>
                         </svg>
@@ -164,7 +162,7 @@
                 </div>
               </div>
               <!-- TABLET CARD CONTENT --> 
-              <div class="trimcard-header-tablet" data-type="tablet">
+              <div class="trimcard-collapse-tablet" data-type="tablet">
                 <div class="col1"> 
                   <picture>
                     <source srcset="img/bsi-desktop-carousel-header-1024-image1.png" media="(max-width: 1439px)"/>
@@ -191,7 +189,7 @@
                         <div class="fff-solid"> </div>
                         <svg  data-value="previous" style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label="hidden" data-studio="01302025">
                           <style>
-                            .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; }
+                            .arrow-large-18x12 .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; }
                           </style>
                           <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
                         </svg>
@@ -202,7 +200,7 @@
                         <div class="fff-solid"> </div>
                         <svg  data-value="next"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label=" hidden" data-studio="01302025">
                             <style>
-                              .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; }
+                              .arrow-large-18x12 .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; }
                             </style>
                             <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
                         </svg>
@@ -220,7 +218,7 @@
                           <span class="text-container"> Build </span> 
                           <svg class="chevron-small-10x6"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="10" height="6" aria-label="hidden" data-studio="01302025">
                             <style>
-                             .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
+                             .chevron-small-10x6 .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
                             </style>
                             <path class="path-stroke" d="M1,1l4,4L9,1"/>
                           </svg> 
@@ -231,7 +229,7 @@
                           <span class="text-container"> 1,524 in Inventory </span> 
                           <svg class="chevron-small-10x6"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="10" height="6" aria-label="hidden" data-studio="01302025">
                             <style>
-                             .path-stroke {fill: none; stroke: #002C5E;  stroke-width: 1.5px; stroke-miterlimit: 10;}
+                             .chevron-small-10x6 .path-stroke {fill: none; stroke: #002C5E;  stroke-width: 1.5px; stroke-miterlimit: 10;}
                             </style>
                             <path class="path-stroke" d="M1,1l4,4L9,1"/>
                           </svg> 
@@ -239,12 +237,12 @@
                       </h4>
                     </div> 
                     <!-- TABLET SHOW TRIMS  -->
-                    <button class="primary-button" data-id="show-trims" data-type="tablet">
+                    <button class="primary-button" data-id="show-hide-trims" data-type="tablet">
                       <a style="width:100%;">
                         <div class="container-button">Show 7 Trims</div>
                           <svg class="chevron-medium-14x8" style="margin-left: 3px; pointer-events: none; margin-bottom: 4px;}"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="14" height="8" aria-label="hidden" data-studio="01302025">
                             <style>
-                              .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; stroke-miterlimit: 10;}
+                              .chevron-medium-14x8 .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px; stroke-miterlimit: 10;}
                             </style>
                           <path style="stroke: #fff" class="path-stroke" d="M1,1l6,6L13,1"/>
                         </svg>
@@ -254,7 +252,7 @@
                 </div>
                 </div>
                 <!-- MOBILE CARD CONTENT --> 
-                <div class="trimcard-header-mobile" data-type="mobile"> 
+                <div class="trimcard-collapse-mobile" data-type="mobile"> 
                   <div class="col1"> 
                     <div class="years">
                        <label class="active">2025</label> <label> 2024</label>
@@ -283,7 +281,7 @@
                           <div class="fff-solid"> </div>
                           <svg  data-value="previous" style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label="hidden" data-studio="01302025">
                             <style>
-                              .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px;}
+                              .arrow-large-18x12 .path-stroke {fill: none; stroke: #000; stroke-width: 1.5px;}
                             </style>
                             <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
                           </svg>
@@ -295,7 +293,7 @@
                           <div class="fff-solid"> </div>
                           <svg  data-value="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" aria-label="hidden" data-studio="01302025">
                             <style>
-                              .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; }
+                              .arrow-large-18x12 .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; }
                             </style>
                             <path class="path-stroke" d="M17,6.1H1M11.3.8l5.7,5.3-5.7,5.3"/>
                           </svg>
@@ -310,7 +308,7 @@
                           <span class="text-container"> Build </span> 
                           <svg class="chevron-small-10x6"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="10" height="6" aria-label="hidden" data-studio="01302025">
                             <style>
-                             .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
+                             .chevron-small-10x6 .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10; }
                             </style>
                             <path class="path-stroke" d="M1,1l4,4L9,1"/>
                           </svg> 
@@ -321,7 +319,7 @@
                           <span class="text-container"> 1,524 in Inventory </span> 
                           <svg class="chevron-small-10x6"  style="transform: rotate(-90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="10" height="6" aria-label="hidden" data-studio="01302025">
                             <style>
-                             .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10;}
+                             .chevron-small-10x6 .path-stroke { fill: none; stroke: #002C5E; stroke-width: 1.5px; stroke-miterlimit: 10;}
                             </style>
                             <path class="path-stroke" d="M1,1l4,4L9,1"/>
                           </svg> 
@@ -329,12 +327,12 @@
                       </h4>
                     </div> 
                     <!-- MOBILE SHOW TRIMS  -->
-                      <button class="primary-button" data-id="show-trims" data-type="mobile">
+                      <button class="primary-button" data-id="show-hide-trims" data-type="mobile">
                         <a style="width:100%;">
                           <div class="container-button">Show 7 Trims</div>      
                           <svg class="chevron-medium-14x8" style="margin-left: 3px; pointer-events: none; margin-bottom: 4px;}"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" width="14" height="8" aria-label="hidden" data-studio="01302025">
                             <style>
-                              .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; stroke-miterlimit: 10; }
+                              .chevron-medium-14x8 .path-stroke { fill: none; stroke: #000; stroke-width: 1.5px; stroke-miterlimit: 10; }
                             </style>
                           <path style="stroke: #fff" class="path-stroke" d="M1,1l6,6L13,1"/>
                         </svg> 
@@ -407,7 +405,16 @@
               </div> 
 
             </div> 
-            <div style="background-color: cornflowerblue; padding: 10px;"> Not avialable in your area.</div> 
+             <!-- OPTIONAL - STATE BANNER --> 
+            <div class="availability-conflict" data-id="palisade" >
+              <h5> Only available for purchase in CA. 
+                <svg class="info-large-16x16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" style="margin-top: -4px; margin-left: 2px;" aria-label="hidden" data-studio="01302025">
+                  <style> .info-large-16x16 .path-fill {fill: #000;} .info-large-16x16 .path-stroke { fill: none; stroke: #000; stroke-width: 1px;} </style>
+                  <path class="path-stroke" d="M8,.5h0c4.14,0,7.5,3.36,7.5,7.5h0c0,4.14-3.36,7.5-7.5,7.5h0c-4.14,0-7.5-3.36-7.5-7.5h0C.5,3.86,3.86.5,8,.5Z"/>
+                  <path class="path-fill" d="M7.34,12.3v-6.06h1.3v6.06h-1.3ZM7.26,5.07v-1.37h1.49v1.37h-1.49Z"/>
+                </svg>
+              </h5>
+            </div> 
           </div>
         </div>
       </div>
