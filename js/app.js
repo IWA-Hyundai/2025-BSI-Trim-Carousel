@@ -28,9 +28,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   }
 
+if (typeof params["slides"] !== 'undefined') {
+
+  const slides =  parseInt(params["slides"]) > 7 ? 7 : parseInt(params["slides"]);
+  const carousel = document.querySelector('.trim-carousel-flickity'); 
+  const carouselCells = carousel.querySelectorAll('.carousel-cell');
+  const carouselCellsArray = Array.from(carouselCells);
+
+  const carouselCellsRemove = carouselCellsArray.slice( slides );
+
+  for(let i=0; i < carouselCellsRemove.length; i++) {
+    carouselCellsRemove[i].remove();
+  }
+
+
+}
+
   //remove the inline style of white on the body, used to avoid the FPO flicker 
   document.body.removeAttribute('style');
-
 
   // Using a single trim card as an example, so put together a single data object. 
   const trimCard = document.querySelector(".trimcard");  
@@ -45,9 +60,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
       
      // 712, 651, 696 - hard lines
     'breakpoints' : {
-      'desktop' :  { 'collapsed' : 0 , 'expanded' : undefined ,  'containerButton' : trimCard.querySelector('.trimcard-collapse-desktop .container-button')  },
-      'tablet'  :  { 'collapsed' : 0 , 'expanded' : undefined ,  'containerButton' : trimCard.querySelector('.trimcard-collapse-tablet .container-button') },
-      'mobile'  :  { 'collapsed' : 0 , 'expanded' : undefined ,  'containerButton' : trimCard.querySelector('.trimcard-collapse-mobile .container-button') },
+      'desktop' :  { 'collapsed' : 0 , 'expanded' : undefined ,  'hideshowTrimsButton' : trimCard.querySelector('.trimcard-collapse-desktop .container-button')  },
+      'tablet'  :  { 'collapsed' : 0 , 'expanded' : undefined ,  'hideshowTrimsButton' : trimCard.querySelector('.trimcard-collapse-tablet .container-button') },
+      'mobile'  :  { 'collapsed' : 0 , 'expanded' : undefined ,  'hideshowTrimsButton' : trimCard.querySelector('.trimcard-collapse-mobile .container-button') },
     },
 
     'active-breakpoints' : []
@@ -63,19 +78,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //card specific to Palisade
   const trimContent = document.querySelector('.trimcard-content');
   const showTrimsButtons = document.querySelectorAll(`[data-id="show-hide-trims"]`);
-  const carousel = document.querySelector(".trim-carousel-flickity" ); 
+  const carousel = document.querySelector('.trim-carousel-flickity'); 
 
   var carouselNext = document.querySelectorAll(`button a[data-value="next"]`);
   var carouselPrevious = document.querySelectorAll(`button a[data-value="previous"]`);
   const carouselNavigationText  = document.querySelectorAll('.carousel-navigation .textdisplay');
 
 
+ 
+
+  
+
   //determine the expanded state height based on the current breakpoint 
   //Referecing the FRs, add margin, padding and element's height to determine the expansion height at that breakpoint
 
   function getExpansionHeight(carousel) {
 
-    const carouselCell = carousel.querySelector(".carousel-cell"); 
+
+
+    const carouselCell = carousel.querySelector('.carousel-cell'); 
     const rect = carouselCell.getBoundingClientRect();
     let carouselCardHeight = parseInt(rect.height, 0); 
 
@@ -152,13 +173,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
       trimContent.removeAttribute('style');
 
       //update trims buttons to expanded state
-      let containerButton = trimCardData["breakpoints"][breakpoint]['containerButton'] ;
-      containerButton.innerText  = trimCardData['cta']['collapse'];
+      let hideshowTrimsButton = trimCardData["breakpoints"][breakpoint]['hideshowTrimsButton'] ;
+      hideshowTrimsButton.innerText  = trimCardData['cta']['collapse'];
 
-      containerButton.closest('.primary-button').classList.remove('secondary-button');
-      containerButton.closest('.primary-button').removeAttribute('style');
+      hideshowTrimsButton.closest('.primary-button').classList.remove('secondary-button');
+      hideshowTrimsButton.closest('.primary-button').removeAttribute('style');
 
-      const svg = containerButton.parentElement.querySelector('.chevron-medium-14x8');
+      const svg = hideshowTrimsButton.parentElement.querySelector('.chevron-medium-14x8');
       svg.style.transform = 'rotate(180deg)';
       const path = svg.querySelector('.path-stroke');
       path.style.stroke = '#fff';
@@ -171,7 +192,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       switch (breakpoint) {
         case "desktop":
 
-          colLast =  containerButton.closest('.col3'); 
+          colLast =  hideshowTrimsButton.closest('.col3'); 
           colSupport = colLast.previousElementSibling;
           col1 = colSupport.previousElementSibling;
           disclaimer = colSupport.querySelector('.disclaimer'); 
@@ -179,16 +200,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         case "tablet":
 
-          colLast =  containerButton.closest('.col2');
-          colSupport = containerButton.closest('.col2');
+          colLast =  hideshowTrimsButton.closest('.col2');
+          colSupport = hideshowTrimsButton.closest('.col2');
           col1 = colSupport.previousElementSibling;
           disclaimer = col1.querySelector('.disclaimer'); 
           break;
 
         case "mobile":
 
-          colLast = containerButton.closest('.col1');
-          colSupport = containerButton.closest('.col1');
+          colLast = hideshowTrimsButton.closest('.col1');
+          colSupport = hideshowTrimsButton.closest('.col1');
           col1 = colSupport;
           disclaimer = col1.querySelector('.disclaimer'); 
           col1.querySelector('.mobile-collapse-title').style.opacity = 1.0;
@@ -247,7 +268,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       if (window.innerWidth >= 640 && window.innerWidth < 1440 ) { currentBreakpoint = "tablet" };  
       if (window.innerWidth < 640 ) {  currentBreakpoint= "mobile" }; 
 
-      let showButtonResize = 0;
+      //let showButtonResize = 0;
 
       //update 'breakpoint' classification
       trimCardData["breakpoint"] = currentBreakpoint;
@@ -268,24 +289,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
         trimContent.style.height = trimCardData["breakpoints"][currentBreakpoint]["expanded"] + "px";
 
         //update trims buttons to expanded state
-        let containerButton = trimCardData["breakpoints"][currentBreakpoint]['containerButton'] ;
-        containerButton.innerText  = trimCardData['cta']['expanded'];
-        const svg = containerButton.parentElement.querySelector('.chevron-medium-14x8');
+        let hideshowTrimsButton = trimCardData["breakpoints"][currentBreakpoint]['hideshowTrimsButton'] ;
+        hideshowTrimsButton.innerText  = trimCardData['cta']['expanded'];
+        const svg = hideshowTrimsButton.parentElement.querySelector('.chevron-medium-14x8');
         svg.style.transform = 'rotate(180deg)';
         const path = svg.querySelector('.path-stroke');
         path.style.stroke = '#002C5E';
 
-        containerButton.closest('.primary-button').classList.add('secondary-button');
+        hideshowTrimsButton.closest('.primary-button').classList.add('secondary-button');
        
         let colLast, colSupport, col1, disclaimer, trimShowHideButton, trimCardHeader;
 
         //each breakpoint has a different markup structure do the layout variations. 
-        //we  look at the following as mobile = 1 column, tablet = 2 columns, desktop = 3 columns.
+        //we can look at the layout as mobile = 1 column, tablet = 2 columns, desktop = 3 columns.
 
         switch (currentBreakpoint) {
           case "desktop":
-            trimCardHeader = containerButton.closest('.trimcard-collapse-desktop');
-            colLast =  containerButton.closest('.col3'); 
+            trimCardHeader = hideshowTrimsButton.closest('.trimcard-collapse-desktop');
+            colLast =  hideshowTrimsButton.closest('.col3'); 
             colSupport = colLast.previousElementSibling;
             col1 = colSupport.previousElementSibling;
             trimShowHideButton = document.querySelector('.trimcard-collapse-desktop .primary-button');  
@@ -293,18 +314,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
             break;
 
           case "tablet":
-            trimCardHeader = containerButton.closest('.trimcard-collapse-tablet');
-            colLast =  containerButton.closest('.col2');
-            colSupport = containerButton.closest('.col2');
+            trimCardHeader = hideshowTrimsButton.closest('.trimcard-collapse-tablet');
+            colLast =  hideshowTrimsButton.closest('.col2');
+            colSupport = hideshowTrimsButton.closest('.col2');
             col1 = colSupport.previousElementSibling;
             trimShowHideButton = document.querySelector('.trimcard-collapse-tablet .primary-button');  
             disclaimer = col1.querySelector('.disclaimer'); 
             break;
 
           case "mobile":
-            trimCardHeader = containerButton.closest('.trimcard-collapse-mobile');
-            colLast = containerButton.closest('.col1');
-            colSupport = containerButton.closest('.col1');
+            trimCardHeader = hideshowTrimsButton.closest('.trimcard-collapse-mobile');
+            colLast = hideshowTrimsButton.closest('.col1');
+            colSupport = hideshowTrimsButton.closest('.col1');
             col1 = colSupport;
             trimShowHideButton = document.querySelector('.trimcard-collapse-mobile .primary-button');  
             disclaimer = col1.querySelector('.disclaimer'); 
@@ -334,11 +355,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
         let trimCardContentMarginPadding = parseInt(trimCardContentStyle.paddingBottom, 0); 
 
         // calculate the botton position in relationship to the card' expansion state
-        showButtonResize = parseInt( rectTrimCardContent["bottom"] - (rectShowHideButtonn['bottom'] + trimCardContentMarginPadding), 10);
-
-        //console.log((rectTrimCardContent["bottom"] -  rectShowHideButtonn['bottom']) + " : " + trimCardContentMarginPadding);
+        let showhideButtonYPos = parseInt( rectTrimCardContent["bottom"] - (rectShowHideButtonn['bottom'] + trimCardContentMarginPadding), 10);
   
-        //return translate Y from an element with a transform
+        //return translate Y from an element's CSS transform
         function getTranslateY(element) {
           const style = window.getComputedStyle(element);
           const matrix = style.transform || style.webkitTransform || style.mozTransform;
@@ -347,10 +366,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
           const matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ');
           const translateY = matrixValues.length === 6 ? parseFloat(matrixValues[5]) : parseFloat(matrixValues[13]);
-
           return translateY;
         }
-
 
         // Get the current translate Y value for the  
         const translateYValue = getTranslateY(trimShowHideButton);
@@ -358,11 +375,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         if (offset != trimCardContentMarginPadding ) {
           // appy to the show-hide-trim translation 
-          containerButton.closest(`[data-id="show-hide-trims"]`).style.transform  = 'translate(0px, ' + ( showButtonResize + translateYValue )  + 'px )';
+          hideshowTrimsButton.closest(`[data-id="show-hide-trims"]`).style.transform  = 'translate(0px, ' + ( showhideButtonYPos + translateYValue )  + 'px )';
         }
-
-
         //show-hide-trim button positionn ENDS HERE --->
+
         photo.style.opacity =  0.0;
         disclaimer.style.opacity = 0.0;
         copy.style.opacity = 0.0;
@@ -373,7 +389,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         carouselNavigation.style.pointerEvents =  'auto';
 
       }
-
 
 
       if (!trimCardData['active-breakpoints'].includes(currentBreakpoint) ) { 
@@ -408,62 +423,36 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
 
 
-  function flicktyChangeResize( _this, slide) {
-
-    if(  (_this.selectedIndex + 1) == _this.slides.length) {
-
-      let visibleCellsEnd = [];
-
-      for(let i = 0; i < _this.selectedElements.length; i++) {
-
-        visibleCellsEnd.push(_this.selectedElements[i].getAttribute('dataslide'));
-      } 
 
 
-      //if we are on mobile and only have 1 slide in view 
-      if (visibleCellsChange.length == 1) {     
-        flicktyUpdateNavText( (_this.selectedIndex + 1), _this.slides.length, _this.getCellElements().length);
-        return;
-      } 
+  function cellsInViewport() {
 
-      let visibleCellsPrevious = visibleCellsChange.length > 0 ? visibleCellsChange : visibleCellsStart;  //get the most recent set to compare against
+    const carouselCells = carousel.querySelectorAll('.carousel-cell');
+    const trimcardContainer = document.querySelector('.trimcard');
+    const carouselRect = trimcardContainer.getBoundingClientRect();
+    let inViewCells = [];
 
-      //are the sizes different? We could only have 1 activeCell in the visibleCellsEnd
-      if (visibleCellsEnd.length < visibleCellsPrevious.length) {
+    for(let i=0; i < carouselCells.length; i++) {
 
-        //console.log("visibleCellsEnd.length: " + visibleCellsEnd.length + " | visibleCellsPrevious.length: " + visibleCellsPrevious.length ); 
+      let carouselCellRect = carouselCells[i].querySelector('img').getBoundingClientRect();
+      let inViewCell = (carouselCellRect.left >= carouselRect.left && carouselCellRect.right <= carouselRect.right ) ? true : false;
 
-        for( let i = visibleCellsPrevious.length-1; i >= 1; i--) {
-          //console.log("i: " +  visibleCellsPrevious[i]);
-          visibleCellsEnd.unshift(visibleCellsPrevious[i]);
-        }
-
-        //console.log("visibleCellsEnd: " + visibleCellsEnd);
-        flicktyUpdateNavText(visibleCellsEnd[0], visibleCellsEnd[visibleCellsChange.length - 1], _this.getCellElements().length);
-
-      } else {
-
-        // there is actually the same at the end active cells
-        for(let i = 0; i < _this.selectedElements.length; i++) {
-          visibleCellsChange.push(_this.selectedElements[i].getAttribute('dataslide'));
-        } 
-
-        //console.log( 'visibleCellsChange: ' + visibleCellsChange );
-        flicktyUpdateNavText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], _this.getCellElements().length);
-      }
-
-    } else {
-
-      // we are not at the end
-      visibleCellsChange = [];
-
-      for(let i = 0; i < _this.selectedElements.length; i++) {
-        visibleCellsChange.push(_this.selectedElements[i].getAttribute('dataslide'));
-      } 
-
-        //console.log( 'visibleCellsChange: ' + visibleCellsChange );
-        flicktyUpdateNavText(visibleCellsChange[0], visibleCellsChange[visibleCellsChange.length - 1], _this.getCellElements().length );
+      if (inViewCell) {  inViewCells.push(carouselCells[i].getAttribute('dataslide'));  }
     }
+
+    return inViewCells;
+  }
+
+
+  function cellsPossibleInViewport() {
+
+    const carouselCells = carousel.querySelectorAll('.carousel-cell');
+    const trimcardContainer = document.querySelector('.trimcard');
+
+    let carouselCelWidth = carouselCells[0].offsetWidth;
+    let trimcardContainerWidth = trimcardContainer.offsetWidth;
+
+    return Math.floor(trimcardContainerWidth/carouselCelWidth);
   }
 
 
@@ -494,7 +483,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const flickitySelectedAttraction = matchMedia('screen and (max-width: 768px)').matches ? 0.04 : 0.1;
     const flickityFriction  = matchMedia('screen and (max-width: 768px)').matches ? 0.28 : 0.6;
  
-    let visibleCellsStart = [], visibleCellsChange = [];
+    let visibleCellsStart  = [],  visibleCellsChange = [];
+
+
 
     flkty = new Flickity( elem, {
    
@@ -503,8 +494,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         prevNextButtons: false,
         pageDots : false,
         groupCells : true,
-
-        //cellAlign: 'center',  // if we have only 1 slide then use
+        cellAlign: 'center',  // if we have only 1 slide then use
         on: {
           ready: function() {
             console.log('Flickity ready');
@@ -516,21 +506,78 @@ document.addEventListener("DOMContentLoaded", (event) => {
             //disable the first
             addCarouselDisable(carouselPrevious);
 
+            console.log("ready: " + visibleCellsChange.length +  " : " + visibleCellsStart);
+            console.log("current set: " + (this.selectedIndex + 1) + " | total elements in set: " + this.selectedElements.length + " | total slides: " +  this.getCellElements().length);
+
             if (this.slides.length === 1) { addCarouselDisable(carouselNext);  }  // if we are only at 1 slide
             flicktyUpdateNavText(visibleCellsStart[0], visibleCellsStart[visibleCellsStart.length - 1], this.getCellElements().length);
 
-          },
+            cellsInViewport();
+
+          },        
 
           change: function(slide) {
 
-            flicktyChangeResize(this, slide);
+            //console.log("current set: " + (this.selectedIndex + 1) + " | total elements in set: " + this.selectedElements.length + " | total slides: " +  this.getCellElements().length);
+            const totalCellsinView =  cellsPossibleInViewport();
+            const currentSet = this.selectedIndex ;
+            const totalSlides = this.getCellElements().length;
+
+            //if we are at the end, then go backwards
+            let startIndex, endIndex;
+
+            if (  totalCellsinView == 1 ) {
+              startIndex = endIndex = currentSet + 1;
+
+            } else if ( (totalCellsinView * (currentSet + 1)) > totalSlides) {
+
+              startIndex = totalSlides - (totalCellsinView - 1);
+              endIndex = totalSlides;
+            } else {
+
+               startIndex = (currentSet * totalCellsinView) + 1 ;
+               endIndex = (startIndex + (totalCellsinView - 1)) ;
+            }
+
+            flicktyUpdateNavText(startIndex, endIndex,totalSlides);
             flickityCarouselNavigation (this);
+            
           },
           
+          settle: function(slide) {
+
+            let viewableCells = cellsInViewport();
+            flicktyUpdateNavText(viewableCells[0], viewableCells[viewableCells.length - 1], this.getCellElements().length);
+            flickityCarouselNavigation (this); 
+
+          },
+
           resize: function(slide) {
 
-            flicktyChangeResize(this, slide);
-            flickityCarouselNavigation (this);      
+            //console.log("current set: " + (this.selectedIndex + 1) + " | total elements in set: " + this.selectedElements.length + " | total slides: " +  this.getCellElements().length);
+            const totalCellsinView =  cellsPossibleInViewport();
+            const currentSet = this.selectedIndex ;
+            const totalSlides = this.getCellElements().length;
+
+            //if we are at the end, then go backwards
+            let startIndex, endIndex;
+
+            if (  totalCellsinView == 1 ) {
+              startIndex = endIndex = currentSet + 1;
+
+            } else if ( (totalCellsinView * (currentSet + 1)) > totalSlides) {
+
+              startIndex = totalSlides - (totalCellsinView - 1);
+              endIndex = totalSlides;
+            } else {
+
+               startIndex = (currentSet * totalCellsinView) + 1 ;
+               endIndex = (startIndex + (totalCellsinView - 1)) ;
+            }
+
+            flicktyUpdateNavText(startIndex, endIndex,totalSlides);
+            flickityCarouselNavigation (this);
+            
           },
         },
 
@@ -556,7 +603,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const path = svg.querySelector('.path-stroke');
       path.style.stroke = '#002C5E';
 
-      const containerButton = e.target.querySelector('.container-button');
+      const hideshowTrimsButton = e.target.querySelector('.container-button');
       const showTrimsBase = e.target.closest('.primary-button');
       const trimCardContent = document.querySelector('div.main .trimcard-content');  
       
@@ -615,7 +662,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         trimCardData['status'] = 'expanded';
 
         //update CTA button text and styling
-        containerButton.innerText  = trimCardData['cta']['expanded'];
+        hideshowTrimsButton.innerText  = trimCardData['cta']['expanded'];
         showTrimsBase.classList.add('secondary-button');
         
         const tl = gsap.timeline({paused: true});
@@ -698,7 +745,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         trimCardData['status'] = 'collapse';
 
         //update CTA button text and styling
-        containerButton.innerText  = trimCardData['cta']['collapse'];
+        hideshowTrimsButton.innerText  = trimCardData['cta']['collapse'];
         const svg = e.target.querySelector('.chevron-medium-14x8');
         svg.style.transform = 'rotate(0deg)';
         const path = svg.querySelector('.path-stroke');
