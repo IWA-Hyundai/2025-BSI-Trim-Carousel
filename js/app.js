@@ -1,15 +1,14 @@
-gsap.registerPlugin(CustomEase);
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
+  gsap.registerPlugin(CustomEase);
+
+  //search for any URL query parameters
   const urlSearchParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlSearchParams.entries());
 
   //show the 'fpo' overlay graphics on the trim card if found
   if (typeof params["fpo"] !== 'undefined') {
-
-      // Parameter exists, perform actions using the parameter
-      console.log("FPO exists:", params["fpo"]);
 
       //change the opacity of ...
       document.querySelector("h1.FPOdisclaimer ").style.display = "block";
@@ -498,13 +497,10 @@ if (typeof params["slides"] !== 'undefined') {
 
   function flickityInit(elem, displaytext) {
 
-    //default 
+    //determine our motion settings - dependes on breakpoint area
     const flickitySelectedAttraction = matchMedia('screen and (max-width: 768px)').matches ? 0.04 : 0.1;
     const flickityFriction  = matchMedia('screen and (max-width: 768px)').matches ? 0.28 : 0.6;
  
-    let visibleCellsStart  = [],  visibleCellsChange = [];
-
-
 
     flkty = new Flickity( elem, {
    
@@ -513,10 +509,12 @@ if (typeof params["slides"] !== 'undefined') {
         prevNextButtons: false,
         pageDots : false,
         groupCells : true,
-        cellAlign: 'center',  // if we have only 1 slide then use
+        cellAlign: 'center',  
         on: {
           ready: function() {
             console.log('Flickity ready');
+            let visibleCellsStart  = [];
+
 
             for(let i = 0; i < this.selectedElements.length; i++) {
               visibleCellsStart.push(this.selectedElements[i].getAttribute('dataslide'));
@@ -525,7 +523,6 @@ if (typeof params["slides"] !== 'undefined') {
             //disable the first
             addCarouselDisable(carouselPrevious);
 
-            console.log("ready: " + visibleCellsChange.length +  " : " + visibleCellsStart);
             console.log("current set: " + (this.selectedIndex + 1) + " | total elements in set: " + this.selectedElements.length + " | total slides: " +  this.getCellElements().length);
 
             if (this.slides.length === 1) { addCarouselDisable(carouselNext);  }  // if we are only at 1 slide
@@ -561,13 +558,6 @@ if (typeof params["slides"] !== 'undefined') {
             flickityCarouselNavigation (this);          
           },
           
-          settle: function(slide) {
-
-            let viewableCells = cellsInViewport();
-            flicktyUpdateNavText(viewableCells[0], viewableCells[viewableCells.length - 1], this.getCellElements().length);
-            flickityCarouselNavigation (this); 
-          },
-
           resize: function(slide) {
 
             //console.log("current set: " + (this.selectedIndex + 1) + " | total elements in set: " + this.selectedElements.length + " | total slides: " +  this.getCellElements().length);
@@ -606,7 +596,7 @@ if (typeof params["slides"] !== 'undefined') {
 
 
 
-  // expand / contract carousel 
+  // expand / contract carousel the Palisade vehicle card 
   showTrimsButtons.forEach(showTrimsButton => {
 
     showTrimsButton.addEventListener("pointerdown", function (e) {
@@ -680,6 +670,7 @@ if (typeof params["slides"] !== 'undefined') {
         hideshowTrimsButton.innerText  = trimCardData['cta']['expanded'];
         showTrimsBase.classList.add('secondary-button');
         
+        //Create a GSAP timeline to help organize our series of expand motions
         const tl = gsap.timeline({paused: true});
 
         carousel.style.display = 'inline';
@@ -771,6 +762,7 @@ if (typeof params["slides"] !== 'undefined') {
         //turn off the carousel Navigations so we can't accidently fire it
         carouselNavigation.style.pointerEvents =  'none';
 
+        //when the GSAP timeline completes, call...
         function completeCollapse() {
 
           //remove flickity
@@ -798,6 +790,7 @@ if (typeof params["slides"] !== 'undefined') {
           clearBreakpointCarousels();
         }
 
+        //Create a GSAP timeline to help organize our series of collapse motions
         const tl = gsap.timeline({paused: true, onComplete: completeCollapse});
 
         tl.to(carousel, { opacity: 0, duration: 0.35 }, 'start');
