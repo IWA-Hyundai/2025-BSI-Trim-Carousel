@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
       document.querySelector(".subhead-mobile").style.opacity = parseFloat(params["fpo"]);
       document.querySelector(".subhead-desktop").style.opacity = parseFloat(params["fpo"]);
       document.querySelector(".filters-desktop").style.opacity = parseFloat(params["fpo"]);
-
     } 
 
   //show the 'availability conflict' banner on the trim card if found
@@ -87,14 +86,11 @@ if (typeof params["slides"] !== 'undefined') {
 
  
 
-  
 
   //determine the expanded state height based on the current breakpoint 
   //Referecing the FRs, add margin, padding and element's height to determine the expansion height at that breakpoint
 
   function getExpansionHeight(carousel) {
-
-
 
     const carouselCell = carousel.querySelector('.carousel-cell'); 
     const rect = carouselCell.getBoundingClientRect();
@@ -104,6 +100,7 @@ if (typeof params["slides"] !== 'undefined') {
     let expansionHeight = carouselCardsData[trimCardData['breakpoint']]['top']  + carouselCardHeight  + carouselCardsData[trimCardData['breakpoint']]['bottom'];
     return expansionHeight;
   }
+
 
   //data object that details the elements found at each breakpoint
   const carouselCardsData  = { 
@@ -116,9 +113,7 @@ if (typeof params["slides"] !== 'undefined') {
 
   }
 
-  
   var flkty;  // declare flickity so we can use it in multiple breakpoints
-
 
   carouselNext.forEach(el => el.addEventListener('click', event => {
 
@@ -413,11 +408,35 @@ if (typeof params["slides"] !== 'undefined') {
 
     console.log("indexStart: " +  indexStart + ' | indexEnd: '  + indexEnd  )
 
+    //do our cards all fit in the view without the need for a navigation?
+    const totalCellsinView =  cellsPossibleInViewport();
+    const navArrows = document.querySelectorAll('.directional-selector-large-arrow');
+
+    if( totalCellsinView >= total) {
+
+      //our viewport can view all the trim cards without the need for the navigation UI, so turn off
+      navArrows.forEach(el => {
+        el.style.display = 'none';
+      });
+
+      //update text that simplifies the messaging
+      carouselNavigationText.forEach(text =>  {
+        text.innerText = total + " matches";
+      });
+
+      return;
+    }
+
+
     // construct the current slides being shown...
     const slideNumbers = (indexStart != indexEnd ) ? indexStart + "-" + indexEnd : indexStart;
 
-    carouselNavigationText.forEach(text =>  {
+    navArrows.forEach(el => {
+      el.style.display = 'flex';
+    });
 
+    //update navigations 
+    carouselNavigationText.forEach(text =>  {
       text.innerText = slideNumbers + " of " + total + " matches";
     });
   }
@@ -513,7 +532,6 @@ if (typeof params["slides"] !== 'undefined') {
             flicktyUpdateNavText(visibleCellsStart[0], visibleCellsStart[visibleCellsStart.length - 1], this.getCellElements().length);
 
             cellsInViewport();
-
           },        
 
           change: function(slide) {
@@ -540,8 +558,7 @@ if (typeof params["slides"] !== 'undefined') {
             }
 
             flicktyUpdateNavText(startIndex, endIndex,totalSlides);
-            flickityCarouselNavigation (this);
-            
+            flickityCarouselNavigation (this);          
           },
           
           settle: function(slide) {
@@ -549,7 +566,6 @@ if (typeof params["slides"] !== 'undefined') {
             let viewableCells = cellsInViewport();
             flicktyUpdateNavText(viewableCells[0], viewableCells[viewableCells.length - 1], this.getCellElements().length);
             flickityCarouselNavigation (this); 
-
           },
 
           resize: function(slide) {
@@ -576,8 +592,7 @@ if (typeof params["slides"] !== 'undefined') {
             }
 
             flicktyUpdateNavText(startIndex, endIndex,totalSlides);
-            flickityCarouselNavigation (this);
-            
+            flickityCarouselNavigation (this);     
           },
         },
 
