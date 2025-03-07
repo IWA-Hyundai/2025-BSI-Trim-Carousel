@@ -17,6 +17,9 @@ The prototype uses static place holder images in a few places, such as the trim 
 
 🔥 **Important!** Both the filter rail and global header are FPO, placed in the prototype with the purpose to give the trim card better context.  Please reference the filter rail and global header FRs for full behaviors.
 
+🔥 **Important!** Please reference 'Model & Trim Select FRs: Filters' Figma for creative approved behaviours
+https://www.figma.com/proto/OEAMEDOCBPMMBS5kYxPTZr/%5BBSI.1%5D-MTS-Filters-FRs?page-id=1060%3A202841&node-id=1060-231451&viewport=1228%2C305%2C0.32&t=3PYbBoJsuzB9JuQd-1&scaling=contain&content-scaling=fixed&starting-point-node-id=1060%3A231451
+
 ****
 
 ### HTML

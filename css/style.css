@@ -298,6 +298,15 @@ table {
 
 
 /*IUS Styles*/
+/*
+🔥 Important! The prototype adheres the layout and design decisions based on the FIGMA FRs found here: https://www.figma.com/design/YJP3VOJkFpGVNGue98sboZ/[BSI.1]-MTS-Model-Cards-FRs?node-id=4178-387463&p=f&m=dev
+
+🔥 Important! Both the filter rail and global header are FPO, placed in the prototype with the purpose to give the trim card better context. Please reference the filter rail and global header FRs for full behaviors.
+
+Additional FIGMA behaviour reference: https://www.figma.com/proto/OEAMEDOCBPMMBS5kYxPTZr/%5BBSI.1%5D-MTS-Filters-FRs?page-id=1060%3A202841&node-id=1060-231451&viewport=1228%2C305%2C0.32&t=3PYbBoJsuzB9JuQd-1&scaling=contain&content-scaling=fixed&starting-point-node-id=1060%3A231451
+*/
+
+
 
 :root {
   --Primary-Navy: #002C5E;
