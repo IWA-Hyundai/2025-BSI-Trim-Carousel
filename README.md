@@ -53,9 +53,10 @@ These are contained in the app.js file, but thought it would be beneficial to po
 >We are using different values for the 'selectedAttraction' & 'friction' properties, depending on browser width. These settings on mobile are slightly faster then for table or desktop.
 
 ```
- //determine our motion settings - depends on breakpoint area
-const flickitySelectedAttraction = matchMedia('screen and (max-width: 768px)').matches ? 0.04 : 0.1;
-const flickityFriction  = matchMedia('screen and (max-width: 768px)').matches ? 0.28 : 0.6;
+//determine our motion settings - dependes on breakpoint area
+  const flickitySelectedAttraction = matchMedia('screen and (max-width: 768px)').matches ? 0.15 : 0.1;
+  const flickityFriction  = matchMedia('screen and (max-width: 768px)').matches ? 0.75 : 0.6;
+
 ```
 
 >Setting 'cellAlign' to 'center' in Flickity will give us centered trim cards, which is necessary when we get a result of 1 or 2 trims. When the cards can fit in the viewport with no need for navigation, they will need to be centered.  An example can be seen when viewing the prototype with settings such as https://hyundai.innoceanusa.com/2025/bsi/trim-carousel-animation/index.html?fpo=0.3&slides=1
