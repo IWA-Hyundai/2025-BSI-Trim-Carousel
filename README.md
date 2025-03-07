@@ -14,9 +14,27 @@ The prototype uses static place holder images in a few places, such as the trim 
 
 🔥 **Important!** The prototype adheres the layout and design decisions based on the FIGMA FRs found here: https://www.figma.com/design/YJP3VOJkFpGVNGue98sboZ/%5BBSI.1%5D-MTS-Model-Cards-FRs?node-id=4178-387463&p=f&m=dev
 
-🔥 **Important!** Both the filter rail and global header are FPO, placed in the prototype to help better define trim card by giving it context.  Please reference the filter rail and global header FRs for full behaviors.
+🔥 **Important!** Both the filter rail and global header are FPO, placed in the prototype with the purpose to give the trim card better context.  Please reference the filter rail and global header FRs for full behaviors.
 
 ****
+
+### HTML
+###### Optional URL Query parameters to pass
+https://hyundai.innoceanusa.com/2025/bsi/trim-carousel-animation/index.html?fpo=0.2
+The FPO overlay can be seen with passing in the key 'fpo' with an opacity value such as '0.2'. The lower float value, the stronger the FPO overlay. `index.html?fpo=0.2`
+
+https://hyundai.innoceanusa.com/2025/bsi/trim-carousel-animation/index.html?fpo=0.2&slides=3
+Change the # of trim slides you want to view in the carousel by passing 'slides' with the amount. 7 is the max. `index.html?fpo=0.2&slides=3`
+
+https://hyundai.innoceanusa.com/2025/bsi/trim-carousel-animation/index.html?fpo=0.2&vehiclename=TUCSON%20Plug-in%20Hybrid
+Update the name of the trim vehicle with the 'vehiclename' key. `/index.html?fpo=0.2&vehiclename=TUCSON%20Plug-in%20Hybrid`
+
+https://hyundai.innoceanusa.com/2025/bsi/trim-carousel-animation/index.html?fpo=0.2&statebanner=1
+Visualize the behaviour of the state banner as described in the FRs by passing 'statebanner' wtih a value of 1. `/index.html?fpo=0.2&statebanner=1`
+
+
+****
+
 ### Flickity JS
 ###### Touch, responsive flickable carousel
 Install and Documentation can be found at : https://flickity.metafizzy.co/
@@ -81,17 +99,7 @@ tl.to(showTrimsBase, {y: showButtonY, duration: 0.3, ease: CustomEase.create("cu
 tl.to(trimContent, {height: expansionHeight , duration: 0.3, ease: CustomEase.create("custom", "M0,0 C0.217,0.796 0.47,1.02 1,1 ") },  0.0 );
 ```
 
-### HTML
-###### Optional URL Query parameters to pass
-https://hyundai.innoceanusa.com/2025/bsi/trim-carousel-animation/index.html?fpo=0.2
-The FPO overlay can be seen with passing in the key 'fpo' with an opacity value such as '0.2'. The lower float value, the stronger the FPO overlay. `index.html?fpo=0.2`
-
-https://hyundai.innoceanusa.com/2025/bsi/trim-carousel-animation/index.html?fpo=0.2&slides=3
-Change the # of trim slides you want to view in the carousel by passing 'slides' with the amount. 7 is the max. `index.html?fpo=0.2&slides=3`
-
-https://hyundai.innoceanusa.com/2025/bsi/trim-carousel-animation/index.html?fpo=0.2&statebanner=1
-Visualize the behaviour of the state banner as described in the FRs by passing 'statebanner' wtih a value of 1. `/index.html?fpo=0.2&statebanner=1`
-
+****
 
 IUS - 3/6/2025
 ddintzner@innoceanusa.com
