@@ -10,37 +10,57 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //show the 'fpo' overlay graphics on the trim card if found
   if (typeof params["fpo"] !== 'undefined') {
 
-      //change the opacity of ...
-      document.querySelector("h1.FPOdisclaimer ").style.display = "block";
-      document.querySelector("header.mobile").style.opacity = parseFloat(params["fpo"]);
-      document.querySelector("header.desktop").style.opacity = parseFloat(params["fpo"]);
-      document.querySelector(".subhead-mobile").style.opacity = parseFloat(params["fpo"]);
-      document.querySelector(".subhead-desktop").style.opacity = parseFloat(params["fpo"]);
-      document.querySelector(".filters-desktop").style.opacity = parseFloat(params["fpo"]);
-    } 
+    //change the opacity of ...
+    document.querySelector("h1.FPOdisclaimer ").style.display = "block";
+    document.querySelector("header.mobile").style.opacity = parseFloat(params["fpo"]);
+    document.querySelector("header.desktop").style.opacity = parseFloat(params["fpo"]);
+    document.querySelector(".subhead-mobile").style.opacity = parseFloat(params["fpo"]);
+    document.querySelector(".subhead-desktop").style.opacity = parseFloat(params["fpo"]);
+    document.querySelector(".filters-desktop").style.opacity = parseFloat(params["fpo"]);
+  }
+
+  //update the vehicle name for all placements if we passed in 'vehiclename'
+  if (typeof params["vehiclename"] !== 'undefined') { 
+
+    const vehicleNames = document.querySelectorAll(".vehicle-name");
+    const vehicleNamesArray = Array.from(vehicleNames);
+
+    //update every vehicle name placement
+    vehicleNamesArray.forEach(el =>  {
+      //prevent vehicle names with hyphens from line breaking
+      var txt = params["vehiclename"] .replace(/-/g, '‑');
+      el.innerText  = txt;
+    });
+  }
 
   //show the 'availability conflict' banner on the trim card if found
   if (params["statebanner"] == true) { 
 
     document.querySelector(".availability-conflict").style.display = 'flex';
-
-  }
-
-if (typeof params["slides"] !== 'undefined') {
-
-  const slides =  parseInt(params["slides"]) > 7 ? 7 : parseInt(params["slides"]);
-  const carousel = document.querySelector('.trim-carousel-flickity'); 
-  const carouselCells = carousel.querySelectorAll('.carousel-cell');
-  const carouselCellsArray = Array.from(carouselCells);
-
-  const carouselCellsRemove = carouselCellsArray.slice( slides );
-
-  for(let i=0; i < carouselCellsRemove.length; i++) {
-    carouselCellsRemove[i].remove();
   }
 
 
-}
+  //show the 'availability conflict' banner on the trim card if found
+  if (params["statebanner"] == true) { 
+
+    document.querySelector(".availability-conflict").style.display = 'flex';
+  }
+
+
+  if (typeof params["slides"] !== 'undefined') {
+
+    const slides =  parseInt(params["slides"]) > 7 ? 7 : parseInt(params["slides"]);
+    const carousel = document.querySelector('.trim-carousel-flickity'); 
+    const carouselCells = carousel.querySelectorAll('.carousel-cell');
+    const carouselCellsArray = Array.from(carouselCells);
+
+    const carouselCellsRemove = carouselCellsArray.slice( slides );
+
+    for(let i=0; i < carouselCellsRemove.length; i++) {
+      carouselCellsRemove[i].remove();
+    }
+
+  }
 
   //remove the inline style of white on the body, used to avoid the FPO flicker 
   document.body.removeAttribute('style');
@@ -73,7 +93,7 @@ if (typeof params["slides"] !== 'undefined') {
   if (window.innerWidth < 640 ) {  trimCardData["breakpoint"] = "mobile"  };  
 
 
-  //card specific to Palisade
+  //card specific to Palisade - would be unique to each vehicle card
   const trimContent = document.querySelector('.trimcard-content');
   const showTrimsButtons = document.querySelectorAll(`[data-id="show-hide-trims"]`);
   const carousel = document.querySelector('.trim-carousel-flickity'); 
@@ -83,43 +103,96 @@ if (typeof params["slides"] !== 'undefined') {
   const carouselNavigationText  = document.querySelectorAll('.carousel-navigation .textdisplay');
 
 
- 
-
-
   //determine the expanded state height based on the current breakpoint 
   //Referecing the FRs, add margin, padding and element's height to determine the expansion height at that breakpoint
+  // We can access this function for 
+  // 1) type = 'top' : the top height of the trim card to determine the absolute top value for the 'trim-carousel-flickity' element
+  // 2) type = 'trimcardContent' : the expansion height for the 'trimcard-content' 
 
-  function getExpansionHeight(carousel) {
 
+  function getElementHeight(type, carousel, currentBreakpoint) {
+
+    //get the height of the carousel trim cards
     const carouselCell = carousel.querySelector('.carousel-cell'); 
     const rect = carouselCell.getBoundingClientRect();
     let carouselCardHeight = parseInt(rect.height, 0); 
 
-    //calculate the expansion height based on the top and bottom elements plus the height of carousel cell. 
-    let expansionHeight = carouselCardsData[trimCardData['breakpoint']]['top']  + carouselCardHeight  + carouselCardsData[trimCardData['breakpoint']]['bottom'];
-    return expansionHeight;
+    //placeholder 1-line title-header heights -- they are variable, depending on content.  
+    let desktopHeaderHeight = 88, tabletHeaderHeight = 66, mobileHeaderHeight = 66;
+
+    //find the true height of the vehicle header - includes year toggles and name
+    switch (currentBreakpoint) {
+      case 'desktop':
+
+        const desktopHeader = trimContent.querySelector('.trimcard-collapse-desktop .vehicle-header'); 
+        desktopHeaderHeight = desktopHeader.offsetHeight;
+        break;
+
+      case 'tablet':
+
+        const tabletHeader = trimContent.querySelector('.trimcard-collapse-tablet .vehicle-header'); 
+        tabletHeaderHeight = tabletHeader.offsetHeight;
+        break;
+
+      case 'mobile':
+
+        const mobileHeaderCollapse = trimContent.querySelector('.trimcard-collapse-mobile .vehicle-header'); 
+        const mobileHeaderH2Collapse = trimContent.querySelector('.trimcard-collapse-mobile  .mobile-expanded-title'); 
+
+        //if our top h2 title for the vehicle name has 0 height, then we need to reference and add the bottom h2 title
+        //let offset = ( !mobileHeaderH2Collapse.offsetHeight) ?  mobileExpandedH2Expand.offsetHeight : 0;
+
+        mobileHeaderHeight = mobileHeaderCollapse.offsetHeight + mobileHeaderH2Collapse.offsetHeight;
+        break;
+
+
+      default:
+        console.log("breakpoint not found")
+        break;
+    }
+
+    //data object that details the elements found at each breakpoint
+    const carouselCardsData  = { 
+
+      // desktop margins 24px, padding 16px, top nav 88px, hide trims 44px
+      'desktop' : { 'top' :  (24 + desktopHeaderHeight + 16), 'bottom'  : (16 + 44 + 24) },
+      // tablet margins 16px, padding 16px, top nav 66px, hide trims 44px
+      'tablet' : { 'top' :  (16 +  tabletHeaderHeight + 16), 'bottom'  : (16 +  44 + 16) },
+      // tablet margins 16px and 24px, padding 16px, top nav 70px, bottom nav 32, bottom hide trims 44px
+      'mobile' : { 'top' :  (16 +  mobileHeaderHeight + 24), 'bottom'  : ( 16 +  32 + 16 + 44 + 16) }
+
+    }
+
+
+    console.log("top: " + carouselCardsData[currentBreakpoint]['top'])
+
+    if(type == 'top') {
+      return carouselCardsData[currentBreakpoint]['top'] ;
+    }
+
+    if(type == 'bottom') {
+      return carouselCardsData[currentBreakpoint]['bottom'] ;
+    }
+
+    if(type == 'trimcardContent') {
+
+      //calculate the expansion height based on the top and bottom elements plus the height of carousel cell. 
+      let expansionHeight = carouselCardsData[currentBreakpoint]['top']  + carouselCardHeight  + carouselCardsData[currentBreakpoint]['bottom'];
+      return expansionHeight;
+    }
+
+
   }
 
 
-  //data object that details the elements found at each breakpoint
-  const carouselCardsData  = { 
-    // desktop margins 24px, padding 16px, top nav 88px, hide trims 44px
-    'desktop' : { 'top' :  (24 +  88 + 16), 'bottom'  : (16 + 44 + 24) },
-    // tablet margins 16px, padding 16px, top nav 66px, hide trims 44px
-    'tablet' : { 'top' :  (16 +  66 + 16), 'bottom'  : (16 + 44 + 16) },
-    // tablet margins 16px and 24px, padding 16px, top nav 70px, bottom nav 32, bottom hide trims 44px
-    'mobile' : { 'top' :  (16 +  70 + 24), 'bottom'  : (16 + 32 + 16 + 44 + 16) }
-
-  }
-
-  var flkty;  // declare flickity so we can use it in multiple breakpoints
+  // declare flickity 
+  var flkty; 
 
   carouselNext.forEach(el => el.addEventListener('click', event => {
 
     console.log(event.target.parentElement.getAttribute("data-type"));
     flkty.next();
   }));
-
 
   carouselPrevious.forEach(el => el.addEventListener('click', event => {
 
@@ -277,10 +350,17 @@ if (typeof params["slides"] !== 'undefined') {
         //the trim cards have been defined as having a variable height, each result could be different
         if ( trimCardData['breakpoints'][currentBreakpoint]['expanded'] === undefined) {
 
-          trimCardData['breakpoints'][currentBreakpoint]['expanded'] = getExpansionHeight(carousel);
+          trimCardData['breakpoints'][currentBreakpoint]['expanded'] = getElementHeight('trimcardContent', carousel, currentBreakpoint);
         }
-               
+
+
+        // we will need to get the height of the top card section to pass to the flickity-carousel
+        carousel.style.top = getElementHeight('top', carousel, currentBreakpoint) + "px";
+        
+        trimCardData['breakpoints'][currentBreakpoint]['expanded'] = getElementHeight('trimcardContent', carousel, currentBreakpoint);
         trimContent.style.height = trimCardData["breakpoints"][currentBreakpoint]["expanded"] + "px";
+
+        //alert(trimContent.style.height) 
 
         //update trims buttons to expanded state
         let hideshowTrimsButton = trimCardData["breakpoints"][currentBreakpoint]['hideshowTrimsButton'] ;
@@ -332,6 +412,8 @@ if (typeof params["slides"] !== 'undefined') {
 
         }
 
+
+
         //now we have the general layout from above, select the elements within
         const photo = colSupport.querySelector('.photo'); 
         const pricing = col1.querySelector('.pricing'); 
@@ -340,9 +422,11 @@ if (typeof params["slides"] !== 'undefined') {
         const carouselNavigation = colLast.querySelector('.carousel-navigation'); 
         const carouselNavigationText = carouselNavigation.querySelector('.textdisplay'); 
 
+
         // <--- show-hide-trim button positionn STARTS HERE
         const rectShowHideButtonn = trimShowHideButton.getBoundingClientRect();
         const rectTrimCardContent = trimCardContent.getBoundingClientRect();
+
 
         //use the padding bottom as an offset for our button Y positioning
         const trimCardContentStyle = window.getComputedStyle(trimCardHeader);
@@ -373,6 +457,14 @@ if (typeof params["slides"] !== 'undefined') {
         }
         //show-hide-trim button positionn ENDS HERE --->
 
+        //special title dissolve for mobile because the title moves
+        if ( trimCardData["breakpoint"] == "mobile") {
+
+          const titleExpanded = col1.querySelector('.mobile-expanded-title '); 
+          titleExpanded.style.height = 'auto';
+        }
+
+
         photo.style.opacity =  0.0;
         disclaimer.style.opacity = 0.0;
         copy.style.opacity = 0.0;
@@ -389,6 +481,7 @@ if (typeof params["slides"] !== 'undefined') {
         console.log(currentBreakpoint + " not found in " + trimCardData['active-breakpoints'] );
         trimCardData['active-breakpoints'].push(currentBreakpoint); 
       }
+
 
       //only call flickity if we have it activated
       try {
@@ -538,18 +631,20 @@ if (typeof params["slides"] !== 'undefined') {
             const currentSet = this.selectedIndex ;
             const totalSlides = this.getCellElements().length;
 
-            //if we are at the end, then go backwards
+            //we will need to figure out the nav text, flickity out of the box won't give us everything
             let startIndex, endIndex;
 
             if (  totalCellsinView == 1 ) {
+               //if we only have 1 trim inview 
               startIndex = endIndex = currentSet + 1;
 
             } else if ( (totalCellsinView * (currentSet + 1)) > totalSlides) {
-
+              //if we are at the end, then go backwards to capture any possible cards in view
               startIndex = totalSlides - (totalCellsinView - 1);
               endIndex = totalSlides;
-            } else {
 
+            } else {
+               //else we are in a place where its not the end or a single card view
                startIndex = (currentSet * totalCellsinView) + 1 ;
                endIndex = (startIndex + (totalCellsinView - 1)) ;
             }
@@ -565,18 +660,20 @@ if (typeof params["slides"] !== 'undefined') {
             const currentSet = this.selectedIndex ;
             const totalSlides = this.getCellElements().length;
 
-            //if we are at the end, then go backwards
+            //we will need to figure out the nav text, flickity out of the box won't give us everything
             let startIndex, endIndex;
 
             if (  totalCellsinView == 1 ) {
+               //if we only have 1 trim inview 
               startIndex = endIndex = currentSet + 1;
 
             } else if ( (totalCellsinView * (currentSet + 1)) > totalSlides) {
-
+              //if we are at the end, then go backwards to capture any possible cards in view
               startIndex = totalSlides - (totalCellsinView - 1);
               endIndex = totalSlides;
-            } else {
 
+            } else {
+               //else we are in a place where its not the end or a single card view
                startIndex = (currentSet * totalCellsinView) + 1 ;
                endIndex = (startIndex + (totalCellsinView - 1)) ;
             }
@@ -602,7 +699,7 @@ if (typeof params["slides"] !== 'undefined') {
     showTrimsButton.addEventListener("pointerdown", function (e) {
 
       //are we open or closed?
-      const trimType = e.target.parentElement.getAttribute('data-type');  // desktop = tablet - mobile
+      const currentBreakpoint = e.target.parentElement.getAttribute('data-type');  // desktop = tablet - mobile
       const svg = e.target.querySelector('.chevron-medium-14x8');
       svg.style.transform = 'rotate(180deg)';
       const path = svg.querySelector('.path-stroke');
@@ -617,7 +714,7 @@ if (typeof params["slides"] !== 'undefined') {
       //each breakpoint has a different markup structure do the layout variations. 
       //we  look at the following as mobile = 1 column, tablet = 2 columns, desktop = 3 columns.
 
-      switch (trimType) {
+      switch (currentBreakpoint) {
         case "desktop":
           colLast =  e.target.closest('.col3'); 
           colSupport = colLast.previousElementSibling;
@@ -673,45 +770,57 @@ if (typeof params["slides"] !== 'undefined') {
         //Create a GSAP timeline to help organize our series of expand motions
         const tl = gsap.timeline({paused: true});
 
+        //the flickity carousel - will need to return the top offset for the placement
         carousel.style.display = 'inline';
+        carousel.style.top = getElementHeight('top', carousel, currentBreakpoint) + "px";
+
+        //get carousel 
         carouselNavigation.style.display =  'flex';  
         carouselNavigation.style.pointerEvents =  'auto';
 
+        let mobileHeaderCollapseH2 = 0;
+
+        //special title dissolve for mobile because the title moves
+        if ( currentBreakpoint == "mobile") {
+
+          const titleCollapse = col1.querySelector('.mobile-collapse-title '); 
+          const titleExpanded = col1.querySelector('.mobile-expanded-title '); 
+          mobileHeaderCollapseH2 = titleCollapse.querySelector('h2').offsetHeight; // use the height from the collapse h2
+
+          tl.to(titleCollapse, { opacity: 0, duration: 0.1667 }, 0.1);
+          tl.to(titleExpanded, { opacity: 1, duration: 0.333 }, 0.3);
+
+          //tl.to(titleExpanded, { height: 'auto', duration: 0.1667}, 0.25); 
+          //tl.to(photo, { y:( mobileHeaderCollapseH2 * -1), duration: 0.1667 }, 0.25);
+
+        } 
+
         //we need to compute carousel height if we haven't already
         //the trim cards have been defined as having a variable height, each result could be different
-        if ( trimCardData['breakpoints'][trimType]['expanded'] === undefined) {
+        if ( trimCardData['breakpoints'][currentBreakpoint]['expanded'] === undefined) {
 
-          trimCardData['breakpoints'][trimType]['expanded'] = getExpansionHeight(carousel);
+          trimCardData['breakpoints'][currentBreakpoint]['expanded'] = getElementHeight('trimcardContent', carousel, currentBreakpoint);
         }
         
-        let expansionHeight  =  trimCardData['breakpoints'][trimType]['expanded'] + "px";
+        let expansionHeight  =  trimCardData['breakpoints'][currentBreakpoint]['expanded'] + "px";
 
         //animations to expand
-        tl.to(pricing, { opacity: 0, duration: 0.2 }, 'start');
-        tl.to(buildInventoryLinks, { opacity: 0, duration: 0.2 },  'start');
+        tl.to(pricing, { opacity: 0, duration: 0.2 }, 0);
+        tl.to(buildInventoryLinks, { opacity: 0, duration: 0.2 },  0);
         tl.to(copy, {  opacity: 0, duration: 0.25 }, 0.1);
         tl.to(photo, { opacity: 0, duration: 0.1667 }, 0.1);
+       
         tl.fromTo(photo, {scale: 1.0}, {  scale: 0.85, ease: CustomEase.create("custom", "M0,0 C0.611,0 0.176,1 1,1 "), duration: 0.2 }, 0.1);
         tl.to(disclaimer, { opacity: 0, duration: 0.1667 }, 0.1);
 
 
-        //special title dissolve for mobile because the title moves
-        if ( trimType == "mobile") {
-
-          const titleCollapse = col1.querySelector('.mobile-collapse-title '); 
-          const titleExpanded = col1.querySelector('.mobile-expanded-title '); 
-
-          tl.to(titleCollapse, { opacity: 0, duration: 0.1667 }, 0.1);
-          tl.to(titleExpanded, { opacity: 1, duration: 0.1667 }, 0.3);
-        } 
-
         // <--- show-hide-trim button position STARTS HERE
         const rectTrimCardContent = trimCardContent.getBoundingClientRect();
-        let showButtonY = trimCardData['breakpoints'][trimType]['expanded'] - rectTrimCardContent['height'];  
-        trimCardData['breakpoints'][trimType]['collapsed'] = rectTrimCardContent['height']; 
+        let showButtonY = trimCardData['breakpoints'][currentBreakpoint]['expanded'] - rectTrimCardContent['height'] ;  
+        trimCardData['breakpoints'][currentBreakpoint]['collapsed'] = rectTrimCardContent['height']; 
 
         //expand animation
-        tl.to(showTrimsBase, {y: showButtonY, duration: 0.3, ease: CustomEase.create("custom", "M0,0 C0.217,0.796 0.47,1.02 1,1 ") }, 0.0 );
+        tl.to(showTrimsBase, {y: showButtonY,         duration: 0.3, ease: CustomEase.create("custom", "M0,0 C0.217,0.796 0.47,1.02 1,1 ") }, 0.0 );
         tl.to(trimContent, {height: expansionHeight , duration: 0.3, ease: CustomEase.create("custom", "M0,0 C0.217,0.796 0.47,1.02 1,1 ") },  0.0 );
 
         //animate trim cards on
@@ -739,7 +848,7 @@ if (typeof params["slides"] !== 'undefined') {
         //play gs timeline
         tl.play();
 
-        trimCardData['active-breakpoints'].push(trimType); 
+        trimCardData['active-breakpoints'].push(currentBreakpoint); 
         flickityInit(mainCarousel, carouselNavItems["text"] );
 
         //clear our data object with value stored
@@ -781,7 +890,9 @@ if (typeof params["slides"] !== 'undefined') {
           //scrub thru the array to remove any duplicates that may have been added
           trimCardData['active-breakpoints'] =  removeDuplicates(trimCardData['active-breakpoints']);        
 
-          var index = trimCardData['active-breakpoints'].indexOf(trimType);
+          //remove current breakpoint
+          var index = trimCardData['active-breakpoints'].indexOf(currentBreakpoint);
+
           if (index !== -1) {
             trimCardData['active-breakpoints'].splice(index, 1);
           }
@@ -790,6 +901,7 @@ if (typeof params["slides"] !== 'undefined') {
           clearBreakpointCarousels();
         }
 
+
         //Create a GSAP timeline to help organize our series of collapse motions
         const tl = gsap.timeline({paused: true, onComplete: completeCollapse});
 
@@ -797,26 +909,27 @@ if (typeof params["slides"] !== 'undefined') {
         tl.to(carouselNavigation, {  opacity: 0, duration: 0.35 }, 0.1);
 
         //delay a little longer for mobile when closing for the 
-        const trimCloseDelay =  trimCardData['active-breakpoints'] == "mobile" ? 0.333 : 0.1;  
+        const trimCloseDelay =   currentBreakpoint == "mobile" ? 0.333 : 0.1;  
 
         //animate back to the card's collapse state
         tl.to(trimContent, { height: 'auto', duration: 0.3, ease: CustomEase.create("custom", "M0,0 C0.217,0.796 0.47,1.02 1,1 ") }, trimCloseDelay );
         tl.to(showTrimsBase, { y: 0, duration: 0.3, ease: CustomEase.create("custom", "M0,0 C0.217,0.796 0.47,1.02 1,1 ") }, trimCloseDelay );
         tl.to(photo, {  opacity: 1, duration: 0.25, ease: CustomEase.create("custom", "M0,0 C-0.014,0.711 0.306,1 1,1 "), }, 0.45);
         tl.fromTo(photo,  {scale: 0.8}, {  scale: 1, duration: 0.25 }, 0.45);
+        tl.to(photo, {  y: 0, duration: 0.15 }, 0.1);
         tl.to(copy, {  opacity: 1, duration: 0.33 }, 0.55);
         tl.to(disclaimer, {  opacity: 1, duration: 0.33 }, 0.45);
         tl.to(pricing, { opacity: 1, duration: 0.33 }, 0.55);
         tl.to(buildInventoryLinks, { opacity: 1, duration: 0.33 }, 0.55);
 
 
-        if ( trimType == "mobile") {
+        if ( currentBreakpoint == "mobile") {
 
           const titleCollapse = col1.querySelector('.mobile-collapse-title '); 
           const titleExpanded = col1.querySelector('.mobile-expanded-title '); 
 
-          tl.to(titleCollapse, { opacity: 1, duration: 0.1667 }, 0.55);
-          tl.to(titleExpanded, { opacity: 0, duration: 0.1667 }, 0.15);
+          tl.to(titleCollapse, { opacity: 1, duration: 0.25 }, 0.55);
+          tl.to(titleExpanded, { opacity: 0, duration: 0.2 }, 0.05);
         } 
 
         //play gs timeline
