@@ -8,6 +8,7 @@ The BSI Trim Carousel Prototype is an IUS development build to showcase, validat
 - Trim card expand/collapse motion using GSAP 
 - Button and link rollover motion using CSS
 - Browser resizing behaviour and how it effect the trim cards
+- Trim card logic for adjusting to variable heights on vehicle titles and trim cards.
 - Describe the UI element 'State banner' in relation to the motion 
 
 The prototype uses static place holder images in a few places, such as the trim cards themselves.
@@ -27,10 +28,10 @@ https://hyundai.innoceanusa.com/2025/bsi/trim-carousel-animation/index.html?fpo=
 Change the # of trim slides you want to view in the carousel by passing 'slides' with the amount. 7 is the max. `index.html?fpo=0.2&slides=3`
 
 https://hyundai.innoceanusa.com/2025/bsi/trim-carousel-animation/index.html?fpo=0.2&vehiclename=TUCSON%20Plug-in%20Hybrid
-Update the name of the trim vehicle with the 'vehiclename' key. `/index.html?fpo=0.2&vehiclename=TUCSON%20Plug-in%20Hybrid`
+Update the name of the trim vehicle with the 'vehiclename' key and a value such as 'TUCSON Plug-in Hybrid'. `/index.html?fpo=0.2&vehiclename=TUCSON%20Plug-in%20Hybrid`
 
 https://hyundai.innoceanusa.com/2025/bsi/trim-carousel-animation/index.html?fpo=0.2&statebanner=1
-Visualize the behaviour of the state banner as described in the FRs by passing 'statebanner' wtih a value of 1. `/index.html?fpo=0.2&statebanner=1`
+Visualize the behaviour of the state banner as described in the FRs by passing 'statebanner' with a value of 1. `/index.html?fpo=0.2&statebanner=1`
 
 
 ****
@@ -101,6 +102,6 @@ tl.to(trimContent, {height: expansionHeight , duration: 0.3, ease: CustomEase.cr
 
 ****
 
-IUS - 3/6/2025
+IUS - 3/7/2025
 ddintzner@innoceanusa.com
 

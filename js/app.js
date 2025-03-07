@@ -96,11 +96,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //card specific to Palisade - would be unique to each vehicle card
   const trimContent = document.querySelector('.trimcard-content');
   const showTrimsButtons = document.querySelectorAll(`[data-id="show-hide-trims"]`);
-  const carousel = document.querySelector('.trim-carousel-flickity'); 
-
-  var carouselNext = document.querySelectorAll(`button a[data-value="next"]`);
-  var carouselPrevious = document.querySelectorAll(`button a[data-value="previous"]`);
-  const carouselNavigationText  = document.querySelectorAll('.carousel-navigation .textdisplay');
 
 
   //determine the expanded state height based on the current breakpoint 
@@ -171,7 +166,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
 
-    console.log("top: " + carouselCardsData[currentBreakpoint]['top'])
+    //console.log("top: ", carouselCardsData[currentBreakpoint]['top']);
 
     if(type == 'top') {
       return carouselCardsData[currentBreakpoint]['top'] ;
@@ -192,55 +187,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
 
 
-  // declare flickity 
-  var flkty; 
-
-  carouselNext.forEach(el => el.addEventListener('click', event => {
-
-    console.log(event.target.parentElement.getAttribute("data-type"));
-    flkty.next();
-  }));
-
-  carouselPrevious.forEach(el => el.addEventListener('click', event => {
-
-    console.log(event.target.parentElement.getAttribute("data-type"));
-    flkty.previous();
-  }));
 
 
-  function removeCarouselDisable(elements) {
-
-    elements.forEach(el =>  {
-
-        //console.log(el.getAttribute("data-type"));
-        el.classList.remove("disable-a");
-        el.parentNode.classList.remove("disable-button");
-        const path = el.querySelector("path");
-        path.classList.remove("disable-path");
-    });
-  }
-
-  function addCarouselDisable(elements, imd) {
-
-    elements.forEach(el =>  {
-
-        console.log(el.getAttribute("data-type"));
-
-        el.classList.add("disable-a");
-        el.parentNode.classList.add("disable-button");
-        const path = el.querySelector("path");
-        path.classList.add("disable-path");
-
-    });
-  }
-
-
+  //when the user expands the carousel, we save all breakpoints the user might encounter.
+  //on collapse, we will go thru that array and reset the CSS back to its collapse state.
   function clearBreakpointCarousels() {
 
-    //reset trim card to collapse state
+    //reset trim card to collapse state - go thru all saved breakpoints
     trimCardData['active-breakpoints'].forEach(breakpoint =>  {
 
-      console.log("clearBreakpointCarousels | currentBreakpoint: " + breakpoint);
+      //console.log("clearBreakpointCarousels | currentBreakpoint: ", breakpoint);
       trimContent.removeAttribute('style');
 
       //update trims buttons to expanded state
@@ -256,7 +212,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       path.style.stroke = '#fff';
           
       let colLast, colSupport, col1, disclaimer; 
-      
+
       //each breakpoint has a different markup structure do the layout variations. 
       //we  look at the following as mobile = 1 column, tablet = 2 columns, desktop = 3 columns.
 
@@ -298,7 +254,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const buildLinks = colLast.querySelector('.build-inventory-links');
       const carouselNavigation = colLast.querySelector('.carousel-navigation'); 
 
-
       photo.removeAttribute('style');
       disclaimer.removeAttribute('style');
       copy.removeAttribute('style');
@@ -327,11 +282,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
     //if we are only resizing on the width of the browser
     if (width != prevWidth) {
 
-      //console.log( width  + " : " + prevWidth);
+      //console.log( width, " : ", prevWidth);
       const trimCardContent = document.querySelector('div.main .trimcard-content');
 
       prevWidth = window.innerWidth;
-      console.log("RESIZE : trimcard status: " + trimCardData['status'] );
+      //console.log("RESIZE : trimcard status: ", trimCardData['status'] );
 
       let currentBreakpoint;
 
@@ -470,7 +425,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
 
       if (!trimCardData['active-breakpoints'].includes(currentBreakpoint) ) { 
-        console.log(currentBreakpoint + " not found in " + trimCardData['active-breakpoints'] );
+        //console.log(currentBreakpoint, " not found in ", trimCardData['active-breakpoints'] );
         trimCardData['active-breakpoints'].push(currentBreakpoint); 
       }
 
@@ -486,10 +441,100 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
 // FLICKITY 
+// declare flickity 
+var flkty; 
+const carousel = document.querySelector('.trim-carousel-flickity'); 
+
+
+function flickityInit(elem, displaytext) {
+
+
+  var carouselNext = document.querySelectorAll(`button a[data-value="next"]`);
+  var carouselPrevious = document.querySelectorAll(`button a[data-value="previous"]`);
+  const carouselNavigationText  = document.querySelectorAll('.carousel-navigation .textdisplay');
+
+  //determine our motion settings - dependes on breakpoint area
+  const flickitySelectedAttraction = matchMedia('screen and (max-width: 768px)').matches ? 0.15 : 0.1;
+  const flickityFriction  = matchMedia('screen and (max-width: 768px)').matches ? 0.75 : 0.6;
+
+
+  carouselNext.forEach(el => el.addEventListener('click', event => {
+
+    //what breakpoint nav are we clicking on?
+    //console.log(event.target.parentElement.getAttribute("data-type"));
+    flkty.next();
+  }));
+
+  carouselPrevious.forEach(el => el.addEventListener('click', event => {
+
+    //what breakpoint nav are we clicking on?
+    //console.log(event.target.parentElement.getAttribute("data-type"));
+    flkty.previous();
+  }));
+
+
+  
+
+  function addCarouselDisable(elements, imd) {
+
+    elements.forEach(el =>  {
+
+        //console.log(el.getAttribute("data-type"));
+        el.classList.add("disable-a");
+        el.parentNode.classList.add("disable-button");
+        const path = el.querySelector("path");
+        path.classList.add("disable-path");
+
+    });
+  }
+
+
+  function removeCarouselDisable(elements) {
+
+    elements.forEach(el =>  {
+      
+        //console.log(el.getAttribute("data-type"));
+        el.classList.remove("disable-a");
+        el.parentNode.classList.remove("disable-button");
+        const path = el.querySelector("path");
+        path.classList.remove("disable-path");
+    });
+  }
+
+
+
+  function flicktyNavigationLogic( _this ) {
+
+    const totalCellsinView =  cellsPossibleInViewport();
+    const currentSet = _this.selectedIndex ;
+    const totalSlides = _this.getCellElements().length;
+
+    //we will need to figure out the nav text, flickity out of the box won't give us everything
+    let startIndex, endIndex;
+
+    if (  totalCellsinView == 1 ) {
+       //if we only have 1 trim inview 
+      startIndex = endIndex = currentSet + 1;
+
+    } else if ( (totalCellsinView * (currentSet + 1)) > totalSlides) {
+      //if we are at the end, then go backwards to capture any possible cards in view
+      startIndex = totalSlides - (totalCellsinView - 1);
+      endIndex = totalSlides;
+
+    } else {
+       //else we are in a place where its not the end or a single card view
+       startIndex = (currentSet * totalCellsinView) + 1 ;
+       endIndex = (startIndex + (totalCellsinView - 1)) ;
+    }
+
+    const StartEndIndexes = [startIndex, endIndex];
+    return StartEndIndexes;
+  }
+
 
   function flicktyUpdateNavText(indexStart, indexEnd, total) {
 
-    console.log("indexStart: " +  indexStart + ' | indexEnd: '  + indexEnd  )
+    //console.log("indexStart: ",  indexStart, ' | indexEnd: ', indexEnd  )
 
     //do our cards all fit in the view without the need for a navigation?
     const totalCellsinView =  cellsPossibleInViewport();
@@ -510,7 +555,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
       return;
     }
 
-
     // construct the current slides being shown...
     const slideNumbers = (indexStart != indexEnd ) ? indexStart + "-" + indexEnd : indexStart;
 
@@ -525,26 +569,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
 
 
-
-  function cellsInViewport() {
-
-    const carouselCells = carousel.querySelectorAll('.carousel-cell');
-    const trimcardContainer = document.querySelector('.trimcard');
-    const carouselRect = trimcardContainer.getBoundingClientRect();
-    let inViewCells = [];
-
-    for(let i=0; i < carouselCells.length; i++) {
-
-      let carouselCellRect = carouselCells[i].querySelector('img').getBoundingClientRect();
-      let inViewCell = (carouselCellRect.left >= carouselRect.left && carouselCellRect.right <= carouselRect.right ) ? true : false;
-
-      if (inViewCell) {  inViewCells.push(carouselCells[i].getAttribute('dataslide'));  }
-    }
-
-    return inViewCells;
-  }
-
-
+  //use to determine how many carousel trim cards can be seen in the viewport at 100% width
   function cellsPossibleInViewport() {
 
     const carouselCells = carousel.querySelectorAll('.carousel-cell');
@@ -557,7 +582,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
 
 
-
+  //update the disable state of the carousel navigation
   function flickityCarouselNavigation (_this) {
 
      //add or remove disable the previous
@@ -577,111 +602,63 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
 
 
-
-  function flickityInit(elem, displaytext) {
-
-    //determine our motion settings - dependes on breakpoint area
-    const flickitySelectedAttraction = matchMedia('screen and (max-width: 768px)').matches ? 0.04 : 0.1;
-    const flickityFriction  = matchMedia('screen and (max-width: 768px)').matches ? 0.28 : 0.6;
+  flkty = new Flickity( elem, {
  
+    cellAlign: 'left',
+    contain: true,
+    prevNextButtons: false,
+    pageDots : false,
+    groupCells : true,
+    cellAlign: 'center',  
+    on: {
+      ready: function() {
+        console.log('Flickity ready');
+        let visibleCellsStart  = [];
 
-    flkty = new Flickity( elem, {
-   
-        cellAlign: 'left',
-        contain: true,
-        prevNextButtons: false,
-        pageDots : false,
-        groupCells : true,
-        cellAlign: 'center',  
-        on: {
-          ready: function() {
-            console.log('Flickity ready');
-            let visibleCellsStart  = [];
+        for(let i = 0; i < this.selectedElements.length; i++) {
+          visibleCellsStart.push(this.selectedElements[i].getAttribute('dataslide'));
+        } 
 
+        //disable the first
+        addCarouselDisable(carouselPrevious);
 
-            for(let i = 0; i < this.selectedElements.length; i++) {
-              visibleCellsStart.push(this.selectedElements[i].getAttribute('dataslide'));
-            } 
+        //console.log("current set: ", (this.selectedIndex + 1), " | total elements in set: ", this.selectedElements.length, " | total slides: " +  this.getCellElements().length);
 
-            //disable the first
-            addCarouselDisable(carouselPrevious);
+        if (this.slides.length === 1) { addCarouselDisable(carouselNext);  }  // if we are only at 1 slide
+        flicktyUpdateNavText(visibleCellsStart[0], visibleCellsStart[visibleCellsStart.length - 1], this.getCellElements().length);
 
-            console.log("current set: " + (this.selectedIndex + 1) + " | total elements in set: " + this.selectedElements.length + " | total slides: " +  this.getCellElements().length);
+      },        
 
-            if (this.slides.length === 1) { addCarouselDisable(carouselNext);  }  // if we are only at 1 slide
-            flicktyUpdateNavText(visibleCellsStart[0], visibleCellsStart[visibleCellsStart.length - 1], this.getCellElements().length);
+      change: function(slide) {
 
-            cellsInViewport();
-          },        
+        const totalSlides = this.getCellElements().length;
+        // construct the logic for the navigation text
+        const startEndIndexes = flicktyNavigationLogic(this);
 
-          change: function(slide) {
+        flicktyUpdateNavText(startEndIndexes[0], startEndIndexes[1], totalSlides);
+        flickityCarouselNavigation (this);          
+      },
+      
+      resize: function(slide) {
 
-            //console.log("current set: " + (this.selectedIndex + 1) + " | total elements in set: " + this.selectedElements.length + " | total slides: " +  this.getCellElements().length);
-            const totalCellsinView =  cellsPossibleInViewport();
-            const currentSet = this.selectedIndex ;
-            const totalSlides = this.getCellElements().length;
+        const totalSlides = this.getCellElements().length;
+        // construct the logic for the navigation text
+        const startEndIndexes = flicktyNavigationLogic(this);
 
-            //we will need to figure out the nav text, flickity out of the box won't give us everything
-            let startIndex, endIndex;
+        flicktyUpdateNavText(startEndIndexes[0], startEndIndexes[1], totalSlides);
+        flickityCarouselNavigation (this);     
+      },
+    },
 
-            if (  totalCellsinView == 1 ) {
-               //if we only have 1 trim inview 
-              startIndex = endIndex = currentSet + 1;
+      //based on breakpoint
+      selectedAttraction: flickitySelectedAttraction, // higher attraction and higher friction
+      friction: flickityFriction, // faster transitions
 
-            } else if ( (totalCellsinView * (currentSet + 1)) > totalSlides) {
-              //if we are at the end, then go backwards to capture any possible cards in view
-              startIndex = totalSlides - (totalCellsinView - 1);
-              endIndex = totalSlides;
-
-            } else {
-               //else we are in a place where its not the end or a single card view
-               startIndex = (currentSet * totalCellsinView) + 1 ;
-               endIndex = (startIndex + (totalCellsinView - 1)) ;
-            }
-
-            flicktyUpdateNavText(startIndex, endIndex,totalSlides);
-            flickityCarouselNavigation (this);          
-          },
-          
-          resize: function(slide) {
-
-            //console.log("current set: " + (this.selectedIndex + 1) + " | total elements in set: " + this.selectedElements.length + " | total slides: " +  this.getCellElements().length);
-            const totalCellsinView =  cellsPossibleInViewport();
-            const currentSet = this.selectedIndex ;
-            const totalSlides = this.getCellElements().length;
-
-            //we will need to figure out the nav text, flickity out of the box won't give us everything
-            let startIndex, endIndex;
-
-            if (  totalCellsinView == 1 ) {
-               //if we only have 1 trim inview 
-              startIndex = endIndex = currentSet + 1;
-
-            } else if ( (totalCellsinView * (currentSet + 1)) > totalSlides) {
-              //if we are at the end, then go backwards to capture any possible cards in view
-              startIndex = totalSlides - (totalCellsinView - 1);
-              endIndex = totalSlides;
-
-            } else {
-               //else we are in a place where its not the end or a single card view
-               startIndex = (currentSet * totalCellsinView) + 1 ;
-               endIndex = (startIndex + (totalCellsinView - 1)) ;
-            }
-
-            flicktyUpdateNavText(startIndex, endIndex,totalSlides);
-            flickityCarouselNavigation (this);     
-          },
-        },
-
-        //based on breakpoint
-        selectedAttraction: flickitySelectedAttraction, // higher attraction and higher friction
-        friction: flickityFriction, // faster transitions
-
-      });
+    });
   }
 
 
-
+  // SHOW - HIDE TRIM BUTTONS
   // expand / contract carousel the Palisade vehicle card 
   showTrimsButtons.forEach(showTrimsButton => {
 
@@ -732,7 +709,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const buildInventoryLinks = colLast.querySelector('.build-inventory-links');
       const carouselNavigation = colLast.querySelector('.carousel-navigation'); 
 
-      const carouselNavItems = {"text" : carouselNavigation.querySelector('.textdisplay') , "button1" : carouselNavigation.getElementsByClassName('directional-selector-large-arrow')[0]  , "button2" : carouselNavigation.getElementsByClassName('directional-selector-large-arrow')[1]}
+      const carouselNavItems = {"text" : carouselNavigation.querySelector('.textdisplay') , "navButtonLeft" : carouselNavigation.getElementsByClassName('directional-selector-large-arrow')[0]  , "navButtonRight" : carouselNavigation.getElementsByClassName('directional-selector-large-arrow')[1]}
 
       const photo = colSupport.querySelector('.photo'); 
       const pricing = col1.querySelector('.pricing'); 
@@ -821,12 +798,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         //trim navigation
         // previous - next position
-        tl.fromTo(carouselNavItems["button1"] , {x: 32.0}, { x: 0.0, duration: 0.25, ease: "circ.out" }, 0.75);
-        tl.fromTo(carouselNavItems["button2"] , {x: -32.0}, { x: 0.0, duration: 0.25, ease: "circ.out" }, 0.75);
+        tl.fromTo(carouselNavItems["navButtonLeft"] , {x: 32.0}, { x: 0.0, duration: 0.25, ease: "circ.out" }, 0.75);
+        tl.fromTo(carouselNavItems["navButtonRight"] , {x: -32.0}, { x: 0.0, duration: 0.25, ease: "circ.out" }, 0.75);
 
         // previous - next opacity
-        tl.fromTo(carouselNavItems["button1"].querySelector('.fff-solid') , {opacity: 1.0}, { opacity: 0.0, duration: 0.25 }, 0.8);
-        tl.fromTo(carouselNavItems["button2"].querySelector('.fff-solid') , {opacity: 1.0}, { opacity: 0.0, duration: 0.25 }, 0.8);
+        tl.fromTo(carouselNavItems["navButtonLeft"].querySelector('.fff-solid') , {opacity: 1.0}, { opacity: 0.0, duration: 0.25 }, 0.8);
+        tl.fromTo(carouselNavItems["navButtonRight"].querySelector('.fff-solid') , {opacity: 1.0}, { opacity: 0.0, duration: 0.25 }, 0.8);
 
         //text - opacity
         tl.fromTo(carouselNavItems["text"] , {opacity: 0.0}, { opacity: 1.0, duration: 0.33 }, 0.95);
@@ -863,8 +840,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
           //remove flickity
           flkty.destroy();
           carousel.style.display = 'none';
-          removeCarouselDisable(carouselNext);
-          removeCarouselDisable(carouselPrevious);
 
           //remove all greensock's inline styles that were added
           gsap.set(trimContent, { clearProps: "all" });
@@ -908,7 +883,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         tl.to(buildInventoryLinks, { opacity: 1, duration: 0.33 }, 0.55);
 
         if ( currentBreakpoint == "mobile") {
-
+          // Because mobile has the vehicle name in a different place when collapse
           const titleCollapse = col1.querySelector('.mobile-collapse-title '); 
           const titleExpanded = col1.querySelector('.mobile-expanded-title '); 
 
