@@ -119,6 +119,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     //placeholder 1-line title-header heights -- they are variable, depending on content.  
     let desktopHeaderHeight = 88, tabletHeaderHeight = 66, mobileHeaderHeight = 66;
+    //declare the show-hide-trim button with a default 1-line value of 44
+    let desktopTrimsButtonHeight = 44, tabletTrimsButtonHeight = 44, mobileTrimsButtonHeight = 44;
 
     //find the true height of the vehicle header - includes year toggles and name
     switch (currentBreakpoint) {
@@ -126,12 +128,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         const desktopHeader = trimContent.querySelector('.trimcard-collapse-desktop .vehicle-header'); 
         desktopHeaderHeight = desktopHeader.offsetHeight;
+        const desktopShowTrims = trimContent.querySelector('.trimcard-collapse-desktop .ctas [data-id="show-hide-trims"]'); 
+        desktopTrimsButtonHeight = desktopShowTrims.offsetHeight;
+
         break;
 
       case 'tablet':
 
         const tabletHeader = trimContent.querySelector('.trimcard-collapse-tablet .vehicle-header'); 
         tabletHeaderHeight = tabletHeader.offsetHeight;
+        const tabletShowTrims = trimContent.querySelector('.trimcard-collapse-tablet .ctas [data-id="show-hide-trims"]'); 
+        tabletTrimsButtonHeight = tabletShowTrims.offsetHeight;
         break;
 
       case 'mobile':
@@ -139,12 +146,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const mobileHeaderCollapse = trimContent.querySelector('.trimcard-collapse-mobile .vehicle-header'); 
         const mobileHeaderH2Collapse = trimContent.querySelector('.trimcard-collapse-mobile  .mobile-expanded-title'); 
 
-        //if our top h2 title for the vehicle name has 0 height, then we need to reference and add the bottom h2 title
-        //let offset = ( !mobileHeaderH2Collapse.offsetHeight) ?  mobileExpandedH2Expand.offsetHeight : 0;
-
+        //because our mobile vehicle name on expansion is an 'absolute' position, we will need to add it's height to the header's value
         mobileHeaderHeight = mobileHeaderCollapse.offsetHeight + mobileHeaderH2Collapse.offsetHeight;
-        break;
 
+        const mobileShowTrims = trimContent.querySelector('.trimcard-collapse-mobile .ctas [data-id="show-hide-trims"]'); 
+        mobileTrimsButtonHeight = mobileShowTrims.offsetHeight;
+        break;
 
       default:
         console.log("breakpoint not found")
@@ -155,11 +162,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const carouselCardsData  = { 
 
       // desktop margins 24px, padding 16px, top nav 88px, hide trims 44px
-      'desktop' : { 'top' :  (24 + desktopHeaderHeight + 16), 'bottom'  : (16 + 44 + 24) },
+      'desktop' : { 'top' :  (24 + desktopHeaderHeight + 16), 'bottom'  : (16 + desktopTrimsButtonHeight + 24) },
       // tablet margins 16px, padding 16px, top nav 66px, hide trims 44px
-      'tablet' : { 'top' :  (16 +  tabletHeaderHeight + 16), 'bottom'  : (16 +  44 + 16) },
+      'tablet' : { 'top' :  (16 +  tabletHeaderHeight + 16), 'bottom'  : (16 +  tabletTrimsButtonHeight + 16) },
       // tablet margins 16px and 24px, padding 16px, top nav 70px, bottom nav 32, bottom hide trims 44px
-      'mobile' : { 'top' :  (16 +  mobileHeaderHeight + 24), 'bottom'  : ( 16 +  32 + 16 + 44 + 16) }
+      'mobile' : { 'top' :  (16 +  mobileHeaderHeight + 24), 'bottom'  : ( 16 +  32 + 16 + mobileTrimsButtonHeight + 16) }
 
     }
 
@@ -201,7 +208,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }));
 
 
-
   function removeCarouselDisable(elements) {
 
     elements.forEach(el =>  {
@@ -213,7 +219,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         path.classList.remove("disable-path");
     });
   }
-
 
   function addCarouselDisable(elements, imd) {
 
@@ -228,7 +233,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     });
   }
-
 
 
   function clearBreakpointCarousels() {
@@ -252,7 +256,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       path.style.stroke = '#fff';
           
       let colLast, colSupport, col1, disclaimer; 
-
+      
       //each breakpoint has a different markup structure do the layout variations. 
       //we  look at the following as mobile = 1 column, tablet = 2 columns, desktop = 3 columns.
 
@@ -335,11 +339,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
       if (window.innerWidth >= 640 && window.innerWidth < 1440 ) { currentBreakpoint = "tablet" };  
       if (window.innerWidth < 640 ) {  currentBreakpoint= "mobile" }; 
 
-      //let showButtonResize = 0;
-
       //update 'breakpoint' classification
       trimCardData["breakpoint"] = currentBreakpoint;
-
 
       //if we are no longer in the breakpoint and we are expanded, need to updated the cars
       if ( trimCardData['status'] == "expanded") {
@@ -353,14 +354,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
           trimCardData['breakpoints'][currentBreakpoint]['expanded'] = getElementHeight('trimcardContent', carousel, currentBreakpoint);
         }
 
-
         // we will need to get the height of the top card section to pass to the flickity-carousel
         carousel.style.top = getElementHeight('top', carousel, currentBreakpoint) + "px";
         
         trimCardData['breakpoints'][currentBreakpoint]['expanded'] = getElementHeight('trimcardContent', carousel, currentBreakpoint);
         trimContent.style.height = trimCardData["breakpoints"][currentBreakpoint]["expanded"] + "px";
-
-        //alert(trimContent.style.height) 
 
         //update trims buttons to expanded state
         let hideshowTrimsButton = trimCardData["breakpoints"][currentBreakpoint]['hideshowTrimsButton'] ;
@@ -409,9 +407,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
           default:
             break;
-
         }
-
 
 
         //now we have the general layout from above, select the elements within
@@ -426,7 +422,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         // <--- show-hide-trim button positionn STARTS HERE
         const rectShowHideButtonn = trimShowHideButton.getBoundingClientRect();
         const rectTrimCardContent = trimCardContent.getBoundingClientRect();
-
 
         //use the padding bottom as an offset for our button Y positioning
         const trimCardContentStyle = window.getComputedStyle(trimCardHeader);
@@ -464,7 +459,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
           titleExpanded.style.height = 'auto';
         }
 
-
         photo.style.opacity =  0.0;
         disclaimer.style.opacity = 0.0;
         copy.style.opacity = 0.0;
@@ -473,15 +467,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         carouselNavigationText.style.opacity =  1.0;
         carouselNavigation.style.display =  'flex';
         carouselNavigation.style.pointerEvents =  'auto';
-
       }
-
 
       if (!trimCardData['active-breakpoints'].includes(currentBreakpoint) ) { 
         console.log(currentBreakpoint + " not found in " + trimCardData['active-breakpoints'] );
         trimCardData['active-breakpoints'].push(currentBreakpoint); 
       }
-
 
       //only call flickity if we have it activated
       try {
@@ -532,7 +523,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
       text.innerText = slideNumbers + " of " + total + " matches";
     });
   }
-
 
 
 
@@ -692,7 +682,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
 
-
   // expand / contract carousel the Palisade vehicle card 
   showTrimsButtons.forEach(showTrimsButton => {
 
@@ -743,7 +732,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const buildInventoryLinks = colLast.querySelector('.build-inventory-links');
       const carouselNavigation = colLast.querySelector('.carousel-navigation'); 
 
-      const carouselNavItems = {"text" : carouselNavigation.querySelector('.textdisplay')  , "button1" : carouselNavigation.getElementsByClassName('directional-selector-large-arrow')[0]  , "button2" : carouselNavigation.getElementsByClassName('directional-selector-large-arrow')[1]}
+      const carouselNavItems = {"text" : carouselNavigation.querySelector('.textdisplay') , "button1" : carouselNavigation.getElementsByClassName('directional-selector-large-arrow')[0]  , "button2" : carouselNavigation.getElementsByClassName('directional-selector-large-arrow')[1]}
 
       const photo = colSupport.querySelector('.photo'); 
       const pricing = col1.querySelector('.pricing'); 
@@ -774,7 +763,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         carousel.style.display = 'inline';
         carousel.style.top = getElementHeight('top', carousel, currentBreakpoint) + "px";
 
-        //get carousel 
+        //carousel navigation to visible
         carouselNavigation.style.display =  'flex';  
         carouselNavigation.style.pointerEvents =  'auto';
 
@@ -789,9 +778,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
           tl.to(titleCollapse, { opacity: 0, duration: 0.1667 }, 0.1);
           tl.to(titleExpanded, { opacity: 1, duration: 0.333 }, 0.3);
-
-          //tl.to(titleExpanded, { height: 'auto', duration: 0.1667}, 0.25); 
-          //tl.to(photo, { y:( mobileHeaderCollapseH2 * -1), duration: 0.1667 }, 0.25);
 
         } 
 
@@ -901,7 +887,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
           clearBreakpointCarousels();
         }
 
-
         //Create a GSAP timeline to help organize our series of collapse motions
         const tl = gsap.timeline({paused: true, onComplete: completeCollapse});
 
@@ -921,7 +906,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         tl.to(disclaimer, {  opacity: 1, duration: 0.33 }, 0.45);
         tl.to(pricing, { opacity: 1, duration: 0.33 }, 0.55);
         tl.to(buildInventoryLinks, { opacity: 1, duration: 0.33 }, 0.55);
-
 
         if ( currentBreakpoint == "mobile") {
 
