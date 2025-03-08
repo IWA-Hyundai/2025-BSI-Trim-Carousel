@@ -440,23 +440,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
 
-// FLICKITY 
-// declare flickity 
-var flkty; 
-const carousel = document.querySelector('.trim-carousel-flickity'); 
-
-
-function flickityInit(elem, displaytext) {
-
-
+  // FLICKITY 
+  // declare flickity 
+  var flkty; 
+  const carousel = document.querySelector('.trim-carousel-flickity'); 
   var carouselNext = document.querySelectorAll(`button a[data-value="next"]`);
   var carouselPrevious = document.querySelectorAll(`button a[data-value="previous"]`);
   const carouselNavigationText  = document.querySelectorAll('.carousel-navigation .textdisplay');
-
-  //determine our motion settings - dependes on breakpoint area
-  const flickitySelectedAttraction = matchMedia('screen and (max-width: 768px)').matches ? 0.15 : 0.1;
-  const flickityFriction  = matchMedia('screen and (max-width: 768px)').matches ? 0.75 : 0.6;
-
 
   carouselNext.forEach(el => el.addEventListener('click', event => {
 
@@ -471,9 +461,7 @@ function flickityInit(elem, displaytext) {
     //console.log(event.target.parentElement.getAttribute("data-type"));
     flkty.previous();
   }));
-
-
-  
+ 
 
   function addCarouselDisable(elements, imd) {
 
@@ -503,34 +491,12 @@ function flickityInit(elem, displaytext) {
 
 
 
-  function flicktyNavigationLogic( _this ) {
+function flickityInit(elem, displaytext) {
 
-    const totalCellsinView =  cellsPossibleInViewport();
-    const currentSet = _this.selectedIndex ;
-    const totalSlides = _this.getCellElements().length;
 
-    //we will need to figure out the nav text, flickity out of the box won't give us everything
-    let startIndex, endIndex;
-
-    if (  totalCellsinView == 1 ) {
-       //if we only have 1 trim inview 
-      startIndex = endIndex = currentSet + 1;
-
-    } else if ( (totalCellsinView * (currentSet + 1)) > totalSlides) {
-      //if we are at the end, then go backwards to capture any possible cards in view
-      startIndex = totalSlides - (totalCellsinView - 1);
-      endIndex = totalSlides;
-
-    } else {
-       //else we are in a place where its not the end or a single card view
-       startIndex = (currentSet * totalCellsinView) + 1 ;
-       endIndex = (startIndex + (totalCellsinView - 1)) ;
-    }
-
-    const StartEndIndexes = [startIndex, endIndex];
-    return StartEndIndexes;
-  }
-
+  //determine our motion settings - dependes on breakpoint area
+  const flickitySelectedAttraction = matchMedia('screen and (max-width: 768px)').matches ? 0.15 : 0.1;
+  const flickityFriction  = matchMedia('screen and (max-width: 768px)').matches ? 0.75 : 0.6;
 
   function flicktyUpdateNavText(indexStart, indexEnd, total) {
 
@@ -582,6 +548,36 @@ function flickityInit(elem, displaytext) {
   }
 
 
+  function flicktyNavigationLogic( _this ) {
+
+    const totalCellsinView =  cellsPossibleInViewport();
+    const currentSet = _this.selectedIndex ;
+    const totalSlides = _this.getCellElements().length;
+
+    //we will need to figure out the nav text, flickity out of the box won't give us everything
+    let startIndex, endIndex;
+
+    if (  totalCellsinView == 1 ) {
+       //if we only have 1 trim inview 
+      startIndex = endIndex = currentSet + 1;
+
+    } else if ( (totalCellsinView * (currentSet + 1)) > totalSlides) {
+      //if we are at the end, then go backwards to capture any possible cards in view
+      startIndex = totalSlides - (totalCellsinView - 1);
+      endIndex = totalSlides;
+
+    } else {
+       //else we are in a place where its not the end or a single card view
+       startIndex = (currentSet * totalCellsinView) + 1 ;
+       endIndex = (startIndex + (totalCellsinView - 1)) ;
+    }
+
+    const StartEndIndexes = [startIndex, endIndex];
+    return StartEndIndexes;
+  }
+
+
+
   //update the disable state of the carousel navigation
   function flickityCarouselNavigation (_this) {
 
@@ -598,7 +594,6 @@ function flickityInit(elem, displaytext) {
     } else {
       removeCarouselDisable(carouselNext);          
     }
-
   }
 
 
